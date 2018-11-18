@@ -55,7 +55,8 @@ Route::group(['middleware'=>'web'],function (){
     Route::get('/user/setPass', 'UserController@SetPass')->name('SetPass');
 
 
-    
+    代码提交更新
+
     //用户保存信息
     Route::post('/user/baseInfoSave', 'UserController@BaseInfoSave')->name('BaseInfoSave');
 
