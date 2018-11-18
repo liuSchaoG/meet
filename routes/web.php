@@ -54,6 +54,7 @@ Route::group(['middleware'=>'web'],function (){
     //密码设置
     Route::get('/user/setPass', 'UserController@SetPass')->name('SetPass');
 
+
     //用户保存信息
     Route::post('/user/baseInfoSave', 'UserController@BaseInfoSave')->name('BaseInfoSave');
 

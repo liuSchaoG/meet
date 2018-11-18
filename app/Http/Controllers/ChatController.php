@@ -6,7 +6,6 @@ namespace App\Http\Controllers;
 use App\Extensions\Auth;
 use App\Services\ChatService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Session;
 
 class ChatController extends Controller
