@@ -94,7 +94,6 @@ class UserController extends  Controller
     {
         $uid = $request -> uid;
         $info = $this -> userService -> getUserPerference($uid);
-        dd($info);
         return view('user.perference',$info);
     }
 

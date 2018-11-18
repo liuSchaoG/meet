@@ -95,8 +95,11 @@ class UserService
      */
     public function getUserPerference($uid)
     {
-        $info = Preference::firstOrCreate(['uid'=>$uid])->toArray();
-        dd($info);
+        $field = ["uid","max_age","min_age","max_height", "min_height", "max_income","min_income","education","marry_status","shape","area_province","area_city","area","has_child","is_smoke","is_drink","has_photo"];
+        $info = Preference::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
+        if(!isset($info['max_age'])){
+            $info = Preference::select($field)->where(['uid'=>$uid])->first()->toArray();
+        }
         return $info;
     }
 
