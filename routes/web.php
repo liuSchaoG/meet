@@ -32,8 +32,6 @@ Route::group(['middleware'=>'web'],function (){
     Route::post('getChatList', 'ChatController@getChatList')->name('getChatList');//聊天室
 
 
-
-
     //个人心中路由定义  2018-11-17
     //基本资料
     Route::get('/user/baseInfo', 'UserController@BaseInfo')->name('BaseInfo');
