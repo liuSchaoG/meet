@@ -1,0 +1,251 @@
+@extends('layouts.app')
+<link href="{{ asset('chat/css/chat.css?a=1') }}" rel="stylesheet">
+<div class="qqBox">
+    <div class="BoxHead">
+        <div class="headImg">
+            <img src="chat/images/6.jpg"/>
+        </div>
+        <div class="internetName"> {{ session('username') }}</div>
+        <div class="receive_uid" style="display: none;">1</div>
+    </div>
+    <div class="context">
+        <div class="conLeft" id="friendList">
+            <ul>
+                <li class="bg">
+                    <div class="liLeft"><img src="chat/images/20170926103645_19.jpg"/></div>
+                    <div class="liRight">
+                        <span  class="intername">赵鹏</span>
+                        <span class="infor">[流泪]</span>
+                        <span class="uid" style="display: none;">1</span>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="liLeft"><img src="chat/images/20170926103645_25.jpg"/></div>
+                    <div class="liRight">
+                        <span  class="intername">...</span>
+                        <span class="infor">[么么哒]</span>
+                        <span class="uid" style="display: none;">2</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="liLeft"><img src="chat/images/20170926103645_27.jpg"/></div>
+                    <div class="liRight">
+                        <span  class="intername">sany</span>
+                        <span class="infor">前端小黑：怎么才能</span>
+                        <span class="uid" style="display: none;">3</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="liLeft"><img src="chat/images/20170926103645_29.jpg"/></div>
+                    <div class="liRight">
+                        <span  class="intername">前端交流群</span>
+                        <span class="infor">大西瓜：差评，这个下面又</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="conRight">
+            <div class="Righthead">
+                <div class="headName">赵鹏</div>
+                <div class="headConfig">
+                    <ul>
+                        <li><img src="chat/images/20170926103645_06.jpg"/></li>
+                        <li><img src="chat/images/20170926103645_08.jpg"/></li>
+                        <li><img src="chat/images/20170926103645_10.jpg"/></li>
+                        <li><img src="chat/images/20170926103645_12.jpg"/></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="RightCont">
+                <ul class="newsList">
+
+                </ul>
+            </div>
+            <div class="RightFoot">
+                <div class="emjon">
+                    <ul>
+                        <li><img src="chat/images/em_02.jpg"/></li>
+                        <li><img src="chat/images/em_05.jpg"/></li>
+                        <li><img src="chat/images/em_07.jpg"/></li>
+                        <li><img src="chat/images/em_12.jpg"/></li>
+                        <li><img src="chat/images/em_14.jpg"/></li>
+                        <li><img src="chat/images/em_16.jpg"/></li>
+                        <li><img src="chat/images/em_20.jpg"/></li>
+                        <li><img src="chat/images/em_23.jpg"/></li>
+                        <li><img src="chat/images/em_25.jpg"/></li>
+                        <li><img src="chat/images/em_30.jpg"/></li>
+                        <li><img src="chat/images/em_31.jpg"/></li>
+                        <li><img src="chat/images/em_33.jpg"/></li>
+                        <li><img src="chat/images/em_37.jpg"/></li>
+                        <li><img src="chat/images/em_38.jpg"/></li>
+                        <li><img src="chat/images/em_40.jpg"/></li>
+                        <li><img src="chat/images/em_45.jpg"/></li>
+                        <li><img src="chat/images/em_47.jpg"/></li>
+                        <li><img src="chat/images/em_48.jpg"/></li>
+                        <li><img src="chat/images/em_52.jpg"/></li>
+                        <li><img src="chat/images/em_54.jpg"/></li>
+                        <li><img src="chat/images/em_55.jpg"/></li>
+                    </ul>
+                </div>
+                <div class="footTop">
+                    <ul>
+                        <li><img src="chat/images/20170926103645_31.jpg"/></li>
+                        <li class="ExP"><img src="chat/images/20170926103645_33.jpg"/></li>
+                        <li><img src="chat/images/20170926103645_35.jpg"/></li>
+                        <li><img src="chat/images/20170926103645_37.jpg"/></li>
+                        <li><img src="chat/images/20170926103645_39.jpg"/></li>
+                        <li><img src="chat/images/20170926103645_41.jpg" alt="" /></li>
+                        <li><img src="chat/images/20170926103645_43.jpg"/></li>
+                        <li><img src="chat/images/20170926103645_45.jpg"/></li>
+                    </ul>
+                </div>
+                <div class="inputBox">
+                    <textarea id="dope" style="width: 99%;height: 75px; border: none;outline: none;" name="" rows="" cols=""></textarea>
+                    <button class="sendBtn">发送(s)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+<script src="{{ asset('chat/js/chat.js') }}"></script>
+<script type="text/javascript">
+var user_uid = '{{ session('id') }}';
+$('#friendList li').on('click',function(){
+		$(this).addClass('bg').siblings().removeClass('bg');
+		var intername=$(this).children('.liRight').children('.intername').text();
+		var receive_id = $(this).children('.liRight').children('.uid').text();
+		console.log(receive_id);
+		$('.headName').text(intername);
+		$('.receive_uid').text(receive_id);
+		$('.newsList').html('');
+	})
+
+if(window.WebSocket) {
+    //var webSocket = new WebSocket("ws://47.52.167.163:9502");
+    var webSocket = new WebSocket("ws://127.0.0.1:9502");
+    webSocket.onopen = function (event) {
+        //webSocket.send("{'user':'{{ session('id')}}'}");
+        webSocket.send('{"uid":'+ user_uid +'}');
+    };
+    $('.sendBtn').on('click', function () {
+        var news = $('#dope').val();
+        if (news == '') {
+            alert('不能为空');
+        } else {
+            $('#dope').val('');
+            var receive_uid = $('.receive_uid').text();
+            var message =  '{"message":"'+ news +'","send_uid":'+ user_uid +',"receive_uid":'+ receive_uid +'}';    //{'message': news, 'uid': user_uid};
+            console.log(message);
+            webSocket.send(message);
+            //$('.newsList').append(message);
+            //setTimeout(answers,1000);
+            //$('.conLeft').find('li.bg').children('.liRight').children('.infor').text(news);
+            //$('.RightCont').scrollTop($('.RightCont')[0].scrollHeight );
+        }
+
+    })
+    webSocket.onmessage = function (event) {
+        var data = eval('(' + event.data + ')');
+        console.log(data);
+        var message = '';
+        console.log(data.user_uid);
+        if(data.send_uid == undefined || data.receive_uid == undefined){
+            console.log(data.user_uid);
+            return '';
+        }
+        if (data.send_uid == user_uid) {
+            message += '<li>' +
+                '<div class="answerHead"><img src="chat/images/tou.jpg"/></div>' +
+                '<div class="answers"><img class="jiao" src="chat/images/jiao.jpg">' + data.message + '</div>' +
+                '</li>';
+            $('.newsList').append(message);
+            $('.RightCont').scrollTop($('.RightCont')[0].scrollHeight);
+        } else {
+            message += '<li>' +
+                '<div class="nesHead"><img src="chat/images/6.jpg"/></div>' +
+                '<div class="news"><img class="jiao" src="chat/images/20170926103645_03_02.jpg">' + data.message + '</div>' +
+                '</li>';
+            $('.newsList').append(message);
+            // $('.conLeft').find('li.bg').children('.liRight').children('.infor').text(data.message);
+            $('.RightCont').scrollTop($('.RightCont')[0].scrollHeight);
+        }
+
+    };
+
+}else{
+    console.log("您的浏览器不支持WebSocket");
+}
+
+function getCaption(obj){
+
+    var index=obj.indexOf("\:");
+    obj=obj.substring(index+1,obj.length);
+//  console.log(obj);
+    return obj;
+}
+
+	// function answers(){
+	// 	var arr=["你好","今天天气很棒啊","你吃饭了吗？","我最美我最美","我是可爱的僵小鱼","你们忍心这样子对我吗？","spring天下无敌，实习工资850","我不管，我最帅，我是你们的小可爱","段友出征，寸草不生","一入段子深似海，从此节操是路人","馒头：嗷","突然想开个车","段子界混的最惨的两个狗：拉斯，普拉达。。。"];
+	// 	var aa=Math.floor((Math.random()*arr.length));
+	// 	var answer='';
+	// 	answer+='<li>'+
+	// 				'<div class="answerHead"><img src="chat/images/tou.jpg"/></div>'+
+	// 				'<div class="answers"><img class="jiao" src="chat/images/jiao.jpg">'+arr[aa]+'</div>'+
+	// 			'</li>';
+	// 	$('.newsList').append(answer);
+	// 	$('.RightCont').scrollTop($('.RightCont')[0].scrollHeight );
+	// }
+
+
+	$('.ExP').on('mouseenter',function(){
+		$('.emjon').show();
+	})
+	$('.emjon').on('mouseleave',function(){
+		$('.emjon').hide();
+	})
+	$('.emjon li').on('click',function(){
+		var imgSrc=$(this).children('img').attr('src');
+		var str="";
+		str+='<li>'+
+				'<div class="nesHead"><img src="chat/images/6.jpg"/></div>'+
+				'<div class="news"><img class="jiao" src="chat/images/20170926103645_03_02.jpg"><img class="Expr" src="'+imgSrc+'"></div>'+
+			'</li>';
+		$('.newsList').append(str);
+		$('.emjon').hide();
+		$('.RightCont').scrollTop($('.RightCont')[0].scrollHeight );
+	})
+
+
+
+/*if(window.WebSocket){
+    var webSocket = new WebSocket("ws://47.52.167.163:9502");
+    webSocket.onopen = function (event) {
+        //webSocket.send("Hello,WebSocket!");
+    };
+    webSocket.onmessage = function (event) {
+        var content = document.getElementById('content');
+        if(event.data instanceof Blob) {
+            var img = document.createElement("img");
+            img.src = window.URL.createObjectURL(event.data);
+            content.appendChild(img);
+        }else {
+            content.innerHTML = content.innerHTML.concat('<p style="margin-left:20px;height:20px;line-height:20px;">用户id-'+event.data+'</p>');
+        }
+    };
+
+    var sendMessage = function(){
+        var data = document.getElementById('message').value;
+        webSocket.send(data);
+        document.getElementById('message').value = '';
+    }
+}else{
+    console.log("您的浏览器不支持WebSocket");
+}*/
+
+
+</script>
