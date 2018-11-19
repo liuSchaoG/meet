@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 /**
  * 用信息服务提供
  */
-class ChatService 
+class ChatService
 {
     /**
      * 获取聊天记录列表
@@ -24,6 +24,25 @@ class ChatService
             //初期先用mysql
             $data = [];
             $data = Chat::getChatList($uid,$receiveUid,$page);
+            if (!empty($data)) {
+                $returnModel->setData(array_reverse($data));
+            }
+        } catch (Exception $e) {
+            $returnModel->initFail($e->getMessage());
+        }
+        return $returnModel->toArray();
+    }
+
+    /**
+     * 获取聊天好友列表
+     */
+    public static function getChatFriendList($uid)
+    {
+        $returnModel = new ReturnModel();
+        try {
+            //初期先用mysql
+            $data = [];
+            $data = Chat::getChatFriendsList($uid);
             if (!empty($data)) {
                 $returnModel->setData(array_reverse($data));
             }

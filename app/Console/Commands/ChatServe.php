@@ -93,13 +93,23 @@ class ChatServe extends Command
                         ->update(['updated_at' =>date('Y-m-d H:i:s')]);
 
                 }
+                $talk = DB::table('chat_friends_list')->where('uid', $receive['receive_uid'])->where('receive_id', $receive['send_uid'])->get()->toArray();
+                if (empty($talk)) {
+                    DB::table('chat_friends_list')->insert([
+                        ['uid' => $receive['receive_uid'], 'receive_id' => $receive['send_uid'],'updated_at' =>date('Y-m-d H:i:s')]
+                    ]);
+                } else {
+                    DB::table('chat_friends_list')->where('uid',$receive['receive_uid'])->where('receive_id',$receive['send_uid'])
+                        ->update(['updated_at' =>date('Y-m-d H:i:s')]);
+
+                }
                 //2.将消息存入消息表
                 DB::table('chat')->insert([
                     'send_uid'=>$receive['send_uid'],
                     'receive_uid' =>$receive['receive_uid'],
                     'message'=>$receive['message'],
                     'create_time' =>time()
-                    ]);
+                ]);
 
                 $fds_send = DB::table('wesocket_connect')->select('fd')->where('uid',$receive['send_uid'])->get()->toArray();
                 $fds_receive = DB::table('wesocket_connect')->select('fd')->where('uid',$receive['receive_uid'])->get()->toArray();

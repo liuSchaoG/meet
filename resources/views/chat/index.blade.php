@@ -8,44 +8,23 @@
                     <div class="panel-heading">30天内联系人</div>
                     <div class="conLeft" id="talkList">
                         <ul>
-                            <li class="bg">
-                                <div class="liLeft"><img src="chat/images/20170926103645_19.jpg"/></div>
-                                <div class="liRight">
-                                    <span  class="intername">suky</span>
-                                    <span class="infor">年龄:29</span>
-                                    <span class="uid" style="display: none;">1</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="liLeft"><img src="chat/images/20170926103645_25.jpg"/></div>
-                                <div class="liRight">
-                                    <span  class="intername">lisy</span>
-                                    <span class="infor">年龄:23</span>
-                                    <span class="uid" style="display: none;">2</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="liLeft"><img src="chat/images/20170926103645_27.jpg"/></div>
-                                <div class="liRight">
-                                    <span  class="intername">sany</span>
-                                    <span class="infor">年龄:23</span>
-                                    <span class="uid" style="display: none;">3</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="liLeft"><img src="chat/images/20170926103645_29.jpg"/></div>
-                                <div class="liRight">
-                                    <span  class="intername">赵欣欣</span>
-                                    <span class="infor">年龄:22</span>
-                                </div>
-                            </li>
+                            @foreach($freinds as $k=>$l)
+                                <li @if($k==0) class="bg" @endif >
+                                    <div class="liLeft"><img src="{{$l->head_image}}"/></div>
+                                    <div class="liRight">
+                                        <span  class="intername">{{$l->username}}</span>
+                                        <span class="infor">年龄:29</span>
+                                        <span class="uid" style="display: none;">{{$l->uid}}</span>
+                                    </div>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                     <!--右边聊天框-->
                     <div class="conRight">
                         <div class="Righthead">
-                            <div class="headName">赵鹏</div>
-                            <div class="receive_uid" style="display: none;">2</div>
+                            <div class="headName">{{$freinds[0]->username}}</div>
+                            <div class="receive_uid" style="display: none;">{{$freinds[0]->uid}}</div>
                             <div class="headConfig">
                                 <ul>
                                     <li><img src="chat/images/20170926103645_06.jpg"/></li>
@@ -109,122 +88,126 @@
         </div>
     </div>
 
-<script type="text/javascript">
-window.onload = function (ev) {
-    var user_uid = '{{ session('id') }}';
-    $('.conLeft li').on('click',function(){
-        $(this).addClass('bg').siblings().removeClass('bg');
-        var intername=$(this).children('.liRight').children('.intername').text();
-        var receive_id = $(this).children('.liRight').children('.uid').text();
-        $('.headName').text(intername);
-        $('.receive_uid').text(receive_id);
-        $('.newsList').html('');
-    })
+    <script type="text/javascript">
+        window.onload = function (ev) {
+            var user_uid = '{{ session('id') }}';
+            var default_receive_uid = $('.receive_uid').text();
+            //默认聊天记录10条
+            getTalkList(user_uid,default_receive_uid,1);
+            $('.conLeft li').on('click',function(){
+                $(this).addClass('bg').siblings().removeClass('bg');
+                var intername=$(this).children('.liRight').children('.intername').text();
+                var receive_id = $(this).children('.liRight').children('.uid').text();
+                $('.headName').text(intername);
+                $('.receive_uid').text(receive_id);
+                $('.newsList').html('');
+                getTalkList(user_uid,receive_id,1);
+                //$('.newsList').html('');
+            })
 
 
-    $('.ExP').on('mouseenter',function(){
-        $('.emjon').show();
-    })
-    $('.emjon').on('mouseleave',function(){
-        $('.emjon').hide();
-    })
-    $('.emjon li').on('click',function(){
-        var imgSrc=$(this).children('img').attr('src');
-        var str="";
-        str+='<li>'+
-            '<div class="nesHead"><img src="img/6.jpg"/></div>'+
-            '<div class="news"><img class="jiao" src="img/20170926103645_03_02.jpg"><img class="Expr" src="'+imgSrc+'"></div>'+
-            '</li>';
-        $('.newsList').append(str);
-        $('.emjon').hide();
-        $('.RightCont').scrollTop($('.RightCont')[0].scrollHeight );
-    })
-
-    if(window.WebSocket) {
-        //var webSocket = new WebSocket("ws://47.52.167.163:9502");
-        var webSocket = new WebSocket("ws://127.0.0.1:9502");
-        webSocket.onopen = function (event) {
-            //webSocket.send("{'user':'{{ session('id')}}'}");
-            webSocket.send('{"uid":'+ user_uid +'}');
-        };
-        $('.sendBtn').on('click', function () {
-            var news = $('#dope').val();
-            if (news == '') {
-                alert('不能为空');
-            } else {
-                $('#dope').val('');
-                var receive_uid = $('.receive_uid').text();
-                var message =  '{"message":"'+ news +'","send_uid":'+ user_uid +',"receive_uid":'+ receive_uid +'}';    //{'message': news, 'uid': user_uid};
-                console.log(message);
-                webSocket.send(message);
-                //$('.newsList').append(message);
-                //setTimeout(answers,1000);
-                //$('.conLeft').find('li.bg').children('.liRight').children('.infor').text(news);
-                //$('.RightCont').scrollTop($('.RightCont')[0].scrollHeight );
-            }
-
-        })
-        webSocket.onmessage = function (event) {
-            var data = eval('(' + event.data + ')');
-            console.log(data);
-            var message = '';
-            console.log(data.user_uid);
-            if(data.send_uid == undefined || data.receive_uid == undefined){
-                console.log(data.user_uid);
-                return '';
-            }
-            if (data.send_uid == user_uid) {
-                message += '<li>' +
-                    '<div class="answerHead"><img src="chat/images/tou.jpg"/></div>' +
-                    '<div class="answers"><img class="jiao" src="chat/images/jiao.jpg">' + data.message + '</div>' +
+            $('.ExP').on('mouseenter',function(){
+                $('.emjon').show();
+            })
+            $('.emjon').on('mouseleave',function(){
+                $('.emjon').hide();
+            })
+            $('.emjon li').on('click',function(){
+                var imgSrc=$(this).children('img').attr('src');
+                var str="";
+                str+='<li>'+
+                    '<div class="nesHead"><img src="img/6.jpg"/></div>'+
+                    '<div class="news"><img class="jiao" src="img/20170926103645_03_02.jpg"><img class="Expr" src="'+imgSrc+'"></div>'+
                     '</li>';
-                $('.newsList').append(message);
-                $('.RightCont').scrollTop($('.RightCont')[0].scrollHeight);
-            } else {
-                message += '<li>' +
-                    '<div class="nesHead"><img src="chat/images/6.jpg"/></div>' +
-                    '<div class="news"><img class="jiao" src="chat/images/20170926103645_03_02.jpg">' + data.message + '</div>' +
-                    '</li>';
-                $('.newsList').append(message);
-                // $('.conLeft').find('li.bg').children('.liRight').children('.infor').text(data.message);
-                $('.RightCont').scrollTop($('.RightCont')[0].scrollHeight);
-            }
+                $('.newsList').append(str);
+                $('.emjon').hide();
+                $('.RightCont').scrollTop($('.RightCont')[0].scrollHeight );
+            })
 
-        };
+            if(window.WebSocket) {
+                //var webSocket = new WebSocket("ws://47.52.167.163:9502");
+                var webSocket = new WebSocket("ws://127.0.0.1:9502");
+                webSocket.onopen = function (event) {
+                    //webSocket.send("{'user':'{{ session('id')}}'}");
+                    webSocket.send('{"uid":'+ user_uid +'}');
+                };
+                $('.sendBtn').on('click', function () {
+                    var news = $('#dope').val();
+                    if (news == '') {
+                        alert('不能为空');
+                    } else {
+                        $('#dope').val('');
+                        var receive_uid = $('.receive_uid').text();
+                        var message =  '{"message":"'+ news +'","send_uid":'+ user_uid +',"receive_uid":'+ receive_uid +'}';    //{'message': news, 'uid': user_uid};
+                        console.log(message);
+                        webSocket.send(message);
+                        //$('.newsList').append(message);
+                        //setTimeout(answers,1000);
+                        //$('.conLeft').find('li.bg').children('.liRight').children('.infor').text(news);
+                        //$('.RightCont').scrollTop($('.RightCont')[0].scrollHeight );
+                    }
 
-    }else{
-        console.log("您的浏览器不支持WebSocket");
-    }
-}
-
-
-function getTalkList(send_uid,receive_uid,page) {
-    $.post("/getChatList", {'_token':'{{csrf_token()}}','send_uid':send_uid,'receive_uid':receive_uid,'page':page },
-        function(data){
-            var data = eval('(' + data + ')');
-            var message = '';
-            var list = data.data;
-            var user_uid = 1;
-            if(data.code == 1){
-                for(var i=0;i<list.length;i++){
-                    if (list[1].send_uid == user_uid) {
+                })
+                webSocket.onmessage = function (event) {
+                    var data = eval('(' + event.data + ')');
+                    console.log(data);
+                    var message = '';
+                    console.log(data.user_uid);
+                    if(data.send_uid == undefined || data.receive_uid == undefined){
+                        console.log(data.user_uid);
+                        return '';
+                    }
+                    if (data.send_uid == user_uid) {
                         message += '<li>' +
                             '<div class="answerHead"><img src="chat/images/tou.jpg"/></div>' +
-                            '<div class="answers"><img class="jiao" src="chat/images/jiao.jpg">' + list[i].message + '</div>' +
+                            '<div class="answers"><img class="jiao" src="chat/images/jiao.jpg">' + data.message + '</div>' +
                             '</li>';
+                        $('.newsList').append(message);
+                        $('.RightCont').scrollTop($('.RightCont')[0].scrollHeight);
                     } else {
                         message += '<li>' +
                             '<div class="nesHead"><img src="chat/images/6.jpg"/></div>' +
-                            '<div class="news"><img class="jiao" src="chat/images/20170926103645_03_02.jpg">' + list[i].message + '</div>' +
+                            '<div class="news"><img class="jiao" src="chat/images/20170926103645_03_02.jpg">' + data.message + '</div>' +
                             '</li>';
+                        $('.newsList').append(message);
+                        // $('.conLeft').find('li.bg').children('.liRight').children('.infor').text(data.message);
+                        $('.RightCont').scrollTop($('.RightCont')[0].scrollHeight);
                     }
-                }
-                $('.newsList').append(message);
+
+                };
+
+            }else{
+                console.log("您的浏览器不支持WebSocket");
             }
-        });
-}
-getTalkList(1,2,1);
-</script>
+        }
+
+
+        function getTalkList(send_uid,receive_uid,page) {
+            $.post("/getChatList", {'_token':'{{csrf_token()}}','send_uid':send_uid,'receive_uid':receive_uid,'page':page },
+                function(data){
+                    var data = eval('(' + data + ')');
+                    var message = '';
+                    var list = data.data;
+                    var user_uid = '{{ session('id')}}';
+                    if(data.code == 1){
+                        for(var i=0;i<list.length;i++){
+                            if (list[i].send_uid == user_uid) {
+                                message += '<li>' +
+                                    '<div class="answerHead"><img src="chat/images/tou.jpg"/></div>' +
+                                    '<div class="answers"><img class="jiao" src="chat/images/jiao.jpg">' + list[i].message + '</div>' +
+                                    '</li>';
+                            } else {
+                                message += '<li>' +
+                                    '<div class="nesHead"><img src="chat/images/6.jpg"/></div>' +
+                                    '<div class="news"><img class="jiao" src="chat/images/20170926103645_03_02.jpg">' + list[i].message + '</div>' +
+                                    '</li>';
+                            }
+                        }
+                        $('.newsList').append(message);
+                    }
+                });
+        }
+    </script>
 @endsection
 <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 

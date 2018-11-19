@@ -19,4 +19,13 @@ class Chat extends Model
               ORDER BY create_time DESC limit ?,10
               ', [$uid, $receiveUid, $receiveUid, $uid, $page]);
     }
+
+    public static function getChatFriendsList($uid)
+    {
+        return DB::select('select a.`receive_id` as uid,a.updated_at,b.head_image,b.username
+                from mt_chat_friends_list as a 
+                INNER JOIN mt_user as b on a.receive_id = b.id
+                where a.uid = ? ORDER BY updated_at DESC 
+              ', [$uid]);
+    }
 }
