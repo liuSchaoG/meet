@@ -64,6 +64,7 @@ class LoginController extends Controller
                 'username' => $this->user->username,
                 'phone' => $this->user->phone,
                 'sex' => $this->user->sex,
+                'head_image' => $this->user->head_image,
                 'status' => 1
             ]);
         }

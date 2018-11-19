@@ -8,7 +8,7 @@
                     <div class="media">
                         <div class="media-left">
                             <a href="">
-                                <img alt="胖大爷" src="http://ret.oss-cn-beijing.aliyuncs.com/xlb/flink78ashdboiwmehlw.png" class="img-circle" height="72" width="72">
+                                <img alt="胖大爷" src="{{ asset(session('head_image')) }}" class="img-circle" height="72" width="72">
                             </a>
                         </div>
                         <div class="media-body">

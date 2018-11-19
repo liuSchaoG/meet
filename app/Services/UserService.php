@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Preference;
 use App\Models\UserInfo;
 use App\Services\AreaService;
+use Illuminate\Support\Facades\DB;
 /**
  * 用户信息服务提供
  */
@@ -22,12 +23,6 @@ class UserService
         $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
         if(!isset($info['user_name'])){
             $info = UserInfo::where(['uid'=>$uid])->first()->toArray();
-        }else{
-            $pro = $info['area_province'];
-            $cit = $info['area_city'];
-            $info['area_province'] = $this -> dealSelectArea(0,$info['area_province'],1);
-            $info['area_city'] = $this -> dealSelectArea($pro,$info['area_city'],2);
-            $info['area'] = $this -> dealSelectArea($cit,$info['area'],3);
         }
         $info['phone'] = session('phone');
         return $info;
@@ -42,9 +37,19 @@ class UserService
      */
     public function getUserDetail($uid)
     {
-
-        $field = ['uid','origin_province','origin_city','weight','shape','constellation','nation','marry_time'];
+        $field = ['uid','origin_province','origin_city','weight','shape','constellation','nation','marry_time','has_child','want_child'];
         $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
+        return $info;
+    }
+    /**
+     * [getNations description]
+     * @author charlesliu 2018-11-19T15:17:05+0800
+     * @param  string $value [description]
+     * @return [type]        [description]
+     */
+    public function getNations($value='')
+    {
+        $info = DB::table('nations')->select(['id','name'])->orderBy('id','desc')->get()->toArray();
         return $info;
     }
 
@@ -164,7 +169,9 @@ class UserService
      */
     public function saveUserBase($params)
     {
-        return UserBase::where('uid',$params['uid'])->update($params);
+        unset($params['_token']);
+        unset($params['action']);
+        return UserInfo::where('uid',$params['uid'])->update($params);
     }
 
 

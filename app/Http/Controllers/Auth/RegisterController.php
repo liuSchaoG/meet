@@ -67,7 +67,9 @@ class RegisterController extends Controller
             session([
                 'id' => $user->id,
                 'username' => $user->username,
+                'phone' => $this->user->phone,
                 'sex' => $user->sex,
+                'head_image' => $this->user->head_image,
                 'status' => 1
             ]);
         }

@@ -65,7 +65,10 @@ Route::group(['middleware'=>'web'],function (){
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//获取全国各省列表  id name charlesliu
+//根据父id 获取子集id
+Route::post('/area/childsByPid', 'AreaController@getChilds');
+
+
 Route::get('/area/provences', 'AreaController@getProvences');
 //获取全国各市列表  id name charlesliu
 Route::get('/area/citys', 'AreaController@getCitys');
