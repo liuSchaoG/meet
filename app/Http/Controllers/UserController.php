@@ -46,6 +46,7 @@ class UserController extends  Controller
     {
         $uid = $request -> uid;
         $info = $this -> userService -> getUserDetail($uid);
+        $info['nations'] = $this -> userService -> getNations();
         return view('user.detailInfo',$info);
     }
 
@@ -152,10 +153,9 @@ class UserController extends  Controller
      */
     public function BaseInfoSave(Request $request)
     {
-        $params = $request->only('uid','user_name','phone','area_province','area_city','area','income','height','marry_status','education','college');
-        // dd($params);
+        $params = $request->all();
         $effect = $this -> userService -> saveUserBase($params);
-        return redirect()->route('BaseInfo',['uid'=>$params['uid']]);
+        return redirect()->route($params['action'],['uid'=>$params['uid']]);
     }
 
 

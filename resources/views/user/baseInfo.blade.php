@@ -1,7 +1,5 @@
 @extends('layouts.user')
 @section('right_block')
-<!-- <link href="{{ asset('css/city-picker.css') }}" rel="stylesheet" type="text/css" /> -->
-<!-- <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script> -->
 
 <div class="content-area col-md-8">
             <div class="panel panel-default">
@@ -11,6 +9,7 @@
                     <form class="form-horizontal" method="POST" action="{{ route('BaseInfoSave') }}">
                         {{ csrf_field() }}
                         <input type="hidden" name="uid" value="{{$uid}}">
+                        <input type="hidden" name="action" value="BaseInfo">
                         <div class="form-group{{ $errors->has('user_name') ? ' has-error' : '' }}">
                             <label for="user_name" class="col-md-4 control-label">真实姓名</label>
 
@@ -39,7 +38,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('area_province') ? ' has-error' : '' }}">
-                            <label for="area_province" class="col-md-4 control-label">所在省</label>
+                            <label for="area_province" class="col-md-4 control-label">工作所在省</label>
 
                             <div class="col-md-3">
                                 <select class="form-control" name="area_province" id="area_province" onchange="citys_list()">
@@ -48,33 +47,21 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('area_city') ? ' has-error' : '' }}">
-                            <label for="area_city" class="col-md-4 control-label">所在市</label>
+                            <label for="area_city" class="col-md-4 control-label">工作所在市</label>
 
                             <div class="col-md-3">
                                 <select class="form-control" name="area_city" id="area_city" onchange="areas_list()">
-                                    {{htmlspecialchars_decode($area_city)}}
                                 </select>
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('area') ? ' has-error' : '' }}">
-                            <label for="area" class="col-md-4 control-label">所在区</label>
+                            <label for="area" class="col-md-4 control-label">工作所在区</label>
 
                             <div class="col-md-3">
                                 <select class="form-control" name="area" id="area_area">
-                                    {{$area}}
                                 </select>
                             </div>
                         </div>
-                        <!-- <div class="form-group{{ $errors->has('income') ? ' has-error' : '' }}">
-                            <label for="income" class="col-md-4 control-label">工作地区</label>
-                            <div id="distpicker" class="form-inline col-md-3">
-                                <div class="form-group">
-                                    <div style="position: relative;">
-                                        <input class="form-control" readonly type="text" value="" data-toggle="city-picker">
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                         <div class="form-group{{ $errors->has('income') ? ' has-error' : '' }}">
                             <label for="income" class="col-md-4 control-label">月收入</label>
 
@@ -184,39 +171,67 @@
 @endsection
 <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 <script>
-    $.get('/area/provences',{'_token':'{{csrf_token()}}'},function(data){
+    $.post('/area/childsByPid',{'_token':'{{csrf_token()}}'},function(data){
         if(data.code==1){
             var len = data.data.length;
             var html = '';
             for (var i = len - 1; i >= 0; i--) {
-                html += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+                if({{$area_province}} == data.data[i].id){
+                    html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
+                }else{
+                    html += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+                }
             }
             $('#area_province').html(html);
         }
     });
 
+    if({{$area_province}}){
+        citys_list({{$area_province}});
+    }
+
+    if({{$area_city}}){
+        areas_list({{$area_city}});
+    }
+
+
     function citys_list(pid) {
-        var pid = $('#area_province').val();
-        $.get('/area/citys',{'_token':'{{csrf_token()}}','pid':pid},function(data){
+        if(!pid){
+            var pid = $('#area_province').val();
+        }
+        $.post('/area/childsByPid',{'_token':'{{csrf_token()}}','pid':pid},function(data){
             if(data.code==1){
                 var len = data.data.length;
                 var html = '';
                 for (var i = len - 1; i >= 0; i--) {
-                    html += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+                    if({{$area_city}} == data.data[i].id){
+                        html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
+                    }else{
+                        html += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+                    }
                 }
                 $('#area_city').html(html);
+                if(!{{$area_city}}){
+                    $('#area_area').html();
+                }
             }
         });
     }
 
-    function areas_list() {
-        var pid = $('#area_city').val();
-        $.get('/area/areas',{'_token':'{{csrf_token()}}','pid':pid},function(data){
+    function areas_list(pid) {
+        if(!pid){
+            var pid = $('#area_city').val();
+        }
+        $.post('/area/childsByPid',{'_token':'{{csrf_token()}}','pid':pid},function(data){
             if(data.code==1){
                 var len = data.data.length;
                 var html = '';
                 for (var i = len - 1; i >= 0; i--) {
-                    html += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+                    if({{$area}} == data.data[i].id){
+                        html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
+                    }else{
+                        html += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+                    }
                 }
                 $('#area_area').html(html);
             }
@@ -224,9 +239,6 @@
     }
     
 </script>
-<!-- <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
-<script src="{{ asset('js/city-picker.data.js') }}"></script>
-<script src="{{ asset('js/city-picker.js') }}"></script>
-<script src="{{ asset('js/main.js') }}"></script> -->
+
 
 
