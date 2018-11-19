@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Preference;
-use App\Models\userInfo;
+use App\Models\UserInfo;
 use App\Services\AreaService;
 /**
  * 用户信息服务提供
@@ -19,9 +19,9 @@ class UserService
     public function getUserBase($uid)
     {
         $field = ['uid','user_name','phone','area_province','area_city','area','income','height','marry_status','education','college'];
-        $info = userInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
+        $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
         if(!isset($info['user_name'])){
-            $info = userInfo::where(['uid'=>$uid])->first()->toArray();
+            $info = UserInfo::where(['uid'=>$uid])->first()->toArray();
         }else{
             $pro = $info['area_province'];
             $cit = $info['area_city'];
@@ -44,7 +44,7 @@ class UserService
     {
 
         $field = ['uid','origin_province','origin_city','weight','shape','constellation','nation','marry_time'];
-        $info = userInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
+        $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
         return $info;
     }
 
@@ -57,7 +57,7 @@ class UserService
     public function getUserWLife($uid)
     {
         $field = ['uid','industry','vacation','house_status','car_status','smoke_status','drink_status'];
-        $info = userInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
+        $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
         return $info;
     }
 
@@ -70,7 +70,7 @@ class UserService
     public function getUserItalk($uid)
     {
         $field = ['uid','inner_idea'];
-        $info = userInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
+        $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
         return $info;
     }
 
@@ -83,7 +83,7 @@ class UserService
     public function getUserIhobby($uid)
     {
         $field = ['uid','foods','idol','song','book','hobby'];
-        $info = userInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
+        $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
         return $info;
     }
 
@@ -112,7 +112,7 @@ class UserService
     public function getUserIdentify($uid)
     {
         $field = ['uid','origin_province','origin_city','weight','shape','constellation','nation','marry_time'];
-        $info = userInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
+        $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
         return $info;
     }
 
@@ -125,7 +125,7 @@ class UserService
     public function getUserAlbum($uid)
     {
         $field = ['uid','origin_province','origin_city','weight','shape','constellation','nation','marry_time'];
-        $info = userInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
+        $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
         return $info;
     }
 
@@ -138,7 +138,7 @@ class UserService
     public function getUserSetright($uid)
     {
         $field = ['uid','origin_province','origin_city','weight','shape','constellation','nation','marry_time'];
-        $info = userInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
+        $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
         return $info;
     }
 
@@ -151,7 +151,7 @@ class UserService
     public function getUserSetpass($uid)
     {
         $field = ['uid','origin_province','origin_city','weight','shape','constellation','nation','marry_time'];
-        $info = userInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
+        $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
         return $info;
     }
 
