@@ -10,7 +10,7 @@
                         <ul>
                             @foreach($freinds as $k=>$l)
                                 <li @if($k==0) class="bg" @endif >
-                                    <div class="liLeft"><img src="{{$l->head_image}}"/></div>
+                                    <div class="liLeft"><img src="{{$l->head_image}}" id="head_{{$l->uid}}"/></div>
                                     <div class="liRight">
                                         <span  class="intername">{{$l->username}}</span>
                                         <span class="infor">年龄:29</span>
@@ -150,23 +150,25 @@
                 })
                 webSocket.onmessage = function (event) {
                     var data = eval('(' + event.data + ')');
-                    console.log(data);
+                    //console.log(data);
                     var message = '';
-                    console.log(data.user_uid);
+                    //console.log(data.user_uid);
                     if(data.send_uid == undefined || data.receive_uid == undefined){
                         console.log(data.user_uid);
                         return '';
                     }
                     if (data.send_uid == user_uid) {
                         message += '<li>' +
-                            '<div class="answerHead"><img src="chat/images/tou.jpg"/></div>' +
+                            '<div class="answerHead"><img src="{{session('head_image')}}"/></div>' +
                             '<div class="answers"><img class="jiao" src="chat/images/jiao.jpg">' + data.message + '</div>' +
                             '</li>';
                         $('.newsList').append(message);
                         $('.RightCont').scrollTop($('.RightCont')[0].scrollHeight);
                     } else {
+                        var head_photo = $("#head_" + data.send_uid).attr('src');
+                        console.log(data.send_uid);
                         message += '<li>' +
-                            '<div class="nesHead"><img src="chat/images/6.jpg"/></div>' +
+                            '<div class="nesHead"><img src="'+head_photo+'"/></div>' +
                             '<div class="news"><img class="jiao" src="chat/images/20170926103645_03_02.jpg">' + data.message + '</div>' +
                             '</li>';
                         $('.newsList').append(message);
@@ -193,12 +195,15 @@
                         for(var i=0;i<list.length;i++){
                             if (list[i].send_uid == user_uid) {
                                 message += '<li>' +
-                                    '<div class="answerHead"><img src="chat/images/tou.jpg"/></div>' +
+                                    '<div class="answerHead"><img src="{{session('head_image')}}"/></div>' +
                                     '<div class="answers"><img class="jiao" src="chat/images/jiao.jpg">' + list[i].message + '</div>' +
                                     '</li>';
                             } else {
+                                var head_photo = $("#head_" + list[i].send_uid).attr('src');;
+                                //console.log("head_" +list[i].send_uid);
+                                //console.log(head_photo);
                                 message += '<li>' +
-                                    '<div class="nesHead"><img src="chat/images/6.jpg"/></div>' +
+                                    '<div class="nesHead"><img src="'+head_photo +'"/></div>' +
                                     '<div class="news"><img class="jiao" src="chat/images/20170926103645_03_02.jpg">' + list[i].message + '</div>' +
                                     '</li>';
                             }
