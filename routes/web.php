@@ -66,7 +66,8 @@ Route::group(['middleware'=>'web'],function (){
 Route::get('/home', 'HomeController@index')->name('home');
 
 //根据父id 获取子集id
-Route::post('/area/childsByPid', 'AreaController@getChilds');
+Route::post('/area/childsByPid', 'AreaController@GetChilds');
+Route::post('/position/childsByPid', 'AreaController@PositionChilds');
 
 
 Route::get('/area/provences', 'AreaController@getProvences');

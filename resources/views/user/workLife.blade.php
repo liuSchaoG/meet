@@ -8,13 +8,13 @@
                     <form class="form-horizontal" method="POST" action="{{ route('BaseInfoSave') }}">
                         {{ csrf_field() }}
                         <input type="hidden" name="uid" value="{{$uid}}">
-                        
+                        <input type="hidden" name="action" value="WorkLife">
                         <div class="form-group{{ $errors->has('industry') ? ' has-error' : '' }}">
                             <label for="industry" class="col-md-4 control-label">行业</label>
 
                             <div class="col-md-3">
-                                <input id="industry" type="industry" class="form-control" name="industry" required  disabled value="{{ $industry}}">
-
+                                <select class="form-control" name="industry" id="industry" onchange="vacation_list()">
+                                </select>
                                 @if ($errors->has('industry'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('industry') }}</strong>
@@ -27,11 +27,24 @@
                             <label for="vacation" class="col-md-4 control-label">职业</label>
 
                             <div class="col-md-3">
-                                <input id="vacation" type="vacation" class="form-control" name="vacation" required value="{{ $vacation or 0}}">
-
+                                <select class="form-control" name="vacation" id="vacation" onchange="position_list()">
+                                </select>
                                 @if ($errors->has('vacation'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('vacation') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('job') ? ' has-error' : '' }}">
+                            <label for="job" class="col-md-4 control-label">工作</label>
+                            <div class="col-md-3">
+                                <select class="form-control" name="job" id="job" onchange="">
+                                </select>
+                                @if ($errors->has('job'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('job') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -115,3 +128,69 @@
             </div>
 </div>
 @endsection
+<script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+<script>
+    $.post('/position/childsByPid',{'_token':'{{csrf_token()}}'},function(data){
+        if(data.code==1){
+            var len = data.data.length;
+            var html = '';
+            for (var i = len - 1; i >= 0; i--) {
+                if({{$industry}} == data.data[i].id){
+                    html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
+                }else{
+                    html += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+                }
+            }
+            $('#industry').html(html);
+        }
+    });
+
+
+    function vacation_list(pid) {
+        if(!pid){
+            var pid = $('#industry').val();
+        }
+        $.post('/position/childsByPid',{'_token':'{{csrf_token()}}','pid':pid},function(data){
+            if(data.code==1){
+                var len = data.data.length;
+                var html = '';
+                for (var i = len - 1; i >= 0; i--) {
+                    if({{$vacation}} == data.data[i].id){
+                        html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
+                    }else{
+                        html += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+                    }
+                }
+                $('#vacation').html(html);
+            }
+        });
+    }
+
+    function position_list(pid) {
+        if(!pid){
+            var pid = $('#vacation').val();
+        }
+        $.post('/position/childsByPid',{'_token':'{{csrf_token()}}','pid':pid},function(data){
+            if(data.code==1){
+                var len = data.data.length;
+                var html = '';
+                for (var i = len - 1; i >= 0; i--) {
+                    if({{$job}} == data.data[i].id){
+                        html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
+                    }else{
+                        html += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+                    }
+                }
+                $('#job').html(html);
+            }
+        });
+    }
+
+    if({{$industry}}){
+        vacation_list({{$industry}});
+    }
+
+    if({{$vacation}}){
+        position_list({{$vacation}});
+    }
+</script>

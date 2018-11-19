@@ -61,7 +61,7 @@ class UserService
      */
     public function getUserWLife($uid)
     {
-        $field = ['uid','industry','vacation','house_status','car_status','smoke_status','drink_status'];
+        $field = ['uid','industry','vacation','job','house_status','car_status','smoke_status','drink_status'];
         $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
         return $info;
     }

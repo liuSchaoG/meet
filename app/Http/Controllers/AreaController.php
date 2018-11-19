@@ -28,7 +28,7 @@ class AreaController extends Controller
      * @author charlesliu 2018-11-06T18:12:33+0800
      * @param  string $value [description]
      */
-    public function getChilds(Request $request)
+    public function GetChilds(Request $request)
     {
         $returnModel = new ReturnModel();
         try {
@@ -42,6 +42,23 @@ class AreaController extends Controller
         }
         return $returnModel->toArray();
     }
+
+
+    public function PositionChilds(Request $request)
+    {
+        $returnModel = new ReturnModel();
+        try {
+            $pid = $request->pid;
+            $data = $this -> areaService -> positionChilds($pid);
+            if (!empty($data)) {
+                $returnModel->setData($data);
+            }
+        } catch (Exception $e) {
+            $returnModel->initFail($e->getMessage());
+        }
+        return $returnModel->toArray();
+    }
+
 
     /**
      * get Provences
