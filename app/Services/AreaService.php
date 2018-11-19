@@ -8,6 +8,23 @@ use App\Models\Area;
  */
 class AreaService 
 {
+
+    /**
+     * [childs description]  获取地区父子 集合
+     * @author charlesliu 2018-11-19T11:09:43+0800
+     * @param  [type] $pid [description]
+     * @return [type]      [description]
+     */
+    public function childs($pid)
+    {
+        if(isset($pid)){
+            $where['area_parent_id'] = $pid;
+        }else{
+            $where['area_deep'] = 1;
+        }
+        return Area::where($where)->select('area_id as id', 'area_name as name')->get()->toArray();
+    }
+
 	/**
 	 * getProvences list
 	 * @author charlesliu 2018-11-07T14:22:31+0800
@@ -40,8 +57,5 @@ class AreaService
     {
         return Area::where(['area_parent_id'=>$pid])->select('area_id as id', 'area_name as name')->get()->toArray();
     }
-
-    
-    
 
 }
