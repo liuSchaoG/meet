@@ -164,7 +164,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 	    SwooleTW\Http\LaravelServiceProvider::class,
-
+        Overtrue\LaravelUploader\UploadServiceProvider::class,
         /*
          * Package Service Providers...
          */

@@ -53,8 +53,14 @@
                             <label for="house_status" class="col-md-4 control-label">住房情况</label>
 
                             <div class="col-md-3">
-                                <input id="house_status" type="house_status" class="form-control" name="house_status" required value="{{ $house_status or 0}}">
-
+                                <select class="form-control" name="house_status" id="house_status">
+                                    <option value="0" @if ($house_status==0) selected @endif>保密</option>
+                                    <option value="1" @if ($house_status==1) selected @endif>和家人住</option>
+                                    <option value="2" @if ($house_status==2) selected @endif>已购房</option>
+                                    <option value="3" @if ($house_status==3) selected @endif>租房</option>
+                                    <option value="4" @if ($house_status==4) selected @endif>婚后购房</option>
+                                    <option value="5" @if ($house_status==5) selected @endif>在单位宿舍</option>
+                                </select>
                                 @if ($errors->has('house_status'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('house_status') }}</strong>
@@ -66,7 +72,11 @@
                             <label for="car_status" class="col-md-4 control-label">用车情况</label>
 
                             <div class="col-md-3">
-                                <input id="car_status" type="car_status" class="form-control" name="car_status" required value="{{ $car_status or 0}}">
+                                <select class="form-control" name="car_status" id="car_status">
+                                    <option value="0" @if ($car_status==0) selected @endif>保密</option>
+                                    <option value="1" @if ($car_status==1) selected @endif>已购车</option>
+                                    <option value="2" @if ($car_status==2) selected @endif>未购车</option>
+                                </select>
 
                                 @if ($errors->has('car_status'))
                                     <span class="help-block">
@@ -78,17 +88,13 @@
 
                         <div class="form-group{{ $errors->has('smoke_status') ? ' has-error' : '' }}">
                             <label for="smoke_status" class="col-md-4 control-label">抽烟情况</label>
-
                             <div class="col-md-3">
                                 <select class="form-control" name="smoke_status" id="smoke_status">
-                                    <option value="1" @if ($smoke_status==0) selected @endif >未设定</option>
-                                    <option value="1" @if ($smoke_status==1) selected @endif >3000元以下</option>
-                                    <option value="2" @if ($smoke_status==2) selected @endif>3001~5000元</option>
-                                    <option value="3" @if ($smoke_status==3) selected @endif>5001~8000元</option>
-                                    <option value="4" @if ($smoke_status==4) selected @endif>8001~12000元</option>
-                                    <option value="5" @if ($smoke_status==5) selected @endif>12001~20000元</option>
-                                    <option value="6" @if ($smoke_status==6) selected @endif>20001~50000元</option>
-                                    <option value="7" @if ($smoke_status==7) selected @endif>5000元以上</option>
+                                    <option value="0" @if ($smoke_status==0) selected @endif>保密</option>
+                                    <option value="1" @if ($smoke_status==1) selected @endif>不吸烟</option>
+                                    <option value="2" @if ($smoke_status==2) selected @endif>稍微一点</option>
+                                    <option value="3" @if ($smoke_status==3) selected @endif>抽得很多</option>
+                                    <option value="4" @if ($smoke_status==4) selected @endif>社交抽烟</option>
                                 </select>
                                 @if ($errors->has('smoke_status'))
                                     <span class="help-block">
@@ -97,12 +103,17 @@
                                 @endif
                             </div>
                         </div>
-
                         <div class="form-group{{ $errors->has('drink_status') ? ' has-error' : '' }}">
                             <label for="drink_status" class="col-md-4 control-label">喝酒情况</label>
 
                             <div class="col-md-3">
-                                <input id="drink_status" type="drink_status" class="form-control" name="drink_status" required value="{{ $drink_status or '暂未设定'}}">
+                                <select class="form-control" name="drink_status" id="drink_status">
+                                    <option value="0" @if ($drink_status==0) selected @endif>保密</option>
+                                    <option value="1" @if ($drink_status==1) selected @endif>不喝酒</option>
+                                    <option value="2" @if ($drink_status==2) selected @endif>稍微一点</option>
+                                    <option value="3" @if ($drink_status==3) selected @endif>喝得很多</option>
+                                    <option value="4" @if ($drink_status==4) selected @endif>社交喝酒</option>
+                                </select>
 
                                 @if ($errors->has('drink_status'))
                                     <span class="help-block">
