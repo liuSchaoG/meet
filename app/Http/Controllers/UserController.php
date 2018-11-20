@@ -13,6 +13,7 @@ use App\Http\Requests\User\UserBaseRequest;
  */
 class UserController extends  Controller
 {
+    
     private $userService;
     /**
      * Create a new controller instance.
