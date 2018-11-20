@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "763ec7c20fffaee1aaa7dbe601b9a9f6",
+    "content-hash": "474ef50cb6a4c46f443821b24dd004a4",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -916,6 +916,54 @@
                 "php"
             ],
             "time": "2018-10-10T09:24:14+00:00"
+        },
+        {
+            "name": "overtrue/laravel-uploader",
+            "version": "0.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/laravel-uploader.git",
+                "reference": "a47f0573f523372db985f00827fe7e86cb64b6dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overtrue/laravel-uploader/zipball/a47f0573f523372db985f00827fe7e86cb64b6dd",
+                "reference": "a47f0573f523372db985f00827fe7e86cb64b6dd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "\\Overtrue\\LaravelUploader\\UploadServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelUploader": "\\Overtrue\\LaravelUploader\\LaravelUploader"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Overtrue\\LaravelUploader\\": "src/LaravelUploader"
+                },
+                "files": [
+                    "src/LaravelUploader/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "overtrue",
+                    "email": "i@overtrue.me"
+                }
+            ],
+            "time": "2018-04-13T01:26:50+00:00"
         },
         {
             "name": "paragonie/random_compat",
