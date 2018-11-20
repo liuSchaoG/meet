@@ -147,6 +147,20 @@ class UserController extends  Controller
         return redirect()->route($params['action'],['uid'=>$params['uid']]);
     }
 
+    /**
+     * userbase_save
+     * @author charlesliu 2018-11-07T13:55:15+0800
+     * @param  string $value [description]
+     */
+    public function prefernceSave(Request $request)
+    {
+        $params = $request->all();
+        $effect = $this -> userService -> savePrefernce($params);
+        return redirect()->route('Perference',['uid'=>$params['uid']]);
+    }
+
+    
+
 
 
 
