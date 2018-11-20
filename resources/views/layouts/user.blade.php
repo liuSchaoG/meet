@@ -50,7 +50,7 @@
                         <a href="{{ route('Identify',['uid'=>session('id')]) }}" class="list-group-item kb-list-date kb-post-list text-center">
                             我的认证
                         </a>
-                        <a href="{{ route('Album',['uid'=>session('id')]) }}" class="list-group-item kb-list-date kb-post-list text-center">
+                        <a href="{{ route('albumIndex',['uid'=>session('id')]) }}" class="list-group-item kb-list-date kb-post-list text-center">
                             我的相册
                         </a>
                         <a href="#systemSetting2" class="list-group-item kb-list-date kb-post-list text-center" data-toggle="collapse">
