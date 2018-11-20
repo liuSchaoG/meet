@@ -174,7 +174,21 @@ class UserService
         return UserInfo::where('uid',$params['uid'])->update($params);
     }
 
+    /**
+     * [savePrefernce description]
+     * @author liuchao 2018-11-20T22:17:49+0800
+     * @param  [type] $params [description]
+     * @return [type]         [description]
+     */
+    public function savePrefernce($params)
+    {
+        unset($params['_token']);
+        unset($params['action']);
+        return Preference::where('uid',$params['uid'])->update($params);
+    }
 
+
+    
 
     protected function dealSelectArea($pid,$id,$deep)
     {

@@ -5,14 +5,21 @@
                 <div class="panel-heading">择偶条件</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('BaseInfoSave') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('PreferenceSave') }}">
                         {{ csrf_field() }}
                         <input type="hidden" name="uid" value="{{$uid}}">
                         <div class="form-group{{ $errors->has('max_age') ? ' has-error' : '' }}">
-                            <label for="max_age" class="col-md-4 control-label">最大年龄</label>
-
+                            <label for="max_age" class="col-md-4 control-label">年龄</label>
                             <div class="col-md-3">
-                                <input id="max_age" type="max_age" placeholder="请输入用户名或者手机号" class="form-control" name="max_age" value="{{ $max_age or '暂未设定'}}" required autofocus>
+                                <input id="min_age" type="min_age" class="form-control" name="min_age" required  value="{{ $min_age}}">
+                                @if ($errors->has('min_age'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('min_age') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="col-md-3">
+                                <input id="max_age" type="max_age" class="form-control" name="max_age" value="{{ $max_age or '暂未设定'}}" required autofocus>
                                 @if ($errors->has('max_age'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('max_age') }}</strong>
@@ -21,22 +28,18 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('min_age') ? ' has-error' : '' }}">
-                            <label for="min_age" class="col-md-4 control-label">最小年龄</label>
 
+                        <div class="form-group{{ $errors->has('max_height') ? ' has-error' : '' }}">
+                            <label for="max_height" class="col-md-4 control-label">身高</label>
                             <div class="col-md-3">
-                                <input id="min_age" type="min_age" class="form-control" name="min_age" required  disabled value="{{ $min_age}}">
+                                <input id="min_height" type="min_height" class="form-control" name="min_height" required value="{{ $min_height or 0}}">
 
-                                @if ($errors->has('min_age'))
+                                @if ($errors->has('min_height'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('min_age') }}</strong>
+                                        <strong>{{ $errors->first('min_height') }}</strong>
                                     </span>
                                 @endif
                             </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('max_height') ? ' has-error' : '' }}">
-                            <label for="max_height" class="col-md-4 control-label">最高身高</label>
 
                             <div class="col-md-3">
                                 <input id="max_height" type="max_height" class="form-control" name="max_height" required value="{{ $max_height or 0}}">
@@ -48,39 +51,12 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('min_height') ? ' has-error' : '' }}">
-                            <label for="min_height" class="col-md-4 control-label">最低身高</label>
-
-                            <div class="col-md-3">
-                                <input id="min_height" type="min_height" class="form-control" name="min_height" required value="{{ $min_height or 0}}">
-
-                                @if ($errors->has('min_height'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('min_height') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
                         <div class="form-group{{ $errors->has('max_income') ? ' has-error' : '' }}">
                             <label for="max_income" class="col-md-4 control-label">最大收入</label>
 
                             <div class="col-md-3">
-                                <input id="max_income" type="max_income" class="form-control" name="max_income" required value="{{ $max_income or 0}}">
-
-                                @if ($errors->has('max_income'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('max_income') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('min_income') ? ' has-error' : '' }}">
-                            <label for="min_income" class="col-md-4 control-label">最低收入</label>
-
-                            <div class="col-md-3">
                                 <select class="form-control" name="min_income" id="min_income">
-                                    <option value="1" @if ($min_income==0) selected @endif >未设定</option>
+                                    <option value="0" @if ($min_income==0) selected @endif >不限</option>
                                     <option value="1" @if ($min_income==1) selected @endif >3000元以下</option>
                                     <option value="2" @if ($min_income==2) selected @endif>3001~5000元</option>
                                     <option value="3" @if ($min_income==3) selected @endif>5001~8000元</option>
@@ -95,13 +71,33 @@
                                     </span>
                                 @endif
                             </div>
+
+                            <div class="col-md-3">
+                                <select class="form-control" name="max_income" id="max_income">
+                                    <option value="0" @if ($max_income==0) selected @endif >不限</option>
+                                    <option value="1" @if ($max_income==1) selected @endif >3000元以下</option>
+                                    <option value="2" @if ($max_income==2) selected @endif>3001~5000元</option>
+                                    <option value="3" @if ($max_income==3) selected @endif>5001~8000元</option>
+                                    <option value="4" @if ($max_income==4) selected @endif>8001~12000元</option>
+                                    <option value="5" @if ($max_income==5) selected @endif>12001~20000元</option>
+                                    <option value="6" @if ($max_income==6) selected @endif>20001~50000元</option>
+                                    <option value="7" @if ($max_income==7) selected @endif>5000元以上</option>
+                                </select>
+
+                                @if ($errors->has('max_income'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('max_income') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                         </div>
 
                          <div class="form-group{{ $errors->has('education') ? ' has-error' : '' }}">
-                            <label for="education" class="col-md-4 control-label">最高学历</label>
+                            <label for="education" class="col-md-4 control-label">学历要求</label>
 
                             <div class="col-md-3">
                                 <select class="form-control" name="education" id="education">
+                                    <option value="0" @if ($education==0) selected @endif>不限</option>
                                     <option value="1" @if ($education==1) selected @endif>小学</option>
                                     <option value="2" @if ($education==2) selected @endif>初中</option>
                                     <option value="3" @if ($education==3) selected @endif>高中（职高、中专）</option>
@@ -123,6 +119,7 @@
 
                             <div class="col-md-3">
                                 <select class="form-control" name="marry_status" id="marry_status">
+                                    <option value="0" @if ($marry_status==0) selected @endif>不限</option>
                                     <option value="1" @if ($marry_status==1) selected @endif>未婚未育</option>
                                     <option value="2" @if ($marry_status==2) selected @endif>未婚已育</option>
                                     <option value="3" @if ($marry_status==3) selected @endif>已婚未育</option>
@@ -141,54 +138,41 @@
                        
 
                         <div class="form-group{{ $errors->has('area_province') ? ' has-error' : '' }}">
-                            <label for="area_province" class="col-md-4 control-label">工作省份</label>
+                            <label for="area_province" class="col-md-4 control-label">工作所在省</label>
 
                             <div class="col-md-3">
-                                <input id="area_province" type="area_province" class="form-control" name="area_province" required value="{{ $area_province or '暂未设定'}}">
-
-                                @if ($errors->has('area_province'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('area_province') }}</strong>
-                                    </span>
-                                @endif
+                                <select class="form-control" name="area_province" id="area_province" onchange="citys_list()">
+                                    {{$area_province}}
+                                </select>
                             </div>
                         </div>
-
                         <div class="form-group{{ $errors->has('area_city') ? ' has-error' : '' }}">
-                            <label for="area_city" class="col-md-4 control-label">工作城市</label>
+                            <label for="area_city" class="col-md-4 control-label">工作所在市</label>
 
                             <div class="col-md-3">
-                                <input id="area_city" type="area_city" class="form-control" name="area_city" required value="{{ $area_city or '暂未设定'}}">
-
-                                @if ($errors->has('area_city'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('area_city') }}</strong>
-                                    </span>
-                                @endif
+                                <select class="form-control" name="area_city" id="area_city" onchange="areas_list()">
+                                </select>
                             </div>
                         </div>
-
                         <div class="form-group{{ $errors->has('area') ? ' has-error' : '' }}">
-                            <label for="area" class="col-md-4 control-label">工作区域</label>
+                            <label for="area" class="col-md-4 control-label">工作所在区</label>
 
                             <div class="col-md-3">
-                                <input id="area" type="area" class="form-control" name="area" required value="{{ $area or '暂未设定'}}">
-
-                                @if ($errors->has('area'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('area') }}</strong>
-                                    </span>
-                                @endif
+                                <select class="form-control" name="area" id="area_area">
+                                </select>
                             </div>
                         </div>
-
 
                         <div class="form-group{{ $errors->has('has_child') ? ' has-error' : '' }}">
-                            <label for="has_child" class="col-md-4 control-label">是否有小孩</label>
-
+                            <label for="has_child" class="col-md-4 control-label">有没有小孩</label>
                             <div class="col-md-3">
-                                <input id="has_child" type="has_child" class="form-control" name="has_child" required value="{{ $has_child or '暂未设定'}}">
-
+                                <select class="form-control" name="has_child" id="has_child">
+                                    <option value="1" @if ($has_child==0) selected @endif>保密</option>
+                                    <option value="1" @if ($has_child==1) selected @endif>有且住在一起</option>
+                                    <option value="2" @if ($has_child==2) selected @endif>有偶尔住在一起</option>
+                                    <option value="3" @if ($has_child==3) selected @endif>有且不在身边</option>
+                                    <option value="4" @if ($has_child==4) selected @endif>没有小孩</option>
+                                </select>
                                 @if ($errors->has('has_child'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('has_child') }}</strong>
@@ -198,11 +182,15 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('is_smoke') ? ' has-error' : '' }}">
-                            <label for="is_smoke" class="col-md-4 control-label">是否吸烟</label>
-
+                            <label for="is_smoke" class="col-md-4 control-label">抽烟情况</label>
                             <div class="col-md-3">
-                                <input id="is_smoke" type="is_smoke" class="form-control" name="is_smoke" required value="{{ $is_smoke or '暂未设定'}}">
-
+                                <select class="form-control" name="is_smoke" id="is_smoke">
+                                    <option value="0" @if ($is_smoke==0) selected @endif>保密</option>
+                                    <option value="1" @if ($is_smoke==1) selected @endif>不吸烟</option>
+                                    <option value="2" @if ($is_smoke==2) selected @endif>稍微一点</option>
+                                    <option value="3" @if ($is_smoke==3) selected @endif>抽得很多</option>
+                                    <option value="4" @if ($is_smoke==4) selected @endif>社交抽烟</option>
+                                </select>
                                 @if ($errors->has('is_smoke'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('is_smoke') }}</strong>
@@ -210,12 +198,17 @@
                                 @endif
                             </div>
                         </div>
-
                         <div class="form-group{{ $errors->has('is_drink') ? ' has-error' : '' }}">
-                            <label for="is_drink" class="col-md-4 control-label">是否喝酒</label>
+                            <label for="is_drink" class="col-md-4 control-label">喝酒情况</label>
 
                             <div class="col-md-3">
-                                <input id="is_drink" type="is_drink" class="form-control" name="is_drink" required value="{{ $is_drink or '暂未设定'}}">
+                                <select class="form-control" name="is_drink" id="is_drink">
+                                    <option value="0" @if ($is_drink==0) selected @endif>保密</option>
+                                    <option value="1" @if ($is_drink==1) selected @endif>不喝酒</option>
+                                    <option value="2" @if ($is_drink==2) selected @endif>稍微一点</option>
+                                    <option value="3" @if ($is_drink==3) selected @endif>喝得很多</option>
+                                    <option value="4" @if ($is_drink==4) selected @endif>社交喝酒</option>
+                                </select>
 
                                 @if ($errors->has('is_drink'))
                                     <span class="help-block">
@@ -229,7 +222,10 @@
                             <label for="has_photo" class="col-md-4 control-label">有无照片</label>
 
                             <div class="col-md-3">
-                                <input id="has_photo" type="has_photo" class="form-control" name="has_photo" required value="{{ $has_photo or '暂未设定'}}">
+                                <select class="form-control" name="has_photo" id="has_photo">
+                                    <option value="0" @if ($has_photo==0) selected @endif>不限</option>
+                                    <option value="1" @if ($has_photo==1) selected @endif>有</option>
+                                </select>
 
                                 @if ($errors->has('has_photo'))
                                     <span class="help-block">
@@ -245,9 +241,6 @@
                                     保存并继续
                                 </button>
 
-                                <a class="btn btn-link " href="#">
-                                    跳过
-                                </a>
                             </div>
                         </div>
                     </form>
@@ -255,3 +248,73 @@
             </div>
 </div>
 @endsection
+<script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+<script>
+    $.post('/area/childsByPid',{'_token':'{{csrf_token()}}'},function(data){
+        if(data.code==1){
+            var len = data.data.length;
+            var html = '';
+            for (var i = len - 1; i >= 0; i--) {
+                if({{$area_province}} == data.data[i].id){
+                    html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
+                }else{
+                    html += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+                }
+            }
+            $('#area_province').html(html);
+        }
+    });
+
+    if({{$area_province}}){
+        citys_list({{$area_province}});
+    }
+
+    if({{$area_city}}){
+        areas_list({{$area_city}});
+    }
+
+
+    function citys_list(pid) {
+        if(!pid){
+            var pid = $('#area_province').val();
+        }
+        $.post('/area/childsByPid',{'_token':'{{csrf_token()}}','pid':pid},function(data){
+            if(data.code==1){
+                var len = data.data.length;
+                var html = '';
+                for (var i = len - 1; i >= 0; i--) {
+                    if({{$area_city}} == data.data[i].id){
+                        html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
+                    }else{
+                        html += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+                    }
+                }
+                $('#area_city').html(html);
+                if(!{{$area_city}}){
+                    $('#area_area').html();
+                }
+            }
+        });
+    }
+
+    function areas_list(pid) {
+        if(!pid){
+            var pid = $('#area_city').val();
+        }
+        $.post('/area/childsByPid',{'_token':'{{csrf_token()}}','pid':pid},function(data){
+            if(data.code==1){
+                var len = data.data.length;
+                var html = '';
+                for (var i = len - 1; i >= 0; i--) {
+                    if({{$area}} == data.data[i].id){
+                        html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
+                    }else{
+                        html += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+                    }
+                }
+                $('#area_area').html(html);
+            }
+        });
+    }
+    
+</script>
