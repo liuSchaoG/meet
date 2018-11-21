@@ -215,7 +215,5 @@ class UserService
         return $str;
     }
 
-    
-    
 
 }

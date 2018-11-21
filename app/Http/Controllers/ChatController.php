@@ -17,7 +17,6 @@ class ChatController extends Controller
     {
         $uid = \session('id');
         $freinds = ChatService::getChatFriendList($uid);//获取好友列表
-        //dd($freinds['data'][0]);exit;
         return view('chat/index',[
             'freinds'=>$freinds['data']
         ]);

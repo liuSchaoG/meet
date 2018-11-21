@@ -10,7 +10,13 @@ class IndexController extends Controller
     //首页
     public function index()
     {
-        //test
         return view('index/index');
+    }
+
+    //朋友推荐页
+    public function friendsPush()
+    {
+
+        return view('index/list');
     }
 }

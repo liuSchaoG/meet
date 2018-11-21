@@ -44,7 +44,7 @@ class ChatService
             $data = [];
             $data = Chat::getChatFriendsList($uid);
             if (!empty($data)) {
-                $returnModel->setData(array_reverse($data));
+                $returnModel->setData($data);
             }
         } catch (Exception $e) {
             $returnModel->initFail($e->getMessage());
