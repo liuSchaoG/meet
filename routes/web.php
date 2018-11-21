@@ -34,29 +34,34 @@ Route::group(['middleware'=>'web'],function (){
 
     //个人心中路由定义  2018-11-17
     //基本资料
-    Route::get('/user/baseInfo', 'UserController@BaseInfo')->name('BaseInfo');
+    Route::get('/user/baseInfo', 'UserController@baseInfo')->name('BaseInfo');
     //详细资料
-    Route::get('/user/detailInfo', 'UserController@DetailInfo')->name('DetailInfo');
+    Route::get('/user/detailInfo', 'UserController@detailInfo')->name('DetailInfo');
     //工作生活
-    Route::get('/user/workLife', 'UserController@WorkLife')->name('WorkLife');
+    Route::get('/user/workLife', 'UserController@workLife')->name('WorkLife');
     //内心独白
-    Route::get('/user/innerTalk', 'UserController@InnerTalk')->name('InnerTalk');
+    Route::get('/user/innerTalk', 'UserController@innerTalk')->name('InnerTalk');
     //兴趣爱好
-    Route::get('/user/interHobby', 'UserController@InterHobby')->name('InterHobby');
+    Route::get('/user/interHobby', 'UserController@interHobby')->name('InterHobby');
     //择偶条件
-    Route::get('/user/perference', 'UserController@Perference')->name('Perference');
+    Route::get('/user/perference', 'UserController@perference')->name('Perference');
     //我的认证
-    Route::get('/user/identify', 'UserController@Identify')->name('Identify');
+    Route::get('/user/identify', 'UserController@identify')->name('Identify');
     //我的相册
-    Route::get('/user/album', 'UserController@Album')->name('Album');
+    Route::get('/user/album', 'AlbumController@index')->name('albumIndex');
     //权限设置
-    Route::get('/user/setRight', 'UserController@SetRight')->name('SetRight');
+    Route::get('/user/setRight', 'UserController@setRight')->name('SetRight');
     //密码设置
-    Route::get('/user/setPass', 'UserController@SetPass')->name('SetPass');
+    Route::get('/user/setPass', 'UserController@setPass')->name('SetPass');
 
 
     //用户保存信息
-    Route::post('/user/baseInfoSave', 'UserController@BaseInfoSave')->name('BaseInfoSave');
+    Route::post('/user/baseInfoSave', 'UserController@baseInfoSave')->name('BaseInfoSave');
+
+    Route::post('/user/preferenceSave', 'UserController@prefernceSave')->name('PreferenceSave');
+
+    //上传路由合集
+    \LaravelUploader::routes();
 
 });
 
@@ -66,14 +71,10 @@ Route::group(['middleware'=>'web'],function (){
 Route::get('/home', 'HomeController@index')->name('home');
 
 //根据父id 获取子集id
-Route::post('/area/childsByPid', 'AreaController@getChilds');
+Route::post('/area/childsByPid', 'ExtenController@getChilds');
+Route::post('/position/childsByPid', 'ExtenController@positionChilds');
 
 
-Route::get('/area/provences', 'AreaController@getProvences');
-//获取全国各市列表  id name charlesliu
-Route::get('/area/citys', 'AreaController@getCitys');
-//获取全国各区域列表  id name charlesliu
-Route::get('/area/areas', 'AreaController@getAreas');
 
 
 

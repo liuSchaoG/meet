@@ -8,11 +8,12 @@
                     <form class="form-horizontal" method="POST" action="{{ route('BaseInfoSave') }}">
                         {{ csrf_field() }}
                         <input type="hidden" name="uid" value="{{$uid}}">
+                        <input type="hidden" name="action" value="InterHobby">
                         <div class="form-group{{ $errors->has('foods') ? ' has-error' : '' }}">
                             <label for="foods" class="col-md-4 control-label">最喜欢的一道菜</label>
 
-                            <div class="col-md-3">
-                                <input id="foods" type="foods" placeholder="请输入用户名或者手机号" class="form-control" name="foods" value="{{ $foods or '暂未设定'}}" required autofocus>
+                            <div class="col-md-6">
+                                <input id="foods" type="foods" placeholder="一道菜名，说出你最符合你口味的菜？" class="form-control" name="foods" value="{{ $foods or '暂未设定'}}" required autofocus>
                                 @if ($errors->has('foods'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('foods') }}</strong>
@@ -24,8 +25,8 @@
                         <div class="form-group{{ $errors->has('idol') ? ' has-error' : '' }}">
                             <label for="idol" class="col-md-4 control-label">喜欢的名人</label>
 
-                            <div class="col-md-3">
-                                <input id="idol" type="idol" class="form-control" name="idol" required  disabled value="{{ $idol}}">
+                            <div class="col-md-6">
+                                <input id="idol" type="idol" placeholder="一个名字，让你最敬佩的名人是谁？" class="form-control" name="idol" required  value="{{ $idol}}">
 
                                 @if ($errors->has('idol'))
                                     <span class="help-block">
@@ -38,8 +39,8 @@
                         <div class="form-group{{ $errors->has('song') ? ' has-error' : '' }}">
                             <label for="song" class="col-md-4 control-label">喜欢的歌曲</label>
 
-                            <div class="col-md-3">
-                                <input id="song" type="song" class="form-control" name="song" required value="{{ $song or 0}}">
+                            <div class="col-md-6">
+                                <input id="song" type="song" placeholder="一首歌曲，那首歌曲让你最感动？" class="form-control" name="song" required value="{{ $song or 0}}">
 
                                 @if ($errors->has('song'))
                                     <span class="help-block">
@@ -51,8 +52,8 @@
                         <div class="form-group{{ $errors->has('book') ? ' has-error' : '' }}">
                             <label for="book" class="col-md-4 control-label">喜欢的书</label>
 
-                            <div class="col-md-3">
-                                <input id="book" type="book" class="form-control" name="book" required value="{{ $book or 0}}">
+                            <div class="col-md-6">
+                                <input id="book" type="book" class="form-control" placeholder="一本书，哪本是让印象最深刻的书？" name="book" required value="{{ $book or 0}}">
 
                                 @if ($errors->has('book'))
                                     <span class="help-block">
@@ -64,8 +65,8 @@
                         <div class="form-group{{ $errors->has('hobby') ? ' has-error' : '' }}">
                             <label for="hobby" class="col-md-4 control-label">特别爱好</label>
 
-                            <div class="col-md-3">
-                                <input id="hobby" type="hobby" class="form-control" name="hobby" required value="{{ $hobby or 0}}">
+                            <div class="col-md-6">
+                                <input id="hobby" type="hobby" placeholder="还有什么与众不同的爱好？" class="form-control" name="hobby" required value="{{ $hobby or 0}}">
 
                                 @if ($errors->has('hobby'))
                                     <span class="help-block">
@@ -80,10 +81,6 @@
                                 <button type="submit" class="btn btn-primary">
                                     保存并继续
                                 </button>
-
-                                <a class="btn btn-link " href="#">
-                                    跳过
-                                </a>
                             </div>
                         </div>
                     </form>

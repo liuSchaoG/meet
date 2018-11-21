@@ -16,4 +16,5 @@ return array(
     'f0906e6318348a765ffb6eb24e0d0938' => $vendorDir . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
     '58571171fd5812e6e447dce228f52f4d' => $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
     '97bcee38f59896ca87b32ab0e55c86b9' => $vendorDir . '/swooletw/laravel-swoole/src/Server/helpers.php',
+    '06eb446df054554be0a22939d865a8d1' => $vendorDir . '/overtrue/laravel-uploader/src/LaravelUploader/helpers.php',
 );

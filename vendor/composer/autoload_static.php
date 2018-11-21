@@ -17,6 +17,7 @@ class ComposerStaticInit4ddea1958f5d650bef5b17b58ae7063f
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         '97bcee38f59896ca87b32ab0e55c86b9' => __DIR__ . '/..' . '/swooletw/laravel-swoole/src/Server/helpers.php',
+        '06eb446df054554be0a22939d865a8d1' => __DIR__ . '/..' . '/overtrue/laravel-uploader/src/LaravelUploader/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -69,6 +70,10 @@ class ComposerStaticInit4ddea1958f5d650bef5b17b58ae7063f
             'Psr\\Container\\' => 14,
             'Predis\\' => 7,
             'PhpParser\\' => 10,
+        ),
+        'O' => 
+        array (
+            'Overtrue\\LaravelUploader\\' => 25,
         ),
         'M' => 
         array (
@@ -233,6 +238,10 @@ class ComposerStaticInit4ddea1958f5d650bef5b17b58ae7063f
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
         ),
+        'Overtrue\\LaravelUploader\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/overtrue/laravel-uploader/src/LaravelUploader',
+        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
@@ -334,12 +343,14 @@ class ComposerStaticInit4ddea1958f5d650bef5b17b58ae7063f
         'App\\Extensions\\Auth' => __DIR__ . '/../..' . '/app/Extensions/Auth.php',
         'App\\Extensions\\ReturnModel' => __DIR__ . '/../..' . '/app/Extensions/ReturnModel.php',
         'App\\Extensions\\Validate' => __DIR__ . '/../..' . '/app/Extensions/Validate.php',
+        'App\\Http\\Controllers\\AlbumController' => __DIR__ . '/../..' . '/app/Http/Controllers/AlbumController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\ChatController' => __DIR__ . '/../..' . '/app/Http/Controllers/ChatController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\ExtenController' => __DIR__ . '/../..' . '/app/Http/Controllers/ExtenController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/IndexController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
@@ -352,14 +363,20 @@ class ComposerStaticInit4ddea1958f5d650bef5b17b58ae7063f
         'App\\Http\\Middleware\\checkAuth' => __DIR__ . '/../..' . '/app/Http/Middleware/checkAuth.php',
         'App\\Http\\Requests\\Request' => __DIR__ . '/../..' . '/app/Http/Requests/Request.php',
         'App\\Http\\Requests\\User\\UserBaseRequest' => __DIR__ . '/../..' . '/app/Http/Requests/User/UserBaseRequest.php',
+        'App\\Models\\Album' => __DIR__ . '/../..' . '/app/Models/Album.php',
+        'App\\Models\\Area' => __DIR__ . '/../..' . '/app/Models/Area.php',
         'App\\Models\\Chat' => __DIR__ . '/../..' . '/app/Models/Chat.php',
+        'App\\Models\\Preference' => __DIR__ . '/../..' . '/app/Models/Preference.php',
         'App\\Models\\UserBase' => __DIR__ . '/../..' . '/app/Models/UserBase.php',
+        'App\\Models\\UserInfo' => __DIR__ . '/../..' . '/app/Models/UserInfo.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Services\\AlbumService' => __DIR__ . '/../..' . '/app/Services/AlbumService.php',
         'App\\Services\\ChatService' => __DIR__ . '/../..' . '/app/Services/ChatService.php',
+        'App\\Services\\ExtenService' => __DIR__ . '/../..' . '/app/Services/ExtenService.php',
         'App\\Services\\UserService' => __DIR__ . '/../..' . '/app/Services/UserService.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
@@ -1992,6 +2009,14 @@ class ComposerStaticInit4ddea1958f5d650bef5b17b58ae7063f
         'Monolog\\ResettableInterface' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/ResettableInterface.php',
         'Monolog\\SignalHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/SignalHandler.php',
         'Monolog\\Utils' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Utils.php',
+        'Overtrue\\LaravelUploader\\Events\\FileDeleted' => __DIR__ . '/..' . '/overtrue/laravel-uploader/src/LaravelUploader/Events/FileDeleted.php',
+        'Overtrue\\LaravelUploader\\Events\\FileDeleting' => __DIR__ . '/..' . '/overtrue/laravel-uploader/src/LaravelUploader/Events/FileDeleting.php',
+        'Overtrue\\LaravelUploader\\Events\\FileUploaded' => __DIR__ . '/..' . '/overtrue/laravel-uploader/src/LaravelUploader/Events/FileUploaded.php',
+        'Overtrue\\LaravelUploader\\Events\\FileUploading' => __DIR__ . '/..' . '/overtrue/laravel-uploader/src/LaravelUploader/Events/FileUploading.php',
+        'Overtrue\\LaravelUploader\\Http\\Controllers\\UploadController' => __DIR__ . '/..' . '/overtrue/laravel-uploader/src/LaravelUploader/Http/Controllers/UploadController.php',
+        'Overtrue\\LaravelUploader\\LaravelUploader' => __DIR__ . '/..' . '/overtrue/laravel-uploader/src/LaravelUploader/LaravelUploader.php',
+        'Overtrue\\LaravelUploader\\Services\\FileUpload' => __DIR__ . '/..' . '/overtrue/laravel-uploader/src/LaravelUploader/Services/FileUpload.php',
+        'Overtrue\\LaravelUploader\\UploadServiceProvider' => __DIR__ . '/..' . '/overtrue/laravel-uploader/src/LaravelUploader/UploadServiceProvider.php',
         'PHPUnit\\Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert.php',
         'PHPUnit\\Framework\\AssertionFailedError' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/AssertionFailedError.php',

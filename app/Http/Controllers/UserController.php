@@ -13,6 +13,7 @@ use App\Http\Requests\User\UserBaseRequest;
  */
 class UserController extends  Controller
 {
+    
     private $userService;
     /**
      * Create a new controller instance.
@@ -30,7 +31,7 @@ class UserController extends  Controller
      * @author charlesliu 2018-11-06T18:12:33+0800
      * @param  string $value [description]
      */
-    public function BaseInfo(Request $request)
+    public function baseInfo(Request $request)
     {
         $uid = $request -> uid;
         $info = $this -> userService -> getUserBase($uid);
@@ -42,7 +43,7 @@ class UserController extends  Controller
      * @author liuchao 2018-11-17T22:13:08+0800
      * @param  string $value [description]
      */
-    public function DetailInfo(Request $request)
+    public function detailInfo(Request $request)
     {
         $uid = $request -> uid;
         $info = $this -> userService -> getUserDetail($uid);
@@ -55,7 +56,7 @@ class UserController extends  Controller
      * @author liuchao 2018-11-17T22:15:22+0800
      * @param  string $value [description]
      */
-    public function WorkLife(Request $request)
+    public function workLife(Request $request)
     {
         $uid = $request -> uid;
         $info = $this -> userService -> getUserWLife($uid);
@@ -67,7 +68,7 @@ class UserController extends  Controller
      * @author liuchao 2018-11-17T22:15:26+0800
      * @param  string $value [description]
      */
-    public function InnerTalk(Request $request)
+    public function innerTalk(Request $request)
     {
         $uid = $request -> uid;
         $info = $this -> userService -> getUserItalk($uid);
@@ -79,7 +80,7 @@ class UserController extends  Controller
      * @author liuchao 2018-11-17T22:15:31+0800
      * @param  string $value [description]
      */
-    public function InterHobby(Request $request)
+    public function interHobby(Request $request)
     {
         $uid = $request -> uid;
         $info = $this -> userService -> getUserIhobby($uid);
@@ -91,7 +92,7 @@ class UserController extends  Controller
      * @author liuchao 2018-11-17T22:15:41+0800
      * @param  string $value [description]
      */
-    public function Perference(Request $request)
+    public function perference(Request $request)
     {
         $uid = $request -> uid;
         $info = $this -> userService -> getUserPerference($uid);
@@ -103,7 +104,7 @@ class UserController extends  Controller
      * @author liuchao 2018-11-17T22:15:51+0800
      * @param  string $value [description]
      */
-    public function Identify(Request $request)
+    public function identify(Request $request)
     {
         $uid = $request -> uid;
         $info = $this -> userService -> getUserIdentify($uid);
@@ -111,23 +112,11 @@ class UserController extends  Controller
     }
 
     /**
-     * [Album description]
-     * @author liuchao 2018-11-17T22:15:56+0800
-     * @param  string $value [description]
-     */
-    public function Album(Request $request)
-    {
-        $uid = $request -> uid;
-        $info = $this -> userService -> getUserAlbum($uid);
-        return view('user.album',$info);
-    }
-
-    /**
      * [SetRight description]
      * @author liuchao 2018-11-17T22:16:02+0800
      * @param  string $value [description]
      */
-    public function SetRight(Request $request)
+    public function setRight(Request $request)
     {
         $uid = $request -> uid;
         $info = $this -> userService -> getUserSetright($uid);
@@ -139,7 +128,7 @@ class UserController extends  Controller
      * @author liuchao 2018-11-17T22:16:07+0800
      * @param  string $value [description]
      */
-    public function SetPass(Request $request)
+    public function setPass(Request $request)
     {
         $uid = $request -> uid;
         $info = $this -> userService -> getUserSetpass($uid);
@@ -151,12 +140,26 @@ class UserController extends  Controller
      * @author charlesliu 2018-11-07T13:55:15+0800
      * @param  string $value [description]
      */
-    public function BaseInfoSave(Request $request)
+    public function baseInfoSave(Request $request)
     {
         $params = $request->all();
         $effect = $this -> userService -> saveUserBase($params);
         return redirect()->route($params['action'],['uid'=>$params['uid']]);
     }
+
+    /**
+     * userbase_save
+     * @author charlesliu 2018-11-07T13:55:15+0800
+     * @param  string $value [description]
+     */
+    public function prefernceSave(Request $request)
+    {
+        $params = $request->all();
+        $effect = $this -> userService -> savePrefernce($params);
+        return redirect()->route('Perference',['uid'=>$params['uid']]);
+    }
+
+    
 
 
 
