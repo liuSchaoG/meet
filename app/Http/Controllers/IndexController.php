@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mongo;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -10,6 +12,17 @@ class IndexController extends Controller
     //首页
     public function index()
     {
+        //$res = Mongo::connectMongo('chatFriendsList')
+
+        //$connection = Mongo::connectMongo('chatFriendsList');
+        //$res = $connection->select('receive_id','updated_at')->where('uid',1)
+        //    ->get()->toArray();
+        //$resa = $connection1->select('fd')->where('uid',3)->get()->toArray();
+        //$connection2 = Mongo::connectMongo('wesocketConnect');
+        //$resb = $connection2->select('fd')->where('uid',1)->get()->toArray();
+        //$res= $connection->get()->toArray();
+        //$res= $connection->delete();
+        //var_dump($res);exit;
         return view('index/index');
     }
 

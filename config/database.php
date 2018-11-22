@@ -87,6 +87,14 @@ return [
             ],
 
         ],
+        'mongodb' => [
+            'driver'   => 'mongodb',
+            'host'     => env('MONGO_HOST', '127.0.0.1'),
+            'port'     => env('MONGO_PORT', 27017),
+            'database' =>  env('MONGO_DATABASE', 'meet'),
+            'username' =>  env('MONGO_USERNAME', 'meet'),
+            'password' =>  env('MONGO_PASSWORD', '34cNe9OiHQa3'),
+        ],
 
     ],
 

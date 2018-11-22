@@ -6,8 +6,7 @@ namespace App\Http\Controllers;
 use App\Extensions\Auth;
 use App\Services\ChatService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class ChatController extends Controller
 {
@@ -29,7 +28,7 @@ class ChatController extends Controller
             $sendId = $request->input('send_uid');
             $receiveId = $request->input('receive_uid');
             $page = $request->input('page');
-            echo json_encode(ChatService::getChatList($sendId,$receiveId,$page));
+            echo json_encode(ChatService::getChatList((int)$sendId,(int)$receiveId,$page));
         }
     }
 
@@ -38,7 +37,7 @@ class ChatController extends Controller
         if($request->isMethod('POST')){
             $sendId = $request->input('send_uid');
             $receiveId = $request->input('receive_uid');
-            $a = ChatService::getChatFriendList($sendId,$receiveId);
+            //$a = ChatService::getChatFriendList($sendId,$receiveId);
             echo json_encode(ChatService::getChatFriendList($sendId,$receiveId));
         }
     }

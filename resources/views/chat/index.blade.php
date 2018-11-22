@@ -10,11 +10,11 @@
                         <ul>
                             @foreach($freinds as $k=>$l)
                                 <li @if($k==0) class="bg" @endif >
-                                    <div class="liLeft"><img src="{{$l->head_image}}" id="head_{{$l->uid}}"/></div>
+                                    <div class="liLeft"><img src="{{$l['head_image']}}" id="head_{{$l['uid']}}"/></div>
                                     <div class="liRight">
-                                        <span  class="intername">{{$l->username}}</span>
+                                        <span  class="intername">{{$l['username']}}</span>
                                         <span class="infor">年龄:29</span>
-                                        <span class="uid" style="display: none;">{{$l->uid}}</span>
+                                        <span class="uid" style="display: none;">{{$l['uid']}}</span>
                                     </div>
                                 </li>
                             @endforeach
@@ -23,8 +23,8 @@
                     <!--右边聊天框-->
                     <div class="conRight">
                         <div class="Righthead">
-                            <div class="headName">{{$freinds[0]->username}}</div>
-                            <div class="receive_uid" style="display: none;">{{$freinds[0]->uid}}</div>
+                            <div class="headName">{{$freinds[0]['username']}}</div>
+                            <div class="receive_uid" style="display: none;">{{$freinds[0]['uid']}}</div>
                             <div class="headConfig">
                                 <ul>
                                     <li><img src="chat/images/20170926103645_06.jpg"/></li>
