@@ -12,7 +12,7 @@ class IndexController extends Controller
     //首页
     public function index()
     {
-        $connection = Mongo::connectMongo('chatFriendsList')->where('updated_at',1542877289);
+        //$connection = Mongo::connectMongo('chatFriendsList')->where('updated_at',1542877289);
 
         //$res = $connection->select('receive_id','updated_at')->where('uid',1)
         //    ->get()->toArray();
@@ -21,7 +21,7 @@ class IndexController extends Controller
         //$connection = Mongo::connectMongo('chatFriendsList');
         //$resb = $connection2->select('fd')->where('uid',1)->get()->toArray();
         //$res= $connection->get()->toArray();
-        $res= $connection->delete();
+        //$res= $connection->delete();
         //var_dump($res);exit;
         return view('index/index');
     }
