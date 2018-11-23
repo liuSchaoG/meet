@@ -10,7 +10,7 @@
                         <ul>
                             @foreach($freinds as $k=>$l)
                                 <li @if($k==0) class="bg" @endif >
-                                    <div class="liLeft"><img src="{{$l['head_image']}}" id="head_{{$l['uid']}}"/></div>
+                                    <div class="liLeft"><img src="{{$l['head_image']}}" id="head_{{$l['uid']}}" width="43"/></div>
                                     <div class="liRight">
                                         <span  class="intername">{{$l['username']}}</span>
                                         <span class="infor">年龄:29</span>
@@ -23,8 +23,8 @@
                     <!--右边聊天框-->
                     <div class="conRight">
                         <div class="Righthead">
-                            <div class="headName">{{$freinds[0]['username']}}</div>
-                            <div class="receive_uid" style="display: none;">{{$freinds[0]['uid']}}</div>
+                            <div class="headName"><?= isset($freinds[0]['username']) ?$freinds[0]['username']:'' ?></div>
+                            <div class="receive_uid" style="display: none;"><?= isset($freinds[0]['uid']) ?$freinds[0]['uid']:'' ?></div>
                             <div class="headConfig">
                                 <ul>
                                     <li><img src="chat/images/20170926103645_06.jpg"/></li>
@@ -105,7 +105,6 @@
                 //$('.newsList').html('');
             })
 
-
             $('.ExP').on('mouseenter',function(){
                 $('.emjon').show();
             })
@@ -125,19 +124,25 @@
             })
 
             if(window.WebSocket) {
-                //var webSocket = new WebSocket("ws://47.52.167.163:9502");
-                var webSocket = new WebSocket("ws://127.0.0.1:9502");
+                var webSocket = new WebSocket("ws://47.52.167.163:9502");
+                //var webSocket = new WebSocket("ws://127.0.0.1:9502");
                 webSocket.onopen = function (event) {
                     //webSocket.send("{'user':'{{ session('id')}}'}");
                     webSocket.send('{"uid":'+ user_uid +'}');
                 };
                 $('.sendBtn').on('click', function () {
+                    send();
+                })
+
+                function send() {
+                    var receive_uid = $('.receive_uid').text();
                     var news = $('#dope').val();
                     if (news == '') {
                         alert('不能为空');
-                    } else {
+                    } else if(receive_uid == ''){
+                        alert('请选择好友');
+                    }else {
                         $('#dope').val('');
-                        var receive_uid = $('.receive_uid').text();
                         var message =  '{"message":"'+ news +'","send_uid":'+ user_uid +',"receive_uid":'+ receive_uid +'}';    //{'message': news, 'uid': user_uid};
                         console.log(message);
                         webSocket.send(message);
@@ -146,8 +151,19 @@
                         //$('.conLeft').find('li.bg').children('.liRight').children('.infor').text(news);
                         //$('.RightCont').scrollTop($('.RightCont')[0].scrollHeight );
                     }
+                }
 
-                })
+                //回车发送
+                document.onkeydown=function(event){
+                    if (event.key == 'Enter' && event.keyCode == 13) {
+                        send();
+                        //阻止换行
+                        event.cancelBubble=true;
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                }
+
                 webSocket.onmessage = function (event) {
                     var data = eval('(' + event.data + ')');
                     //console.log(data);
@@ -155,6 +171,12 @@
                     //console.log(data.user_uid);
                     if(data.send_uid == undefined || data.receive_uid == undefined){
                         console.log(data.user_uid);
+                        return '';
+                    }
+                    var receive_uid = $('.receive_uid').text();
+                    console.log(receive_uid);console.log(user_uid);
+                    if((data.send_uid !=  user_uid || data.receive_uid != receive_uid) && (data.send_uid !=  receive_uid || data.receive_uid != user_uid)){
+                        //console.log(111111)
                         return '';
                     }
                     if (data.send_uid == user_uid) {
@@ -166,7 +188,7 @@
                         $('.RightCont').scrollTop($('.RightCont')[0].scrollHeight);
                     } else {
                         var head_photo = $("#head_" + data.send_uid).attr('src');
-                        console.log(data.send_uid);
+                        //console.log(data.send_uid);
                         message += '<li>' +
                             '<div class="nesHead"><img src="'+head_photo+'"/></div>' +
                             '<div class="news"><img class="jiao" src="chat/images/20170926103645_03_02.jpg">' + data.message + '</div>' +

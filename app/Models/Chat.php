@@ -21,6 +21,7 @@ class Chat extends Model
               ', [$uid, $receiveUid, $receiveUid, $uid, $page]);
     }*/
 
+    //获取聊天记录
     public static function getChatList($uid, $receiveUid, $page = 1, $limit = 10)
     {
         $page = ($page - 1) * $limit;
@@ -34,6 +35,7 @@ class Chat extends Model
             ->get()->toArray();
     }
 
+    //好友列表
     public static function getChatFriendsList($uid)
     {
         $connection = Mongo::connectMongo('chatFriendsList');
@@ -55,5 +57,38 @@ class Chat extends Model
     public static function getInfo($uid)
     {
         return DB::table('user')->select('username','head_image')->where('id','=',$uid)->first();
+    }
+    //新开一个聊天窗口
+    public static function getNewTalk($newUid,$uid)
+    {
+        $friend = self::getInfo($newUid);
+        $friends = self::getChatFriendsList($uid);
+        $new = [];
+        if($friend){
+            $new[0]['uid'] = $newUid;
+            $new[0]['head_image'] = $friend->head_image;
+            $new[0]['username'] = $friend->username;
+            $new[0]['updated_at'] = time();
+        }
+        if(!empty($new)){
+            $friends = array_merge($new,$friends);
+        }
+        return self::arrayFilter($friends,'uid');
+    }
+
+    private static function arrayFilter($arr,$key)
+    {
+        if(!empty($arr)){
+            $tmp_arr = array();
+            foreach ($arr as $k => $v) {
+                if (in_array($v[$key], $tmp_arr)) {//搜索$v[$key]是否在$tmp_arr数组中存在，若存在返回true
+                    unset($arr[$k]);
+                } else {
+                    $tmp_arr[] = $v[$key];
+                }
+            }
+            //sort($arr); //sort函数对数组进行排序
+        }
+        return $arr;
     }
 }

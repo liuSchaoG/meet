@@ -52,5 +52,20 @@ class ChatService
         return $returnModel->toArray();
     }
 
+    public static function getNewTalk($newUid,$uid)
+    {
+        $returnModel = new ReturnModel();
+        try {
+            $data = [];
+            $data = Chat::getNewTalk($newUid,$uid);
+            if (!empty($data)) {
+                $returnModel->setData($data);
+            }
+        } catch (Exception $e) {
+            $returnModel->initFail($e->getMessage());
+        }
+        return $returnModel->toArray();
+    }
+
 
 }

@@ -12,10 +12,15 @@ class ChatController extends Controller
 {
 
     //首页
-    public function index()
+    public function index(Request $request)
     {
         $uid = \session('id');
-        $freinds = ChatService::getChatFriendList($uid);//获取好友列表
+        $id = $request->input('id');
+        if(!empty($id)){
+            $freinds = ChatService::getNewTalk($id,$uid);//获取好友列表
+        }else{
+            $freinds = ChatService::getChatFriendList($uid);//获取好友列表
+        }
         return view('chat/index',[
             'freinds'=>$freinds['data']
         ]);

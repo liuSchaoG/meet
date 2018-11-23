@@ -12,16 +12,16 @@ class IndexController extends Controller
     //首页
     public function index()
     {
-        //$res = Mongo::connectMongo('chatFriendsList')
+        $connection = Mongo::connectMongo('chatFriendsList')->where('updated_at',1542877289);
 
-        //$connection = Mongo::connectMongo('chatFriendsList');
         //$res = $connection->select('receive_id','updated_at')->where('uid',1)
         //    ->get()->toArray();
         //$resa = $connection1->select('fd')->where('uid',3)->get()->toArray();
         //$connection2 = Mongo::connectMongo('wesocketConnect');
+        //$connection = Mongo::connectMongo('chatFriendsList');
         //$resb = $connection2->select('fd')->where('uid',1)->get()->toArray();
         //$res= $connection->get()->toArray();
-        //$res= $connection->delete();
+        $res= $connection->delete();
         //var_dump($res);exit;
         return view('index/index');
     }
