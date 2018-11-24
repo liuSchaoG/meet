@@ -210,15 +210,33 @@ display: -webkit-box;
 	position: relative;
 }
 .emjon{
-	width: 360px;
-	height: 200px;
+	width: 495px;
+	height: 119px;
 	border: 1px solid #ccc;
 	position: absolute;
 	left:0;
-	top:-190px;
-	display: none;
 	background: #fff;
+	-moz-border-radius: 5px 5px 0 0;
+	-webkit-border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0 0;
+	top:0px;
+	opacity:0.0;
+	display: none;
 }
+.emjon>img {
+	border: 1px solid #ccc;
+	float: left;
+	margin-left: -1px;
+	margin-top: -1px;
+	position: relative;
+	width: 30px;
+	height: 30px;
+	padding: 3px 3px 3px 3px;
+	cursor: pointer;
+}
+
+
+
 .emjon ul{
 	list-style: none;
 	margin:0;

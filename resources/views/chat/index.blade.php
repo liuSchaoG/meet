@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<link href="{{ asset('chat/css/chat.css?a=2') }}" rel="stylesheet">
+<link href="{{ asset('chat/css/chat.css?a=21') }}" rel="stylesheet">
 @section('content')
     <div class="container">
         <div class="row">
@@ -36,39 +36,14 @@
                         </div>
                         <div class="RightCont">
                             <ul class="newsList">
-
                             </ul>
                         </div>
                         <div class="RightFoot">
-                            <div class="emjon">
-                                <ul>
-                                    <li><img src="chat/images/em_02.jpg"/></li>
-                                    <li><img src="chat/images/em_05.jpg"/></li>
-                                    <li><img src="chat/images/em_07.jpg"/></li>
-                                    <li><img src="chat/images/em_12.jpg"/></li>
-                                    <li><img src="chat/images/em_14.jpg"/></li>
-                                    <li><img src="chat/images/em_16.jpg"/></li>
-                                    <li><img src="chat/images/em_20.jpg"/></li>
-                                    <li><img src="chat/images/em_23.jpg"/></li>
-                                    <li><img src="chat/images/em_25.jpg"/></li>
-                                    <li><img src="chat/images/em_30.jpg"/></li>
-                                    <li><img src="chat/images/em_31.jpg"/></li>
-                                    <li><img src="chat/images/em_33.jpg"/></li>
-                                    <li><img src="chat/images/em_37.jpg"/></li>
-                                    <li><img src="chat/images/em_38.jpg"/></li>
-                                    <li><img src="chat/images/em_40.jpg"/></li>
-                                    <li><img src="chat/images/em_45.jpg"/></li>
-                                    <li><img src="chat/images/em_47.jpg"/></li>
-                                    <li><img src="chat/images/em_48.jpg"/></li>
-                                    <li><img src="chat/images/em_52.jpg"/></li>
-                                    <li><img src="chat/images/em_54.jpg"/></li>
-                                    <li><img src="chat/images/em_55.jpg"/></li>
-                                </ul>
-                            </div>
+                            <div class="emjon" id="emjon"></div>
                             <div class="footTop">
                                 <ul>
                                     <li><img src="chat/images/20170926103645_31.jpg"/></li>
-                                    <li class="ExP"><img src="chat/images/20170926103645_33.jpg"/></li>
+                                    <li id="ExP"><img src="chat/images/20170926103645_33.jpg"/></li>
                                     <li><img src="chat/images/20170926103645_35.jpg"/></li>
                                     <li><img src="chat/images/20170926103645_37.jpg"/></li>
                                     <li><img src="chat/images/20170926103645_39.jpg"/></li>
@@ -89,6 +64,9 @@
     </div>
 
     <script type="text/javascript">
+        $(document).ready(function(e) {
+            ImgIputHandler.Init();
+        });
         window.onload = function (ev) {
             var user_uid = '{{ session('id') }}';
             var default_receive_uid = $('.receive_uid').text();
@@ -102,15 +80,14 @@
                 $('.receive_uid').text(receive_id);
                 $('.newsList').html('');
                 getTalkList(user_uid,receive_id,1);
-                //$('.newsList').html('');
             })
-
-            $('.ExP').on('mouseenter',function(){
+           //左侧结束
+            /*$('.ExP').on('mouseenter',function(){
                 $('.emjon').show();
-            })
-            $('.emjon').on('mouseleave',function(){
+            })*/
+            /*$('.emjon').on('mouseleave',function(){
                 $('.emjon').hide();
-            })
+            })*/
             $('.emjon li').on('click',function(){
                 var imgSrc=$(this).children('img').attr('src');
                 var str="";
@@ -180,9 +157,10 @@
                         return '';
                     }
                     if (data.send_uid == user_uid) {
+                        var chat_message = ImgIputHandler.getEmjon(data.message);
                         message += '<li>' +
                             '<div class="answerHead"><img src="{{session('head_image')}}"/></div>' +
-                            '<div class="answers"><img class="jiao" src="chat/images/jiao.jpg">' + data.message + '</div>' +
+                            '<div class="answers"><img class="jiao" src="chat/images/jiao.jpg">' + chat_message + '</div>' +
                             '</li>';
                         $('.newsList').append(message);
                         $('.RightCont').scrollTop($('.RightCont')[0].scrollHeight);
@@ -221,9 +199,7 @@
                                     '<div class="answers"><img class="jiao" src="chat/images/jiao.jpg">' + list[i].message + '</div>' +
                                     '</li>';
                             } else {
-                                var head_photo = $("#head_" + list[i].send_uid).attr('src');;
-                                //console.log("head_" +list[i].send_uid);
-                                //console.log(head_photo);
+                                var head_photo = $("#head_" + list[i].send_uid).attr('src');
                                 message += '<li>' +
                                     '<div class="nesHead"><img src="'+head_photo +'"/></div>' +
                                     '<div class="news"><img class="jiao" src="chat/images/20170926103645_03_02.jpg">' + list[i].message + '</div>' +
@@ -237,6 +213,7 @@
     </script>
 @endsection
 <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+<script src="{{ asset('chat/js/chat.js?a=23') }}"></script>
 
 
 
