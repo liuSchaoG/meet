@@ -64,7 +64,8 @@ Route::group(['middleware'=>'web'],function (){
     Route::post('/user/preferenceSave', 'UserController@prefernceSave')->name('PreferenceSave');
 
     
-
+    // //上传路由合集
+    // \LaravelUploader::routes();
 });
 
 
