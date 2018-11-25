@@ -33,7 +33,7 @@
 
                 <div class="form-group">
                     <label for="txt_departmentname">相册名称</label>
-                    <input type="text" name="txt_departmentname" class="form-control" id="txt_departmentname" placeholder="部门名称">
+                    <input type="text" name="name" class="form-control" id="txt_departmentname" placeholder="相册名称">
                 </div>
                 <div class="form-group">
                     <label for="txt_parentdepartment">权限设置</label>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="form-group">
                     <label for="txt_departmentlevel">相册描述</label>
-                    <input type="text" name="txt_departmentlevel" class="form-control" id="txt_departmentlevel" placeholder="部门级别">
+                    <input type="text" name="desc" class="form-control" id="txt_departmentlevel" placeholder="相册描述">
                 </div>
             </div>
             <div class="modal-footer">
