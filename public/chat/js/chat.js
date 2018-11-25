@@ -1,17 +1,5 @@
 var ImgIputHandler={
     Init:function() {
-        /*$("#dope").focusout(function(){
-            $(this).parent().css("border-color", "#cccccc");
-            $(this).parent().css("box-shadow", "none");
-            $(this).parent().css("-moz-box-shadow", "none");
-            $(this).parent().css("-webkit-box-shadow", "none");
-        });
-        $("#dope").focus(function(){
-            $(this).parent().css("border-color", "rgba(19,105,172,.75)");
-            $(this).parent().css("box-shadow", "0 0 3px rgba(19,105,192,.5)");
-            $(this).parent().css("-moz-box-shadow", "0 0 3px rgba(241,39,232,.5)");
-            $(this).parent().css("-webkit-box-shadow", "0 0 3px rgba(19,105,252,3)");
-        });*/
         var isShowImg = false;
         $("#ExP").click(function(){
             if(isShowImg==false){
@@ -61,9 +49,9 @@ var ImgIputHandler={
     getEmjon: function(str){
         var reg = /\[.+?\]/g;
         str = str.replace(reg,function(a,b){
-            if(ImgIputHandler.face[a] == 'undefined'){
-                return ''
-            }else{
+            if (ImgIputHandler.face[a] == undefined) {
+                return a;
+            } else {
                 return ImgIputHandler.face[a];
             }
         });

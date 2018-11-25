@@ -42,14 +42,14 @@
                             <div class="emjon" id="emjon"></div>
                             <div class="footTop">
                                 <ul>
-                                    <li><img src="chat/images/20170926103645_31.jpg"/></li>
-                                    <li id="ExP"><img src="chat/images/20170926103645_33.jpg"/></li>
-                                    <li><img src="chat/images/20170926103645_35.jpg"/></li>
-                                    <li><img src="chat/images/20170926103645_37.jpg"/></li>
-                                    <li><img src="chat/images/20170926103645_39.jpg"/></li>
-                                    <li><img src="chat/images/20170926103645_41.jpg" alt="" /></li>
+                                    <!--<li><img src="chat/images/20170926103645_31.jpg"/></li>-->
+                                    <li id="ExP"><img src="chat/images/20170926103645_33.jpg" alt="表情"/></li>
+                                    <!--<li><img src="chat/images/20170926103645_35.jpg"/></li>-->
+                                    <!--<li><img src="chat/images/20170926103645_37.jpg"/></li>-->
+                                    <!--<li><img src="chat/images/20170926103645_39.jpg"/></li>-->
+                                    <li><img src="chat/images/20170926103645_41.jpg" alt="图片"/></li>
                                     <li><img src="chat/images/20170926103645_43.jpg"/></li>
-                                    <li><img src="chat/images/20170926103645_45.jpg"/></li>
+                                    <!--<li><img src="chat/images/20170926103645_45.jpg"/></li>-->
                                 </ul>
                             </div>
                             <div class="inputBox">
@@ -101,8 +101,8 @@
             })
 
             if(window.WebSocket) {
-                var webSocket = new WebSocket("ws://47.52.167.163:9502");
-                //var webSocket = new WebSocket("ws://127.0.0.1:9502");
+                //var webSocket = new WebSocket("ws://47.52.167.163:9502");
+                var webSocket = new WebSocket("ws://127.0.0.1:9502");
                 webSocket.onopen = function (event) {
                     //webSocket.send("{'user':'{{ session('id')}}'}");
                     webSocket.send('{"uid":'+ user_uid +'}');
@@ -193,16 +193,17 @@
                     var user_uid = '{{ session('id')}}';
                     if(data.code == 1){
                         for(var i=0;i<list.length;i++){
+                            var chat_message = ImgIputHandler.getEmjon(list[i].message);
                             if (list[i].send_uid == user_uid) {
                                 message += '<li>' +
                                     '<div class="answerHead"><img src="{{session('head_image')}}"/></div>' +
-                                    '<div class="answers"><img class="jiao" src="chat/images/jiao.jpg">' + list[i].message + '</div>' +
+                                    '<div class="answers"><img class="jiao" src="chat/images/jiao.jpg">' + chat_message + '</div>' +
                                     '</li>';
                             } else {
                                 var head_photo = $("#head_" + list[i].send_uid).attr('src');
                                 message += '<li>' +
                                     '<div class="nesHead"><img src="'+head_photo +'"/></div>' +
-                                    '<div class="news"><img class="jiao" src="chat/images/20170926103645_03_02.jpg">' + list[i].message + '</div>' +
+                                    '<div class="news"><img class="jiao" src="chat/images/20170926103645_03_02.jpg">' + chat_message + '</div>' +
                                     '</li>';
                             }
                         }
@@ -213,7 +214,7 @@
     </script>
 @endsection
 <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
-<script src="{{ asset('chat/js/chat.js?a=23') }}"></script>
+<script src="{{ asset('chat/js/chat.js?a=30') }}"></script>
 
 
 
