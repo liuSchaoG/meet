@@ -2,10 +2,11 @@
 @section('right_block')
 <div class="content-area col-md-8">
             <div class="panel panel-default">
-                <div class="panel-heading">用户基本信息</div>
+                <div class="panel-heading">设置密码</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('BaseInfoSave') }}">
+                    <h1>设置密码</h1>
+                   <!--  <form class="form-horizontal" method="POST" action="{{ route('BaseInfoSave') }}">
                         {{ csrf_field() }}
                         <input type="hidden" name="uid" value="{{$uid}}">
                         <div class="form-group{{ $errors->has('user_name') ? ' has-error' : '' }}">
@@ -174,7 +175,7 @@
 
                             </div>
                         </div>
-                    </form>
+                    </form> -->
                 </div>
             </div>
 </div>
