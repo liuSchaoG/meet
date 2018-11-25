@@ -36,24 +36,38 @@ class AlbumController extends Controller
     }
 
     /**
-     * get Provences
-     * @author charlesliu 2018-11-06T18:12:33+0800
+     * [upload description]
+     * @author liuchao 2018-11-25T16:16:16+0800
      * @param  string $value [description]
+     * @return [type]        [description]
      */
-    public function getChilds(Request $request)
+    public function uploadAlbum(Request $request)
     {
-        $returnModel = new ReturnModel();
-        try {
-            $pid = $request->pid;
-            $data = $this -> albumService -> childs($pid);
-            if (!empty($data)) {
-                $returnModel->setData($data);
-            }
-        } catch (Exception $e) {
-            $returnModel->initFail($e->getMessage());
-        }
-        return $returnModel->toArray();
+        $param = $request -> all();
+        // dd($param);
+        $info = $this -> albumService -> uploadPic($param);
     }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

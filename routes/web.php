@@ -54,15 +54,18 @@ Route::group(['middleware'=>'web'],function (){
     //密码设置
     Route::get('/user/setPass', 'UserController@setPass')->name('SetPass');
 
+    //相册上传
+    Route::post('/album/upload', 'AlbumController@uploadAlbum')->name('albumUpload');
+
 
     //用户保存信息
     Route::post('/user/baseInfoSave', 'UserController@baseInfoSave')->name('BaseInfoSave');
 
     Route::post('/user/preferenceSave', 'UserController@prefernceSave')->name('PreferenceSave');
 
-    //上传路由合集
-    \LaravelUploader::routes();
-
+    
+    // //上传路由合集
+    // \LaravelUploader::routes();
 });
 
 
