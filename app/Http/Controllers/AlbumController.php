@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\AlbumService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Extensions\ReturnModel;
 
 /**
@@ -67,8 +68,8 @@ class AlbumController extends Controller
             //存储文件。disk里面的public。总的来说，就是调用disk模块里的public配置
             Storage::disk('public')->put($filename, file_get_contents($path));
         }
-        
-        return view('upload');
+        dd(11111);
+        // return view('upload');
     }
     
 
