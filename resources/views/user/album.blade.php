@@ -62,7 +62,6 @@
         $("#myModalLabel").text("新增");
         $('#myModal').modal();
      });
-    $('#myModal').modal();
 </script>
 <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 
