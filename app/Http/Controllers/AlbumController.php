@@ -41,12 +41,12 @@ class AlbumController extends Controller
      * @param  string $value [description]
      * @return [type]        [description]
      */
-    public function upload(Request $request)
+    public function uploadAlbum(Request $request)
     {
 
         $param = $request -> all();
         dd($param);
-        $info = $this -> albumService -> uploadPic($param);
+        // $info = $this -> albumService -> uploadPic($param);
 
         
     }
