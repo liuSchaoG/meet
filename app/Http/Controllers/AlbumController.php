@@ -31,8 +31,8 @@ class AlbumController extends Controller
      */
     public function index(Request $request)
     {
-        $info = $this -> albumService -> getUserAlbum();
-        return view('user.album',$info);
+        $list = $this -> albumService -> getUserAlbum();
+        return view('user.album',['list'=>$list]);
     }
 
     /**
