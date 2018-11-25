@@ -9,7 +9,7 @@
                     <div class="row clearfix">
                         @forelse ($list as $value)
                             <div class="col-md-3 column">
-                                <a href=""><img class="col-md-3 column" src="{{$value['img']}}" alt=""></a>
+                                <a href=""><img style="width: 50px" src="{{$value['img']}}" alt=""></a>
                                 <p>
                                      <a class="btn" href="">{{$value['name']}} »</a>
                                 </p>
