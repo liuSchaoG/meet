@@ -186,9 +186,6 @@
                                     保存并继续
                                 </button>
 
-                                <a class="btn btn-link " href="#">
-                                    跳过
-                                </a>
                             </div>
                         </div>
                     </form>
