@@ -85,7 +85,37 @@ class AlbumController extends Controller
             // $insert['']
 
         }
+
+        /**
+         * [pictures description]
+         * @author liuchao 2018-11-25T20:00:36+0800
+         * @param  string $value [description]
+         * @return [type]        [description]
+         */
+        public function pictures(Request $request)
+        {
+            $alb_id = $request->alb_id;
+            $list = $this -> albumService -> getPictures($alb_id);
+            return view('user.picture',['list'=>$list]);
+        }
+
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 
 

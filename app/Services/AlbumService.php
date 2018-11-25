@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Album;
+use App\Models\Picture;
 use Illuminate\Support\Facades\DB;
 /**
  * 相册服务提供
@@ -43,6 +44,17 @@ class AlbumService
     public function userCreateAlbum()
     {
         # code...
+    }
+
+
+    public function getPictures($alb_id)
+    {   
+        $con['uid'] = session('id');
+        $con['alb_id'] = $alb_id;
+
+        $list = Picture::where($con)->paginate(10);
+
+        return $list;
     }
 
 

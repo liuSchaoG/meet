@@ -49,6 +49,9 @@ Route::group(['middleware'=>'web'],function (){
     Route::get('/user/identify', 'UserController@identify')->name('Identify');
     //我的相册
     Route::get('/user/album', 'AlbumController@index')->name('albumIndex');
+    //相册照片
+    Route::get('/user/picture', 'AlbumController@pictures')->name('pictureList');
+
     //权限设置
     Route::get('/user/setRight', 'UserController@setRight')->name('SetRight');
     //密码设置
@@ -57,7 +60,7 @@ Route::group(['middleware'=>'web'],function (){
     //相册上传
     Route::post('/album/upload', 'AlbumController@uploadAlbum')->name('albumUpload');
 
-
+    
     //用户保存信息
     Route::post('/user/baseInfoSave', 'UserController@baseInfoSave')->name('BaseInfoSave');
 
