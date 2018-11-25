@@ -18,7 +18,7 @@
                     </form>  
                     <hr>
                     <div class="row clearfix">
-                        <div class="col-md-2 column">
+                        <div class="col-md-3 column">
                             <h2>
                                 Heading
                             </h2>
@@ -26,7 +26,7 @@
                                  <a class="btn" href="#">View details »</a>
                             </p>
                         </div>
-                        <div class="col-md-2 column">
+                        <div class="col-md-3 column">
                             <h2>
                                 Heading
                             </h2>
@@ -34,7 +34,7 @@
                                  <a class="btn" href="#">View details »</a>
                             </p>
                         </div>
-                        <div class="col-md-2 column">
+                        <div class="col-md-3 column">
                             <h2>
                                 Heading
                             </h2>
@@ -42,7 +42,39 @@
                                  <a class="btn" href="#">View details »</a>
                             </p>
                         </div>
-                        <div class="col-md-2 column">
+                        <div class="col-md-3 column">
+                            <h2>
+                                Heading
+                            </h2>
+                            <p>
+                                 <a class="btn" href="#">View details »</a>
+                            </p>
+                        </div>
+                        <div class="col-md-3 column">
+                            <h2>
+                                Heading
+                            </h2>
+                            <p>
+                                 <a class="btn" href="#">View details »</a>
+                            </p>
+                        </div>
+                        <div class="col-md-3 column">
+                            <h2>
+                                Heading
+                            </h2>
+                            <p>
+                                 <a class="btn" href="#">View details »</a>
+                            </p>
+                        </div>
+                        <div class="col-md-3 column">
+                            <h2>
+                                Heading
+                            </h2>
+                            <p>
+                                 <a class="btn" href="#">View details »</a>
+                            </p>
+                        </div>
+                        <div class="col-md-3 column">
                             <h2>
                                 Heading
                             </h2>
