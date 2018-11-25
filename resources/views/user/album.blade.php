@@ -11,6 +11,7 @@
                     </div>
                     <!--enctype 属性规定在发送到服务器之前应该如何对表单数据进行编码,"multipart/form-data"在使用包含文件上传控件的表单时，必须使用该值。-->
                     <form action="{{ route('albumUpload') }}" method="post" enctype="multipart/form-data">
+                        {{ csrf_field() }}
                     <!--file定义输入字段和 "浏览"按钮，供文件上传。-->
                         <input type="file" name="file" onchange="PreviewImage(this,'imgHeadPhoto','divPreview');" size="20" />
                         <input  type="submit" value="上传"/>
