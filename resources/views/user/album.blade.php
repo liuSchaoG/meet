@@ -3,7 +3,6 @@
 <div class="content-area col-md-8">
             <div class="panel panel-default">
                 <div class="panel-heading">相册中心</div>
-
                 <div class="panel-body">
                     <h1>文件上传</h1>
                     <div id="divPreview">
@@ -11,7 +10,7 @@
                                 alt="" />
                     </div>
                     <!--enctype 属性规定在发送到服务器之前应该如何对表单数据进行编码,"multipart/form-data"在使用包含文件上传控件的表单时，必须使用该值。-->
-                    <form action="upload.php" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('BaseInfoSave') }}" method="post" enctype="multipart/form-data">
                     <!--file定义输入字段和 "浏览"按钮，供文件上传。-->
                         <input type="file" name="file" onchange="PreviewImage(this,'imgHeadPhoto','divPreview');" size="20" />
                         <input  type="submit" value="上传"/>
