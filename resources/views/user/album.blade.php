@@ -4,14 +4,14 @@
             <div class="panel panel-default">
                 <div class="panel-heading">相册中心</div>
                 <div class="panel-body">
-                    <p><button class="btn btn-primary">上传相片</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" onclick="use_tan()">创建相册</button></p>
+                    <p><button class="btn btn-primary" onclick="use_tan()">创建相册</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary">上传相片</button></p>
                     <hr>
                     <div class="row clearfix">
                         @forelse ($list as $value)
                             <div class="col-md-3 column">
                                 <a href=""><img style="width: 150px" src="{{$value['img']}}" alt=""></a>
                                 <p>
-                                     <a class="btn" href="">{{$value['name']}} »</a>
+                                     <a class="btn" href="{{ route('pictureList',['alb_id'=>$value['alb_id']]) }}">{{$value['name']}} »</a>
                                 </p>
                             </div>
                         @empty
@@ -30,7 +30,6 @@
                 <h4 class="modal-title" id="myModalLabel">新增</h4>
             </div>
             <div class="modal-body">
-
                 <div class="form-group">
                     <label for="txt_departmentname">相册名称</label>
                     <input type="text" name="name" class="form-control" id="txt_departmentname" placeholder="相册名称">
@@ -46,8 +45,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>取消</button>
-                <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal">保存</button>
             </div>
         </div>
     </div>

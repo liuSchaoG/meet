@@ -2,32 +2,29 @@
 @section('right_block')
 <div class="content-area col-md-8">
             <div class="panel panel-default">
-                <div class="panel-heading">相册中心</div>
+                <div class="panel-heading">照片列表</div>
                 <div class="panel-body">
                     <h1>文件上传</h1>
                     <div id="divPreview">
                         <img id="imgHeadPhoto" src="noperson.jpg" style="width: 160px; height: 170px; border: solid 1px #d2e2e2;"
                                 alt="" />
                     </div>
-                    <!--enctype 属性规定在发送到服务器之前应该如何对表单数据进行编码,"multipart/form-data"在使用包含文件上传控件的表单时，必须使用该值。-->
                     <form action="{{ route('albumUpload') }}" method="post" enctype="multipart/form-data">
-                        <select class="form-control" name="income" id="income">
-                        <option value="0" >新建相册</option>
-                        </select>
                         {{ csrf_field() }}
+                        <input type="hidden" name="alb_id" value={{$alb_id}} />
                         <input type="file" name="file" onchange="PreviewImage(this,'imgHeadPhoto','divPreview');" size="20" />
-                        <input  type="submit"  class="btn btn-primary" value="上传"/>
+                        <input  type="submit"  class="btn btn-primary" value="上传照片"/>
                     </form>  
                     <hr>
                     <div class="row clearfix">
-                        <div class="col-md-3 column">
-                            <h2>
-                                相册名称
-                            </h2>
-                            <p>
-                                 <a class="btn" href="#">浏览进入 »</a>
-                            </p>
-                        </div>
+                        @forelse ($list as $value)
+                            <div class="col-md-3 column">
+                                <img style="width: 150px" src="{{$value['img']}}" alt="">
+                                <a class="btn" href="">{{$value['name']}} »</a>
+                            </div>
+                        @empty
+                            &nbsp;&nbsp;<h1>相册是空的</h1>
+                        @endforelse
                     </div>
                 </div>
             </div>
