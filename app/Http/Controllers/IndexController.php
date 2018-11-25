@@ -21,7 +21,7 @@ class IndexController extends Controller
         //$connection = Mongo::connectMongo('chatFriendsList');
         //$resb = $connection2->select('fd')->where('uid',1)->get()->toArray();
         //$res= $connection->get()->toArray();
-        //$res= $connection->delete();
+        //$res= $connection2->delete();
         //var_dump($res);exit;
         return view('index/index');
     }
