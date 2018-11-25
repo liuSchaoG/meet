@@ -103,7 +103,7 @@ class AlbumController extends Controller
     {
         $alb_id = $request->alb_id;
         $list = $this -> albumService -> getPictures($alb_id);
-        return view('user.picture',['list'=>$list]);
+        return view('user.picture',['list'=>$list,'alb_id'=>$alb_id]);
     }
 
 
