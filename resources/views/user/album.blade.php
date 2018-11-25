@@ -9,11 +9,9 @@
                     <div class="row clearfix">
                         @forelse ($list as $value)
                             <div class="col-md-3 column">
-                                <h2>
-                                    {{$value['name']}}
-                                </h2>
+                                <a href=""><img src="{{env('APP_URL').'/public'.$value['img']}}" alt=""></a>
                                 <p>
-                                     <a class="btn" href=" {{$value['alb_id']}}">浏览进入 »</a>
+                                     <a class="btn" href=" {{$value['name']}}">浏览进入 »</a>
                                 </p>
                             </div>
                         @empty
