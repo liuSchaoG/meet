@@ -37,8 +37,8 @@
                 </div>
                 <div class="form-group">
                     <label for="txt_parentdepartment">权限设置</label>
-                    公开 <input type="radio" name="a_right" class="form-control">&nbsp;&nbsp;
-                    私有 <input type="radio" name="a_right" class="form-control">
+                    <p>公开 <input type="radio" name="a_right" >&nbsp;&nbsp;
+                    私有 <input type="radio" name="a_right" ></p>
                 </div>
                 <div class="form-group">
                     <label for="txt_departmentlevel">相册描述</label>
