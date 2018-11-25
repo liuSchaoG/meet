@@ -54,7 +54,7 @@ class AlbumService
     public function uploadPic($param){
 
         $uid = session('id');
-        dd($param);
+        dd($param['file']);
 
         //判断上传的文件是否出错,是的话，返回错误
         if($param["file"]["error"]){
