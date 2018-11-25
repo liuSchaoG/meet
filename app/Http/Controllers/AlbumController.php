@@ -64,12 +64,10 @@ class AlbumController extends Controller
 
             //定义文件名
             $filename = date('Y-m-d-h-i-s').'.'.$ext;
-            dump(122222);
             //存储文件。disk里面的public。总的来说，就是调用disk模块里的public配置
-            Storage::disk('public')->put($filename, file_get_contents($path));
+            Storage::disk('upload')->put($filename, file_get_contents($path));
         }
-        dd(11111);
-        // return view('upload');
+        dd(6666666);
     }
     
 
