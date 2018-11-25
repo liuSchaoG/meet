@@ -64,7 +64,7 @@ return [
         ],
         'upload' => [
             'driver' => 'local',
-            'root' => app('path.public').'/upload'),
+            'root' => app('path.public').'/upload',
             'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],
