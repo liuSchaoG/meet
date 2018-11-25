@@ -55,7 +55,7 @@ Route::group(['middleware'=>'web'],function (){
     Route::get('/user/setPass', 'UserController@setPass')->name('SetPass');
 
     //相册上传
-    Route::get('/album/upload', 'AlbumController@upload')->name('albumUpload');
+    Route::post('/album/upload', 'AlbumController@upload')->name('albumUpload');
 
 
     //用户保存信息
