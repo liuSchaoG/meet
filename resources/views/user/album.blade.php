@@ -9,7 +9,7 @@
                     <div class="row clearfix">
                         @forelse ($list as $value)
                             <div class="col-md-3 column">
-                                <a class="btn" href="{{ route('pictureList',['alb_id'=>$value['alb_id']]) }}"><img style="width: 25%" src="{{$value['img']}}" alt=""></a>
+                                <a class="btn" href="{{ route('pictureList',['alb_id'=>$value['alb_id']]) }}"><img style="width: 100%" src="{{$value['img']}}" alt=""></a>
                                 <p align="center">
                                      {{$value['name']}}
                                 </p>
