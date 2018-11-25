@@ -57,13 +57,13 @@
 </div>
 
 @endsection
+<script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 <script>
     $("#btn_add").click(function () {
         $("#myModalLabel").text("新增");
         $('#myModal').modal();
      });
 </script>
-<script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 
 
 
