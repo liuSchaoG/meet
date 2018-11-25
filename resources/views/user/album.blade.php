@@ -7,20 +7,18 @@
                     <p><button class="btn btn-primary">上传相片</button>&nbsp;<button class="btn btn-primary">创建相册</button></p>
                     <hr>
                     <div class="row clearfix">
-                        @if(!count($list))
-                            <?php foreach ($list as $key => $value): ?>
-                                <div class="col-md-3 column">
-                                    <h2>
-                                        {{$value['name']}}
-                                    </h2>
-                                    <p>
-                                         <a class="btn" href=" {{$value['alb_id']}}">浏览进入 »</a>
-                                    </p>
-                                </div>
-                            <?php endforeach ?>
-                        @else
+                        @forelse ($list as $value)
+                            <div class="col-md-3 column">
+                                <h2>
+                                    {{$value['name']}}
+                                </h2>
+                                <p>
+                                     <a class="btn" href=" {{$value['alb_id']}}">浏览进入 »</a>
+                                </p>
+                            </div>
+                        @empty
                             <h1>暂时没有任何相册</h1>
-                        @endif
+                        @endforelse
                     </div>
                 </div>
             </div>
