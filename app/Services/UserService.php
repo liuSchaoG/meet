@@ -121,18 +121,6 @@ class UserService
         return $info;
     }
 
-    /**
-     * [getUserAlbum description]
-     * @author liuchao 2018-11-18T18:35:52+0800
-     * @param  [type] $uid [description]
-     * @return [type]      [description]
-     */
-    public function getUserAlbum($uid)
-    {
-        $field = ['uid','origin_province','origin_city','weight','shape','constellation','nation','marry_time'];
-        $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
-        return $info;
-    }
 
     /**
      * [getUserSetright description]

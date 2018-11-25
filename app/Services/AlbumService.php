@@ -19,7 +19,7 @@ class AlbumService
     public function getUserAlbum()
     {
         $where['uid'] = session('id');
-        return Album::where($where)->select(['id','uid','alb_id','type','img','created_at','updated_at'])->get()->toArray();
+        return Album::where($where)->select(['id','uid','alb_id','name','img','created_at','updated_at'])->get()->toArray();
     }
 
     /**
