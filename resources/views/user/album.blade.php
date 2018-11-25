@@ -32,24 +32,21 @@
             <div class="modal-body">
 
                 <div class="form-group">
-                    <label for="txt_departmentname">部门名称</label>
+                    <label for="txt_departmentname">相册名称</label>
                     <input type="text" name="txt_departmentname" class="form-control" id="txt_departmentname" placeholder="部门名称">
                 </div>
                 <div class="form-group">
-                    <label for="txt_parentdepartment">上级部门</label>
-                    <input type="text" name="txt_parentdepartment" class="form-control" id="txt_parentdepartment" placeholder="上级部门">
+                    <label for="txt_parentdepartment">权限设置</label>
+                    公开 <input type="radio" name="a_right" class="form-control">&nbsp;&nbsp;
+                    私有 <input type="radio" name="a_right" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="txt_departmentlevel">部门级别</label>
+                    <label for="txt_departmentlevel">相册描述</label>
                     <input type="text" name="txt_departmentlevel" class="form-control" id="txt_departmentlevel" placeholder="部门级别">
-                </div>
-                <div class="form-group">
-                    <label for="txt_statu">描述</label>
-                    <input type="text" name="txt_statu" class="form-control" id="txt_statu" placeholder="状态">
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>取消</button>
                 <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
             </div>
         </div>
@@ -59,9 +56,8 @@
 @endsection
 <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 <script>
-
     function use_tan(argument) {
-        $("#myModalLabel").text("新增");
+        $("#myModalLabel").text("新建相册");
         $('#myModal').modal();
     }
 </script>
