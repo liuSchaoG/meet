@@ -6,7 +6,7 @@
                 <div class="panel-body">
                     <h1>文件上传</h1>
                     <div id="divPreview">
-                        <img id="imgHeadPhoto" src="noperson.jpg" style="width: 160px; height: 170px; border: solid 1px #d2e2e2;"
+                        <img id="imgHeadPhoto" src="/public/images/user/up_default.png" style="width: 100px; height: 100px; border: solid 1px #d2e2e2;"
                                 alt="" />
                     </div>
                     <form action="{{ route('albumUpload') }}" method="post" enctype="multipart/form-data">
@@ -19,8 +19,8 @@
                     <div class="row clearfix">
                         @forelse ($list as $value)
                             <div class="col-md-3 column">
-                                <img style="width: 150px" src="{{$value['img']}}" alt="">
-                                <a class="btn" href="">{{$value['name']}} »</a>
+                                <img style="width: 100%" src="{{$value['img']}}" alt="">
+                                <p align="center">{{$value['name']}}</p>
                             </div>
                         @empty
                             &nbsp;&nbsp;<h1>相册是空的</h1>
