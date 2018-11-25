@@ -16,6 +16,41 @@
                         <input type="file" name="file" onchange="PreviewImage(this,'imgHeadPhoto','divPreview');" size="20" />
                         <input  type="submit" value="上传"/>
                     </form>  
+                    <hr>
+                    <div class="row clearfix">
+                        <div class="col-md-2 column">
+                            <h2>
+                                Heading
+                            </h2>
+                            <p>
+                                 <a class="btn" href="#">View details »</a>
+                            </p>
+                        </div>
+                        <div class="col-md-2 column">
+                            <h2>
+                                Heading
+                            </h2>
+                            <p>
+                                 <a class="btn" href="#">View details »</a>
+                            </p>
+                        </div>
+                        <div class="col-md-2 column">
+                            <h2>
+                                Heading
+                            </h2>
+                            <p>
+                                 <a class="btn" href="#">View details »</a>
+                            </p>
+                        </div>
+                        <div class="col-md-2 column">
+                            <h2>
+                                Heading
+                            </h2>
+                            <p>
+                                 <a class="btn" href="#">View details »</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
 </div>

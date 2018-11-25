@@ -31,9 +31,29 @@ class AlbumController extends Controller
      */
     public function index(Request $request)
     {
-        $uid = $request -> uid;
-        $info = $this -> albumService -> getUserAlbum($uid);
+        $info = $this -> albumService -> getUserAlbum();
         return view('user.album',$info);
+    }
+
+    /**
+     * [createAlbum description]
+     * @author liuchao 2018-11-25T18:15:33+0800
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function createAlbum(Request $request)
+    {
+        // $returnModel = new ReturnModel();
+        // try {
+            $param = $request -> all();
+            $info = $this -> albumService -> userCreateAlbum($param);
+        //     if (!empty($data)) {
+        //         $returnModel->setData($data);
+        //     }
+        // } catch (Exception $e) {
+        //     $returnModel->initFail($e->getMessage());
+        // }
+        // return $returnModel->toArray();
     }
 
     /**
@@ -44,12 +64,7 @@ class AlbumController extends Controller
      */
     public function uploadAlbum(Request $request)
     {
-        // $param = $request -> all();
-        // // dd($param);
-        // $info = $this -> albumService -> uploadPic($param);
-        
-        //在源生的php代码中是使用$_FILE来查看上传文件的属性
-        //但是在laravel里面有更好的封装好的方法，就是下面这个
+        // $uid = session('id');
         //显示的属性更多
         $fileCharater = $request->file('file');
 
@@ -66,8 +81,10 @@ class AlbumController extends Controller
             $filename = date('Y-m-d-h-i-s').'.'.$ext;
             //存储文件。disk里面的public。总的来说，就是调用disk模块里的public配置
             Storage::disk('upload')->put($filename, file_get_contents($path));
+
+            // $insert['']
+
         }
-        dd(6666666);
     }
     
 
