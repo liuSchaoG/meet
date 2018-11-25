@@ -11,7 +11,7 @@
                             <div class="col-md-3 column">
                                 <a href=""><img class="col-md-3 column" src="{{$value['img']}}" alt=""></a>
                                 <p>
-                                     <a class="btn" href=" {{$value['name']}}">浏览进入 »</a>
+                                     <a class="btn" href="">{{$value['name']}} »</a>
                                 </p>
                             </div>
                         @empty
