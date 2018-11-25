@@ -4,7 +4,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">相册中心</div>
                 <div class="panel-body">
-                    <p><button class="btn btn-primary">上传相片</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary">创建相册</button></p>
+                    <p><button class="btn btn-primary">上传相片</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" id="btn_add">创建相册</button></p>
                     <hr>
                     <div class="row clearfix">
                         @forelse ($list as $value)
