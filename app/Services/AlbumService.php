@@ -45,6 +45,9 @@ class AlbumService
     {
         unset($params['_token']);
         $params['uid'] = session('id');
+        $where['uid'] = session('id');
+        $count = Album::where($where)->count();
+        $params['alb_id'] = $count + 1;
         return Album::insert($params);
     }
 
