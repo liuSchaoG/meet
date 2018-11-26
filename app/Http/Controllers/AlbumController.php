@@ -44,17 +44,17 @@ class AlbumController extends Controller
      */
     public function createAlbum(Request $request)
     {
-        // $returnModel = new ReturnModel();
-        // try {
+        $returnModel = new ReturnModel();
+        try {
             $param = $request -> all();
             $info = $this -> albumService -> userCreateAlbum($param);
-        //     if (!empty($data)) {
-        //         $returnModel->setData($data);
-        //     }
-        // } catch (Exception $e) {
-        //     $returnModel->initFail($e->getMessage());
-        // }
-        // return $returnModel->toArray();
+            if (!empty($data)) {
+                $returnModel->setData($data);
+            }
+        } catch (Exception $e) {
+            $returnModel->initFail($e->getMessage());
+        }
+        return $returnModel->toArray();
     }
 
     /**
