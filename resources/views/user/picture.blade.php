@@ -4,7 +4,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">照片列表</div>
                 <div class="panel-body">
-                    <h1>文件上传</h1>
+                    <div class="alert alert-warning">
+                        <a href="#" class="close" data-dismiss="alert">
+                            &times;
+                        </a>
+                        <strong>警告！</strong>您的网络连接有问题。
+                    </div>
                     <div id="divPreview">
                         <img id="imgHeadPhoto" src="/images/user/up_default.png" style="width: 100px; height: 100px; border: solid 1px #d2e2e2;"
                                 alt="" />
