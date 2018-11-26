@@ -62,15 +62,11 @@ Route::group(['middleware'=>'web'],function (){
     //创建相册
     Route::post('/album/create', 'AlbumController@createAlbum')->name('createAlbum');
 
-    
     //用户保存信息
     Route::post('/user/baseInfoSave', 'UserController@baseInfoSave')->name('BaseInfoSave');
 
     Route::post('/user/preferenceSave', 'UserController@prefernceSave')->name('PreferenceSave');
 
-    
-    // //上传路由合集
-    // \LaravelUploader::routes();
 });
 
 

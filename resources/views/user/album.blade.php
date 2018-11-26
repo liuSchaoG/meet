@@ -64,7 +64,7 @@
         var a_right = $(" input[ name='a_right' ] ").val();
         var desc = $('#txt_departmentlevel').val();
 
-        $.post('/area/childsByPid',{'_token':'{{csrf_token()}}','name':name,'a_right':a_right,'desc':desc},function(data){
+        $.post('/album/create',{'_token':'{{csrf_token()}}','name':name,'a_right':a_right,'desc':desc},function(data){
             if(data.code==1){
                 window.location.reload();
             }

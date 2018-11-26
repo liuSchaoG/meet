@@ -41,9 +41,11 @@ class AlbumService
 
 
 
-    public function userCreateAlbum()
+    public function userCreateAlbum($params)
     {
-        # code...
+        unset($params['_token']);
+        $params['uid'] = session('id');
+        return Album::insert($params);
     }
 
 
@@ -52,7 +54,7 @@ class AlbumService
         $con['uid'] = session('id');
         $con['alb_id'] = $alb_id;
 
-        $list = Picture::where($con)->paginate(10);
+        $list = Picture::where($con)->paginate(8);
 
         return $list;
     }
