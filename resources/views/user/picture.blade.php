@@ -4,12 +4,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">照片列表</div>
                 <div class="panel-body">
-                    <div class="alert alert-warning">
+                    <!-- <div class="alert alert-warning">
                         <a href="#" class="close" data-dismiss="alert">
                             &times;
                         </a>
                         <strong>警告！</strong>您的网络连接有问题。
-                    </div>
+                    </div> -->
                     <div id="divPreview">
                         <img id="imgHeadPhoto" src="/images/user/up_default.png" style="width: 100px; height: 100px; border: solid 1px #d2e2e2;"
                                 alt="" />
@@ -17,7 +17,7 @@
                     <form action="{{ route('albumUpload') }}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input type="hidden" name="alb_id" value={{$alb_id}} />
-                        <input type="file" name="file" onchange="PreviewImage(this,'imgHeadPhoto','divPreview');" size="20" />
+                        <input type="file" name="file" required onchange="PreviewImage(this,'imgHeadPhoto','divPreview');" size="20" />
                         <input  type="submit"  class="btn btn-primary" value="上传照片"/>
                     </form>  
                     <hr>
