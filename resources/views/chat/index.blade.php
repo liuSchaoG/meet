@@ -1,5 +1,6 @@
 @extends('layouts.app')
-<link href="{{ asset('chat/css/chat.css?a=21') }}" rel="stylesheet">
+<link href="{{ asset('chat/css/chat.css?a=26') }}" rel="stylesheet">
+<link href="{{ asset('/css/webuploader.css?v=3') }}" rel="stylesheet">
 @section('content')
     <div class="container">
         <div class="row">
@@ -47,7 +48,7 @@
                                     <!--<li><img src="chat/images/20170926103645_35.jpg"/></li>-->
                                     <!--<li><img src="chat/images/20170926103645_37.jpg"/></li>-->
                                     <!--<li><img src="chat/images/20170926103645_39.jpg"/></li>-->
-                                    <li><img src="chat/images/20170926103645_41.jpg" alt="图片"/></li>
+                                    <li id="upload_photo"><img src="chat/images/20170926103645_41.jpg" alt="图片"/></li>
                                     <li><img src="chat/images/20170926103645_43.jpg"/></li>
                                     <!--<li><img src="chat/images/20170926103645_45.jpg"/></li>-->
                                 </ul>
@@ -82,12 +83,6 @@
                 getTalkList(user_uid,receive_id,1);
             })
            //左侧结束
-            /*$('.ExP').on('mouseenter',function(){
-                $('.emjon').show();
-            })*/
-            /*$('.emjon').on('mouseleave',function(){
-                $('.emjon').hide();
-            })*/
             $('.emjon li').on('click',function(){
                 var imgSrc=$(this).children('img').attr('src');
                 var str="";
@@ -98,7 +93,59 @@
                 $('.newsList').append(str);
                 $('.emjon').hide();
                 $('.RightCont').scrollTop($('.RightCont')[0].scrollHeight );
-            })
+            });
+            //图片上传
+            var uploader = WebUploader.create({
+                //设置上传不压缩
+                compress:{
+                    compressSize:1024*1024*1024,
+                },
+                // 自动上传。默认false不自动上传
+                auto: true,
+                // swf文件路径
+                swf: '/webuploader/Uploader.swf',
+                // 文件接收服务端。
+                server: '/upload/upload',
+                // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                pick: '#upload_photo',
+                // 定义上传文件类型
+                accept: {
+                    title: 'Images',
+                    extensions: 'gif,jpg,jpeg,png',
+                    mimeTypes: 'image/*'
+                },
+                //文件上传大小限制kb
+                fileSingleSizeLimit: 1024 * 512,
+                //自定义选择
+                formData: {
+                    limitType: 'gif,jpg,jpeg,png',
+                    limitSize: '50',//单位kb
+                }
+            });
+
+            uploader.on( 'fileQueued', function( file ) {
+                var $li = $(
+                    '<li>' +
+                    '<div class="answerHead"><img src="{{session('head_image')}}"/></div>' +
+                    '<div class="answers">'+
+                    '<img class="uploads" width="100" id="'+ file.id +'"/>'+
+                    '</div>' +
+                    '</li>'
+                    ),
+                $img = $li.find('.uploads');
+                // $list为容器jQuery实例
+                $('.newsList').append( $li );
+                // 创建缩略图
+                // 如果为非图片文件，可以不用调用此方法。
+                // thumbnailWidth x thumbnailHeight 为 100 x 100
+                uploader.makeThumb( file, function( error, src ) {
+                    if ( error ) {
+                        $img.replaceWith('<span>不能预览</span>');
+                        return;
+                    }
+                    $img.attr( 'src', src );
+                });
+            });
 
             if(window.WebSocket) {
                 //var webSocket = new WebSocket("ws://47.52.167.163:9502");
@@ -143,7 +190,7 @@
 
                 webSocket.onmessage = function (event) {
                     var data = eval('(' + event.data + ')');
-                    //console.log(data);
+                    console.log(data);
                     var message = '';
                     //console.log(data.user_uid);
                     if(data.send_uid == undefined || data.receive_uid == undefined){
@@ -215,6 +262,7 @@
 @endsection
 <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 <script src="{{ asset('chat/js/chat.js?a=30') }}"></script>
+<script src="{{ asset('js/webuploader.min.js') }}"></script>
 
 
 

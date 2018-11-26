@@ -46,4 +46,9 @@ class ChatController extends Controller
             echo json_encode(ChatService::getChatFriendList($sendId,$receiveId));
         }
     }
+
+    public function uploadPhoto(Request $request)
+    {
+
+    }
 }
