@@ -4,7 +4,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">相册中心</div>
                 <div class="panel-body">
-                    <p><button class="btn btn-primary" onclick="use_tan()">创建相册</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary">上传相片</button></p>
+                    <p><button class="btn btn-primary" onclick="use_tan()">创建相册</button>&nbsp;&nbsp;&nbsp;&nbsp;<!-- <button class="btn btn-primary">上传相片</button> --></p>
                     <hr>
                     <div class="row clearfix">
                         @forelse ($list as $value)
@@ -36,8 +36,8 @@
                 </div>
                 <div class="form-group">
                     <label for="txt_parentdepartment">权限设置</label>
-                    <p>公开 <input type="radio" name="a_right" >&nbsp;&nbsp;
-                    私有 <input type="radio" name="a_right" ></p>
+                    <p>公开 <input type="radio" name="a_right" value="1">&nbsp;&nbsp;
+                    私有 <input type="radio" name="a_right" value="2"></p>
                 </div>
                 <div class="form-group">
                     <label for="txt_departmentlevel">相册描述</label>
@@ -46,7 +46,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal">保存</button>
+                <button type="button" onclick="create_album()" class="btn btn-primary" data-dismiss="modal">保存</button>
             </div>
         </div>
     </div>
@@ -59,6 +59,19 @@
         $("#myModalLabel").text("新建相册");
         $('#myModal').modal();
     }
+
+    function create_album(argument) {
+        var name = $('#txt_departmentname').val();
+        var a_right = $(" input[ name='a_right' ] ").val();
+        var desc = $('#txt_departmentlevel').val();
+
+        $.post('/area/childsByPid',{'_token':'{{csrf_token()}}','name':pid,'a_right':a_right,'desc':desc},function(data){
+            if(data.code==1){
+                window.location.reload();
+            }
+        });
+    }
+    
 </script>
 
 

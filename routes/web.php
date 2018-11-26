@@ -59,6 +59,8 @@ Route::group(['middleware'=>'web'],function (){
 
     //相册上传
     Route::post('/album/upload', 'AlbumController@uploadAlbum')->name('albumUpload');
+    //创建相册
+    Route::post('/album/create', 'AlbumController@createAlbum')->name('createAlbum');
 
     
     //用户保存信息
