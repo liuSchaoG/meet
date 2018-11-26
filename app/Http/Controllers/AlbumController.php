@@ -46,9 +46,8 @@ class AlbumController extends Controller
     {
         $returnModel = new ReturnModel();
         try {
-            $param = $request -> all();
-            dd($param);
-            $info = $this -> albumService -> userCreateAlbum($param);
+            $params = $request -> all();
+            $data = $this -> albumService -> userCreateAlbum($params);
             if (!empty($data)) {
                 $returnModel->setData($data);
             }
