@@ -1,83 +1,84 @@
 @extends('layouts.user')
 @section('right_block')
 <div class="content-area col-md-8">
-            <div class="panel panel-default">
-                <div class="panel-heading">相册中心</div>
-                <div class="panel-body">
-                    <h1>文件上传</h1>
-                    <div id="divPreview">
-                        <img id="imgHeadPhoto" src="noperson.jpg" style="width: 160px; height: 170px; border: solid 1px #d2e2e2;"
-                                alt="" />
+    <div class="panel panel-default">
+        <div class="panel-heading">相册中心</div>
+        <div class="panel-body">
+            <p><button class="btn btn-primary" onclick="use_tan()">创建相册</button>&nbsp;&nbsp;&nbsp;&nbsp;<!-- <button class="btn btn-primary">上传相片</button> --></p>
+            <hr>
+            <div class="row clearfix">
+                @forelse ($list as $value)
+                    <div class="col-md-3 column">
+                        <a class="btn" href="{{ route('pictureList',['alb_id'=>$value['alb_id']]) }}"><img style="width: 100%" src="{{$value['img']}}" alt=""></a>
+                        <p align="center">
+                             {{$value['name']}}
+                        </p>
                     </div>
-                    <!--enctype 属性规定在发送到服务器之前应该如何对表单数据进行编码,"multipart/form-data"在使用包含文件上传控件的表单时，必须使用该值。-->
-                    <form action="{{ route('albumUpload') }}" method="post" enctype="multipart/form-data">
-                        {{ csrf_field() }}
-                    <!--file定义输入字段和 "浏览"按钮，供文件上传。-->
-                        <input type="file" name="file" onchange="PreviewImage(this,'imgHeadPhoto','divPreview');" size="20" />
-                        <input  type="submit" value="上传"/>
-                    </form>  
+                @empty
+                    &nbsp;&nbsp;<h1>暂时没有任何相册</h1>
+                @endforelse
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">新增</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="txt_departmentname">相册名称</label>
+                    <input type="text" name="name" class="form-control" id="txt_departmentname" placeholder="相册名称">
+                </div>
+                <div class="form-group">
+                    <label for="txt_parentdepartment">权限设置</label>
+                    <p>公开 <input type="radio" name="a_right" value="1">&nbsp;&nbsp;
+                    私有 <input type="radio" name="a_right" value="2"></p>
+                </div>
+                <div class="form-group">
+                    <label for="txt_departmentlevel">相册描述</label>
+                    <input type="text" name="desc" class="form-control" id="txt_departmentlevel" placeholder="相册描述">
                 </div>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" onclick="create_album()" class="btn btn-primary" data-dismiss="modal">保存</button>
+            </div>
+        </div>
+    </div>
 </div>
-@endsection
 
+@endsection
 <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
-<script type="text/javascript">
-    //js本地图片预览，兼容ie[6-9]、火狐、Chrome17+、Opera11+、Maxthon3
-    function PreviewImage(fileObj, imgPreviewId, divPreviewId) {
-        var allowExtention = ".jpg,.bmp,.gif,.png"; //允许上传文件的后缀名document.getElementById("hfAllowPicSuffix").value;
-        var extention = fileObj.value.substring(fileObj.value.lastIndexOf(".") + 1).toLowerCase();
-        var browserVersion = window.navigator.userAgent.toUpperCase();
-        if (allowExtention.indexOf(extention) > -1) {
-            if (fileObj.files) {//HTML5实现预览，兼容chrome、火狐7+等
-                if (window.FileReader) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        document.getElementById(imgPreviewId).setAttribute("src", e.target.result);
-                    }
-                    reader.readAsDataURL(fileObj.files[0]);
-                } else if (browserVersion.indexOf("SAFARI") > -1) {
-                    alert("不支持Safari6.0以下浏览器的图片预览!");
-                }
-            } else if (browserVersion.indexOf("MSIE") > -1) {
-                if (browserVersion.indexOf("MSIE 6") > -1) {//ie6
-                    document.getElementById(imgPreviewId).setAttribute("src", fileObj.value);
-                } else {//ie[7-9]
-                    fileObj.select();
-                    if (browserVersion.indexOf("MSIE 9") > -1)
-                        fileObj.blur(); //不加上document.selection.createRange().text在ie9会拒绝访问
-                    var newPreview = document.getElementById(divPreviewId + "New");
-                    if (newPreview == null) {
-                        newPreview = document.createElement("div");
-                        newPreview.setAttribute("id", divPreviewId + "New");
-                        newPreview.style.width = document.getElementById(imgPreviewId).width + "px";
-                        newPreview.style.height = document.getElementById(imgPreviewId).height + "px";
-                        newPreview.style.border = "solid 1px #d2e2e2";
-                    }
-                    newPreview.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src='" + document.selection.createRange().text + "')";
-                    var tempDivPreview = document.getElementById(divPreviewId);
-                    tempDivPreview.parentNode.insertBefore(newPreview, tempDivPreview);
-                    tempDivPreview.style.display = "none";
-                }
-            } else if (browserVersion.indexOf("FIREFOX") > -1) {//firefox
-                var firefoxVersion = parseFloat(browserVersion.toLowerCase().match(/firefox\/([\d.]+)/)[1]);
-                if (firefoxVersion < 7) {//firefox7以下版本
-                    document.getElementById(imgPreviewId).setAttribute("src", fileObj.files[0].getAsDataURL());
-                } else {//firefox7.0+                    
-                    document.getElementById(imgPreviewId).setAttribute("src", window.URL.createObjectURL(fileObj.files[0]));
-                }
-            } else {
-                document.getElementById(imgPreviewId).setAttribute("src", fileObj.value);
-            }
-        } else {
-            alert("仅支持" + allowExtention + "为后缀名的文件!");
-            fileObj.value = ""; //清空选中文件
-            if (browserVersion.indexOf("MSIE") > -1) {
-                fileObj.select();
-                document.selection.clear();
-            }
-            fileObj.outerHTML = fileObj.outerHTML;
-        }
-        return fileObj.value;    //返回路径
+<script>
+    function use_tan(argument) {
+        $("#myModalLabel").text("新建相册");
+        $('#myModal').modal();
     }
+
+    function create_album(argument) {
+        var name = $('#txt_departmentname').val();
+        var a_right = $(" input[ name='a_right' ] ").val();
+        var desc = $('#txt_departmentlevel').val();
+
+        $.post('/album/create',{'_token':'{{csrf_token()}}','name':name,'a_right':a_right,'desc':desc},function(data){
+            if(data.code==1){
+                window.location.reload();
+            }
+        });
+    }
+    
 </script>
+
+
+
+
+
+
+
+
+
+
