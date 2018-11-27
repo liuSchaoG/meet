@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<link href="{{ asset('chat/css/chat.css?a=26') }}" rel="stylesheet">
+<link href="{{ asset('chat/css/chat.css?v=26') }}" rel="stylesheet">
 <link href="{{ asset('/css/webuploader.css?v=3') }}" rel="stylesheet">
 @section('content')
     <div class="container">
@@ -124,52 +124,42 @@
                 }
             });
 
-            uploader.on( 'fileQueued', function( file ) {
-                var $li = $(
-                    '<li>' +
-                    '<div class="answerHead"><img src="{{session('head_image')}}"/></div>' +
-                    '<div class="answers">'+
-                    '<img class="uploads" width="100" id="'+ file.id +'"/>'+
-                    '</div>' +
-                    '</li>'
-                    ),
-                $img = $li.find('.uploads');
-                // $list为容器jQuery实例
-                $('.newsList').append( $li );
-                // 创建缩略图
-                // 如果为非图片文件，可以不用调用此方法。
-                // thumbnailWidth x thumbnailHeight 为 100 x 100
-                uploader.makeThumb( file, function( error, src ) {
-                    if ( error ) {
-                        $img.replaceWith('<span>不能预览</span>');
-                        return;
-                    }
-                    $img.attr( 'src', src );
-                });
+            uploader.on('uploadSuccess', function (file, response) {
+                //console.log(response);
+                if(response.code === 1 ){
+                    //layer.msg(response.msg);
+                    var img = '<img width=\'300\' src=\''+ response.data +'\' />'
+                    send(img);
+                }else{
+                    layer.msg('图片上传失败');
+                }
+                uploader.reset();
             });
 
             if(window.WebSocket) {
                 //var webSocket = new WebSocket("ws://47.52.167.163:9502");
                 var webSocket = new WebSocket("ws://127.0.0.1:9502");
                 webSocket.onopen = function (event) {
-                    //webSocket.send("{'user':'{{ session('id')}}'}");
                     webSocket.send('{"uid":'+ user_uid +'}');
                 };
                 $('.sendBtn').on('click', function () {
-                    send();
+                    send('');
                 })
 
-                function send() {
+                function send(img) {
                     var receive_uid = $('.receive_uid').text();
                     var news = $('#dope').val();
-                    if (news == '') {
+                    if (news == '' && img == '') {
                         alert('不能为空');
                     } else if(receive_uid == ''){
                         alert('请选择好友');
+                    }else if(img){
+                        var message =  '{"message":"'+ img +'","send_uid":'+ user_uid +',"receive_uid":'+ receive_uid +'}';
+                        webSocket.send(message);
                     }else {
                         $('#dope').val('');
                         var message =  '{"message":"'+ news +'","send_uid":'+ user_uid +',"receive_uid":'+ receive_uid +'}';    //{'message': news, 'uid': user_uid};
-                        console.log(message);
+                        //console.log(message);
                         webSocket.send(message);
                         //$('.newsList').append(message);
                         //setTimeout(answers,1000);
@@ -181,7 +171,7 @@
                 //回车发送
                 document.onkeydown=function(event){
                     if (event.key == 'Enter' && event.keyCode == 13) {
-                        send();
+                        send('');
                         //阻止换行
                         event.cancelBubble=true;
                         event.preventDefault();
@@ -195,11 +185,11 @@
                     var message = '';
                     //console.log(data.user_uid);
                     if(data.send_uid == undefined || data.receive_uid == undefined){
-                        console.log(data.user_uid);
+                        //console.log(data.user_uid);
                         return '';
                     }
                     var receive_uid = $('.receive_uid').text();
-                    console.log(receive_uid);console.log(user_uid);
+                    //console.log(receive_uid);console.log(user_uid);
                     if((data.send_uid !=  user_uid || data.receive_uid != receive_uid) && (data.send_uid !=  receive_uid || data.receive_uid != user_uid)){
                         //console.log(111111)
                         return '';
@@ -262,7 +252,7 @@
     </script>
 @endsection
 <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
-<script src="{{ asset('chat/js/chat.js?a=30') }}"></script>
+<script src="{{ asset('chat/js/chat.js?v=30') }}"></script>
 <script src="{{ asset('js/webuploader.min.js') }}"></script>
 
 

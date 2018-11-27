@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Extensions\Auth;
+use App\Extensions\ReturnModel;
 use App\Services\ChatService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -50,13 +51,19 @@ class ChatController extends Controller
 
     public function upload(Request $request)
     {
-
+        $return = new ReturnModel();
         try{
             $file = $request->file('file');
             $path = 'chat/' . date('Ymd') . '/';
             $result = UploadModel::Upload($file, $path);
+            if($result){
+                $return->setData($result);
+            }else{
+                throw new \Exception('图片上传失败');
+            }
         }catch (\Exception $e){
-
+            $return->initFail($e->getMessage());
         }
+        echo json_encode($return->toArray());
     }
 }
