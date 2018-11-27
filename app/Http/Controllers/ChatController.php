@@ -7,6 +7,7 @@ use App\Extensions\Auth;
 use App\Services\ChatService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Extensions\UploadModel;
 
 class ChatController extends Controller
 {
@@ -47,8 +48,15 @@ class ChatController extends Controller
         }
     }
 
-    public function uploadPhoto(Request $request)
+    public function upload(Request $request)
     {
 
+        try{
+            $file = $request->file('file');
+            $path = 'chat/' . date('Ymd') . '/';
+            $result = UploadModel::Upload($file, $path);
+        }catch (\Exception $e){
+
+        }
     }
 }

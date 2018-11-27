@@ -30,6 +30,7 @@ Route::group(['middleware'=>'web'],function (){
     //Route::post('password/reset', 'Auth\ResetPasswordController@reset');
     Route::any('chatRoom', 'ChatController@index')->name('chatRoom');//聊天室
     Route::post('getChatList', 'ChatController@getChatList')->name('getChatList');//聊天室
+    Route::post('chat/upload', 'ChatController@upload')->name('upload');//上传图片
 
 
     //个人心中路由定义  2018-11-17

@@ -105,7 +105,7 @@
                 // swf文件路径
                 swf: '/webuploader/Uploader.swf',
                 // 文件接收服务端。
-                server: '/upload/upload',
+                server: '/chat/upload',
                 // 内部根据当前运行是创建，可能是input元素，也可能是flash.
                 pick: '#upload_photo',
                 // 定义上传文件类型
@@ -120,6 +120,7 @@
                 formData: {
                     limitType: 'gif,jpg,jpeg,png',
                     limitSize: '50',//单位kb
+                    _token: '{{csrf_token()}}'
                 }
             });
 
