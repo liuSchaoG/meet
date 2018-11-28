@@ -132,4 +132,5 @@
 
     <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 </div>
+<script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 @endsection  
