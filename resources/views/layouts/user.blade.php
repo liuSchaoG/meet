@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 <link href="{{ asset('css/cropper.min.css') }}" rel="stylesheet">
 <link href="{{ asset('css/sitelogo.css') }}" rel="stylesheet">
 <script src="{{ asset('js/cropper.min.js') }}"></script>
@@ -129,8 +130,7 @@
             </div>
         </div>
     </div>
-
     <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 </div>
-<script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+
 @endsection  
