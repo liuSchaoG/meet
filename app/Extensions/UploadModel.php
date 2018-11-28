@@ -39,8 +39,8 @@ class UploadModel
             } else {
                 return false;
             }
-
         }
+        return false;
     }
 
 }

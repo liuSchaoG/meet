@@ -7,7 +7,6 @@
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('BaseInfoSave') }}">
                         {{ csrf_field() }}
-                        <input type="hidden" name="uid" value="{{$uid}}">
                         <input type="hidden" name="action" value="DetailInfo">
                         <div class="form-group{{ $errors->has('origin_province') ? ' has-error' : '' }}">
                             <label for="origin_province" class="col-md-4 control-label">籍贯省份</label>

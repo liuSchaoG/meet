@@ -8,7 +8,6 @@
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('BaseInfoSave') }}">
                         {{ csrf_field() }}
-                        <input type="hidden" name="uid" value="{{$uid}}">
                         <input type="hidden" name="action" value="BaseInfo">
                         <div class="form-group{{ $errors->has('user_name') ? ' has-error' : '' }}">
                             <label for="user_name" class="col-md-4 control-label">真实姓名</label>

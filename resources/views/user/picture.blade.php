@@ -24,8 +24,7 @@
                     <div class="row clearfix">
                         @forelse ($list as $value)
                             <div class="col-md-3 column">
-                                <img style="width: 100%" src="{{$value['img']}}" alt="">
-                                <p align="center">{{$value['name']}}</p>
+                                <img style="width: 100%" src="{{$value['img']}}" alt="{{$value['name']}}">
                             </div>
                         @empty
                             &nbsp;&nbsp;<h1>相册是空的</h1>

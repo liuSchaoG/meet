@@ -7,7 +7,6 @@
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('BaseInfoSave') }}">
                         {{ csrf_field() }}
-                        <input type="hidden" name="uid" value="{{$uid}}">
                         <input type="hidden" name="action" value="InterHobby">
                         <div class="form-group{{ $errors->has('foods') ? ' has-error' : '' }}">
                             <label for="foods" class="col-md-4 control-label">最喜欢的一道菜</label>
