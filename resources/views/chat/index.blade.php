@@ -14,7 +14,7 @@
                                     <div class="liLeft"><img src="{{$l['head_image']}}" id="head_{{$l['uid']}}" width="43"/></div>
                                     <div class="liRight">
                                         <span  class="intername">{{$l['username']}}</span>
-                                        <span class="infor">年龄:29</span>
+                                        <span class="infor" id="unreadMessage_{{$l['uid']}}">{{$l['unread_num']}}</span>
                                         <span class="uid" style="display: none;">{{$l['uid']}}</span>
                                     </div>
                                 </li>
@@ -73,15 +73,6 @@
             var default_receive_uid = $('.receive_uid').text();
             //默认聊天记录10条
             getTalkList(user_uid,default_receive_uid,1);
-            $('.conLeft li').on('click',function(){
-                $(this).addClass('bg').siblings().removeClass('bg');
-                var intername=$(this).children('.liRight').children('.intername').text();
-                var receive_id = $(this).children('.liRight').children('.uid').text();
-                $('.headName').text(intername);
-                $('.receive_uid').text(receive_id);
-                $('.newsList').html('');
-                getTalkList(user_uid,receive_id,1);
-            })
            //左侧结束
             $('.emjon li').on('click',function(){
                 var imgSrc=$(this).children('img').attr('src');
@@ -137,11 +128,24 @@
             });
 
             if(window.WebSocket) {
-                //var webSocket = new WebSocket("ws://47.52.167.163:9502");
-                var webSocket = new WebSocket("ws://127.0.0.1:9502");
+                var webSocket = new WebSocket("ws://47.52.167.163:9502");
+                //var webSocket = new WebSocket("ws://127.0.0.1:9502");
                 webSocket.onopen = function (event) {
-                    webSocket.send('{"uid":'+ user_uid +'}');
+                    webSocket.send('{"uid":'+ user_uid +',"type":"init"}');
                 };
+                $('.conLeft li').on('click',function(){
+                    $(this).addClass('bg').siblings().removeClass('bg');
+                    var intername=$(this).children('.liRight').children('.intername').text();
+                    var receive_id = $(this).children('.liRight').children('.uid').text();
+                    $('.headName').text(intername);
+                    $('.receive_uid').text(receive_id);
+                    $('.newsList').html('');
+                    $('#unreadMessage_'+receive_id).html('');
+                    getTalkList(user_uid,receive_id,1);
+                    var message =  '{"status":"'+ 1 +'","send_uid":'+ user_uid +',"receive_uid":'+ receive_id +',"type":"is_read"}';
+                    console.log(message)
+                    webSocket.send(message);
+                })
                 $('.sendBtn').on('click', function () {
                     send('');
                 })
@@ -154,11 +158,11 @@
                     } else if(receive_uid == ''){
                         alert('请选择好友');
                     }else if(img){
-                        var message =  '{"message":"'+ img +'","send_uid":'+ user_uid +',"receive_uid":'+ receive_uid +'}';
+                        var message =  '{"message":"'+ img +'","send_uid":'+ user_uid +',"receive_uid":'+ receive_uid +',"type":"msg"}';
                         webSocket.send(message);
                     }else {
                         $('#dope').val('');
-                        var message =  '{"message":"'+ news +'","send_uid":'+ user_uid +',"receive_uid":'+ receive_uid +'}';    //{'message': news, 'uid': user_uid};
+                        var message =  '{"message":"'+ news +'","send_uid":'+ user_uid +',"receive_uid":'+ receive_uid +',"type":"msg"}';    //{'message': news, 'uid': user_uid};
                         //console.log(message);
                         webSocket.send(message);
                         //$('.newsList').append(message);
@@ -191,7 +195,14 @@
                     var receive_uid = $('.receive_uid').text();
                     //console.log(receive_uid);console.log(user_uid);
                     if((data.send_uid !=  user_uid || data.receive_uid != receive_uid) && (data.send_uid !=  receive_uid || data.receive_uid != user_uid)){
-                        //console.log(111111)
+                        //添加消息未读
+                        if(data.receive_uid ==  user_uid){
+                            var message =  '{"status":"'+ 0 +'","send_uid":'+ data.send_uid +',"receive_uid":'+ user_uid +',"type":"is_read"}';
+                            webSocket.send(message);
+                            var num = $('#unreadMessage_'+data.send_uid).html();
+                            num = Number(num) + 1;
+                            $('#unreadMessage_'+data.send_uid).html(num);
+                        }
                         return '';
                     }
                     if (data.send_uid == user_uid) {

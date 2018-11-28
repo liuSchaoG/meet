@@ -39,13 +39,14 @@ class Chat extends Model
     public static function getChatFriendsList($uid)
     {
         $connection = Mongo::connectMongo('chatFriendsList');
-        $list = $connection->select('receive_id','updated_at')
+        $list = $connection->select('receive_id','updated_at','unread_num')
             ->where('uid',(int)$uid)->get()->toArray();
         $friends = [];
         if(!empty($list)){
             foreach ($list as $key=>$val){
                 $info = self::getInfo($val['receive_id']);
                 $friends[$key]['uid'] = $val['receive_id'];
+                $friends[$key]['unread_num'] = $val['unread_num'];
                 $friends[$key]['head_image'] = $info->head_image;//待优化
                 $friends[$key]['username'] = $info->username;//待优化
                 $friends[$key]['updated_at'] = $val['updated_at'];

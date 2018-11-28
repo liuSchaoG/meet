@@ -17,12 +17,14 @@ class IndexController extends Controller
         //$res = $connection->select('receive_id','updated_at')->where('uid',1)
         //    ->get()->toArray();
         //$resa = $connection1->select('fd')->where('uid',3)->get()->toArray();
-        //$connection2 = Mongo::connectMongo('wesocketConnect');
+        $connection2 = Mongo::connectMongo('wesocketConnect');
         //$connection = Mongo::connectMongo('chatFriendsList');
         //$resb = $connection2->select('fd')->where('uid',1)->get()->toArray();
         //$res= $connection->get()->toArray();
-        //$res= $connection2->delete();
+        $res= $connection2->delete();
         //var_dump($res);exit;
+        //$a= Mongo::connectMongo('chatFriendsList')->select('unread_num')->where('uid',3)->where('receive_id',1)->get()->toArray();
+        //var_dump($a);
         return view('index/index');
     }
 
