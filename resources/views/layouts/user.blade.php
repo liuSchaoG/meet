@@ -2,9 +2,11 @@
 @section('content')
 <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 <link href="{{ asset('css/cropper.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('css/sitelogo.css') }}" rel="stylesheet">
 <script src="{{ asset('js/cropper.min.js') }}"></script>
 <script src="{{ asset('js/sitelogo.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
 <div class="container">
     <div class="row">
@@ -13,9 +15,6 @@
                 <div class="panel-heading">
                     <div class="media">
                         <div class="media-left">
-                            <!-- <a href="">
-                                <img alt="胖大爷" src="{{ asset(session('head_image')) }}" class="img-circle" height="72" width="72">
-                            </a> -->
                             <div class="ibox-content">
                                 <div class="row">
                                     <div id="crop-avatar" class="col-md-3">
