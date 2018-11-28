@@ -7,7 +7,6 @@
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('PreferenceSave') }}">
                         {{ csrf_field() }}
-                        <input type="hidden" name="uid" value="{{$uid}}">
                         <div class="form-group{{ $errors->has('max_age') ? ' has-error' : '' }}">
                             <label for="max_age" class="col-md-4 control-label">年龄</label>
                             <div class="col-md-3">

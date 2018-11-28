@@ -17,8 +17,9 @@ class UserService
 	 * @param  [type] $uid [description]
 	 * @return [type]      [description]
 	 */
-    public function getUserBase($uid)
+    public function getUserBase()
     {
+        $uid = session('id');
         $field = ['uid','user_name','phone','area_province','area_city','area','income','height','marry_status','education','college'];
         $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
         if(!isset($info['user_name'])){
@@ -35,19 +36,20 @@ class UserService
      * @param  string $value [description]
      * @return [type]        [description]
      */
-    public function getUserDetail($uid)
+    public function getUserDetail()
     {
+        $uid = session('id');
         $field = ['uid','origin_province','origin_city','weight','shape','constellation','nation','marry_time','has_child','want_child'];
         $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
         return $info;
     }
     /**
-     * [getNations description]
+     * [getNations description]民族
      * @author charlesliu 2018-11-19T15:17:05+0800
      * @param  string $value [description]
      * @return [type]        [description]
      */
-    public function getNations($value='')
+    public function getNations()
     {
         $info = DB::table('nations')->select(['id','name'])->orderBy('id','desc')->get()->toArray();
         return $info;
@@ -59,8 +61,9 @@ class UserService
      * @param  [type] $uid [description]
      * @return [type]      [description]
      */
-    public function getUserWLife($uid)
+    public function getUserWLife()
     {
+        $uid = session('id');
         $field = ['uid','industry','vacation','job','house_status','car_status','smoke_status','drink_status'];
         $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
         return $info;
@@ -72,8 +75,9 @@ class UserService
      * @param  [type] $uid [description]
      * @return [type]      [description]
      */
-    public function getUserItalk($uid)
+    public function getUserItalk()
     {
+        $uid = session('id');
         $field = ['uid','inner_idea'];
         $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
         return $info;
@@ -85,8 +89,9 @@ class UserService
      * @param  [type] $uid [description]
      * @return [type]      [description]
      */
-    public function getUserIhobby($uid)
+    public function getUserIhobby()
     {
+        $uid = session('id');
         $field = ['uid','foods','idol','song','book','hobby'];
         $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
         return $info;
@@ -98,8 +103,9 @@ class UserService
      * @param  [type] $uid [description]
      * @return [type]      [description]
      */
-    public function getUserPerference($uid)
+    public function getUserPerference()
     {
+        $uid = session('id');
         $field = ["uid","max_age","min_age","max_height", "min_height", "max_income","min_income","education","marry_status","shape","area_province","area_city","area","has_child","is_smoke","is_drink","has_photo"];
         $info = Preference::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
         if(!isset($info['max_age'])){
@@ -114,8 +120,9 @@ class UserService
      * @param  [type] $uid [description]
      * @return [type]      [description]
      */
-    public function getUserIdentify($uid)
+    public function getUserIdentify()
     {
+        $uid = session('id');
         $field = ['uid','origin_province','origin_city','weight','shape','constellation','nation','marry_time'];
         $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
         return $info;
@@ -128,8 +135,9 @@ class UserService
      * @param  [type] $uid [description]
      * @return [type]      [description]
      */
-    public function getUserSetright($uid)
+    public function getUserSetright()
     {
+        $uid = session('id');
         $field = ['uid','origin_province','origin_city','weight','shape','constellation','nation','marry_time'];
         $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
         return $info;
@@ -141,8 +149,9 @@ class UserService
      * @param  [type] $uid [description]
      * @return [type]      [description]
      */
-    public function getUserSetpass($uid)
+    public function getUserSetpass()
     {
+        $uid = session('id');
         $field = ['uid','origin_province','origin_city','weight','shape','constellation','nation','marry_time'];
         $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
         return $info;
@@ -159,6 +168,7 @@ class UserService
     {
         unset($params['_token']);
         unset($params['action']);
+        $params['uid'] = session('id');
         return UserInfo::where('uid',$params['uid'])->update($params);
     }
 
@@ -172,49 +182,8 @@ class UserService
     {
         unset($params['_token']);
         unset($params['action']);
+        $params['uid'] = session('id');
         return Preference::where('uid',$params['uid'])->update($params);
-    }
-
-
-    
-
-    protected function dealSelectArea($pid,$id,$deep)
-    {
-        $areaService = new AreaService;
-        $str = '';
-        switch ($deep) {
-            case '1':
-                $ps = $areaService -> provences();
-                foreach ($ps as $k => $v) {
-                    if($v['id']==$id){
-                        $str.='<option value='.$v['id'].' seleced>'.$v['name'].'</option>';
-                    }else{
-                        $str.='<option value='.$v['id'].'>'.$v['name'].'</option>';
-                    }
-                }
-                break;
-            case '2':
-                $ps = $areaService -> citys($pid);
-                foreach ($ps as $k => $v) {
-                    if($v['id']==$id){
-                        $str.='<option value='.$v['id'].' seleced>'.$v['name'].'</option>';
-                    }else{
-                        $str.='<option value='.$v['id'].'>'.$v['name'].'</option>';
-                    }
-                }
-                break;
-            case '3':
-                $ps = $areaService -> areas($pid);
-                foreach ($ps as $k => $v) {
-                    if($v['id']==$id){
-                        $str.='<option value='.$v['id'].' seleced>'.$v['name'].'</option>';
-                    }else{
-                        $str.='<option value='.$v['id'].'>'.$v['name'].'</option>';
-                    }
-                }
-                break;
-        }
-        return $str;
     }
 
 

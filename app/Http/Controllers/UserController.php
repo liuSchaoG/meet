@@ -33,8 +33,7 @@ class UserController extends  Controller
      */
     public function baseInfo(Request $request)
     {
-        $uid = $request -> uid;
-        $info = $this -> userService -> getUserBase($uid);
+        $info = $this -> userService -> getUserBase();
         return view('user.baseInfo',$info);
     }
 
@@ -45,8 +44,7 @@ class UserController extends  Controller
      */
     public function detailInfo(Request $request)
     {
-        $uid = $request -> uid;
-        $info = $this -> userService -> getUserDetail($uid);
+        $info = $this -> userService -> getUserDetail();
         $info['nations'] = $this -> userService -> getNations();
         return view('user.detailInfo',$info);
     }
@@ -58,8 +56,7 @@ class UserController extends  Controller
      */
     public function workLife(Request $request)
     {
-        $uid = $request -> uid;
-        $info = $this -> userService -> getUserWLife($uid);
+        $info = $this -> userService -> getUserWLife();
         return view('user.workLife',$info);
     }
 
@@ -70,8 +67,7 @@ class UserController extends  Controller
      */
     public function innerTalk(Request $request)
     {
-        $uid = $request -> uid;
-        $info = $this -> userService -> getUserItalk($uid);
+        $info = $this -> userService -> getUserItalk();
         return view('user.innerTalk',$info);
     }
 
@@ -82,8 +78,7 @@ class UserController extends  Controller
      */
     public function interHobby(Request $request)
     {
-        $uid = $request -> uid;
-        $info = $this -> userService -> getUserIhobby($uid);
+        $info = $this -> userService -> getUserIhobby();
         return view('user.interHobby',$info);
     }
 
@@ -94,8 +89,7 @@ class UserController extends  Controller
      */
     public function perference(Request $request)
     {
-        $uid = $request -> uid;
-        $info = $this -> userService -> getUserPerference($uid);
+        $info = $this -> userService -> getUserPerference();
         return view('user.perference',$info);
     }
 
@@ -106,8 +100,7 @@ class UserController extends  Controller
      */
     public function identify(Request $request)
     {
-        $uid = $request -> uid;
-        $info = $this -> userService -> getUserIdentify($uid);
+        $info = $this -> userService -> getUserIdentify();
         return view('user.identify',$info);
     }
 
@@ -118,8 +111,7 @@ class UserController extends  Controller
      */
     public function setRight(Request $request)
     {
-        $uid = $request -> uid;
-        $info = $this -> userService -> getUserSetright($uid);
+        $info = $this -> userService -> getUserSetright();
         return view('user.setRight',$info);
     }
 
@@ -130,8 +122,7 @@ class UserController extends  Controller
      */
     public function setPass(Request $request)
     {
-        $uid = $request -> uid;
-        $info = $this -> userService -> getUserSetpass($uid);
+        $info = $this -> userService -> getUserSetpass();
         return view('user.setPass',$info);
     }
 
@@ -144,7 +135,7 @@ class UserController extends  Controller
     {
         $params = $request->all();
         $effect = $this -> userService -> saveUserBase($params);
-        return redirect()->route($params['action'],['uid'=>$params['uid']]);
+        return redirect()->route($params['action']);
     }
 
     /**
@@ -156,7 +147,7 @@ class UserController extends  Controller
     {
         $params = $request->all();
         $effect = $this -> userService -> savePrefernce($params);
-        return redirect()->route('Perference',['uid'=>$params['uid']]);
+        return redirect()->route('Perference');
     }
 
     

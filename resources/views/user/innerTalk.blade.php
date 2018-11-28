@@ -7,7 +7,6 @@
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('BaseInfoSave') }}">
                         {{ csrf_field() }}
-                        <input type="hidden" name="uid" value="{{$uid}}">
                         <input type="hidden" name="action" value="InnerTalk">
                         <div class="form-group{{ $errors->has('inner_idea') ? ' has-error' : '' }}">
                             <label for="inner_idea" class="col-md-2 control-label">内心独白</label>
