@@ -17,7 +17,7 @@
                         <div class="media-left">
                             <div class="ibox-content">
                                 <div class="row">
-                                    <div id="crop-avatar" class="col-md-2">
+                                    <div id="crop-avatar" class="col-md-1">
                                         <div class="avatar-view" title="Change Logo Picture">
                                             <img src="{{ asset(session('head_image')) }}" alt="Logo">
                                         </div>
