@@ -150,6 +150,13 @@ class UserController extends  Controller
         return redirect()->route('Perference');
     }
 
+
+
+    public function headerImg(Request $request)
+    {
+        $params = $request->all();
+        dd($params);
+    }
     
 
 
