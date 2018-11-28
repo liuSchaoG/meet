@@ -67,6 +67,7 @@ Route::group(['middleware'=>'web'],function (){
     Route::post('/user/baseInfoSave', 'UserController@baseInfoSave')->name('BaseInfoSave');
 
     Route::post('/user/preferenceSave', 'UserController@prefernceSave')->name('PreferenceSave');
+    
     Route::post('/user/uploadHeader', 'UserController@headerImg')->name('uploadHeader');
 
 
