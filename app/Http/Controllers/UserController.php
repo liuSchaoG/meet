@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 //每个控制器建立一个文件夹  每个方法根据需要加一个表单验证
 use App\Http\Requests\User\UserBaseRequest;
 use App\Extensions\CropAvatar;
+use Illuminate\Support\Facades\DB;
 
 /**
  * 用户个人信息业务处理模块
@@ -166,13 +167,15 @@ class UserController extends  Controller
           isset($_FILES['avatar_file']) ? $_FILES['avatar_file'] : null
         );
 
-        $response = array(
-          'state'  => 200,
-          'message' => $crop -> getMsg(),
-          'result' => $crop -> getResult()
-        );
+        $message = $crop -> getMsg();
+        $result = $crop -> getResult();
 
-        echo json_encode($response);
+        if(is_null($message)){
+            $id = session('id');
+            DB::table('user') -> where('id',$id) -> update(['head_image'=>$result]);
+            session(['head_image' => $result]);
+        }
+        
     }
 
 
