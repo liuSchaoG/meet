@@ -151,19 +151,15 @@ class UserController extends  Controller
     }
 
 
-
+    /**
+     * 上传头像照片
+     * @author liuchao 2018-11-29T22:04:26+0800
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
     public function headerImg(Request $request)
     {
-        $params = $request->all();
 
-        // $crop = new CropAvatar($_POST['avatar_src'], $_POST['avatar_data'], $_FILES['avatar_file']);
-        // $response = array(
-        //    'state'  => 200,
-        //    'message' => $crop -> getMsg(),
-        //    'result' => $crop -> getResult()
-        // );
-
-        // echo json_encode($response);
         $crop = new CropAvatar(
           isset($_POST['avatar_src']) ? $_POST['avatar_src'] : null,
           isset($_POST['avatar_data']) ? $_POST['avatar_data'] : null,
