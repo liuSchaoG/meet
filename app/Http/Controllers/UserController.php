@@ -6,7 +6,7 @@ use App\Services\UserService;
 use Illuminate\Http\Request;
 //每个控制器建立一个文件夹  每个方法根据需要加一个表单验证
 use App\Http\Requests\User\UserBaseRequest;
-
+use App\Extensions\CropAvatar;
 
 /**
  * 用户个人信息业务处理模块
@@ -155,8 +155,22 @@ class UserController extends  Controller
     public function headerImg(Request $request)
     {
         $params = $request->all();
-        dd($params);
+
+        $crop = new CropAvatar($_POST['avatar_src'], $_POST['avatar_data'], $_FILES['avatar_file']);
+        $response = array(
+           'state'  => 200,
+           'message' => $crop -> getMsg(),
+           'result' => $crop -> getResult()
+        );
+
+        echo json_encode($response);
     }
+
+
+
+
+
+
     
 
 
