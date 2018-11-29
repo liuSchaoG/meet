@@ -172,7 +172,7 @@ class UserController extends  Controller
 
         if(is_null($message)){
             $id = session('id');
-            DB::table('user') -> where('id','=',$id) -> update(['head_image'=>$result]);
+            DB::table('user') -> where('id',$id) -> update(['head_image'=>$result]);
             session(['head_image' => $result]);
         }
         
