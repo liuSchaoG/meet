@@ -74,7 +74,7 @@ class CropAvatar {
   }
 
   private function setDst() {
-    $this -> dst = 'images/user/' . date('YmdHis') .rand(1000,9999) '.png';
+    $this -> dst = 'images/user/' . date('YmdHis') .rand(1000,9999) .'.png';
   }
 
   private function crop($src, $dst, $data) {
