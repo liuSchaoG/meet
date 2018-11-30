@@ -142,7 +142,7 @@
     $.post('/position/childsByPid',{'_token':'{{csrf_token()}}'},function(data){
         if(data.code==1){
             var len = data.data.length;
-            var html = '';
+            var html = '<option value=0 >请选择</option>';
             for (var i = len - 1; i >= 0; i--) {
                 if({{$industry}} == data.data[i].id){
                     html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
@@ -162,7 +162,7 @@
         $.post('/position/childsByPid',{'_token':'{{csrf_token()}}','pid':pid},function(data){
             if(data.code==1){
                 var len = data.data.length;
-                var html = '';
+                var html = '<option value=0 >请选择</option>';
                 for (var i = len - 1; i >= 0; i--) {
                     if({{$vacation}} == data.data[i].id){
                         html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
@@ -182,7 +182,7 @@
         $.post('/position/childsByPid',{'_token':'{{csrf_token()}}','pid':pid},function(data){
             if(data.code==1){
                 var len = data.data.length;
-                var html = '';
+                var html = '<option value=0 >请选择</option>';
                 for (var i = len - 1; i >= 0; i--) {
                     if({{$job}} == data.data[i].id){
                         html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";

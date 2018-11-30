@@ -134,8 +134,6 @@
                             </div>
                         </div>
 
-                       
-
                         <div class="form-group{{ $errors->has('area_province') ? ' has-error' : '' }}">
                             <label for="area_province" class="col-md-4 control-label">工作所在省</label>
 
@@ -254,7 +252,7 @@
     $.post('/area/childsByPid',{'_token':'{{csrf_token()}}'},function(data){
         if(data.code==1){
             var len = data.data.length;
-            var html = '';
+            var html = '<option value=0 >请选择</option>';
             for (var i = len - 1; i >= 0; i--) {
                 if({{$area_province}} == data.data[i].id){
                     html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
@@ -282,7 +280,7 @@
         $.post('/area/childsByPid',{'_token':'{{csrf_token()}}','pid':pid},function(data){
             if(data.code==1){
                 var len = data.data.length;
-                var html = '';
+                var html = '<option value=0 >请选择</option>';
                 for (var i = len - 1; i >= 0; i--) {
                     if({{$area_city}} == data.data[i].id){
                         html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
@@ -305,7 +303,7 @@
         $.post('/area/childsByPid',{'_token':'{{csrf_token()}}','pid':pid},function(data){
             if(data.code==1){
                 var len = data.data.length;
-                var html = '';
+                var html = '<option value=0 >请选择</option>';
                 for (var i = len - 1; i >= 0; i--) {
                     if({{$area}} == data.data[i].id){
                         html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
