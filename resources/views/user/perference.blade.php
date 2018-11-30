@@ -141,7 +141,7 @@
 
                             <div class="col-md-3">
                                 <select class="form-control" name="area_province" id="area_province" onchange="citys_list()">
-                                    {{$area_province}}
+                                    <option value=0 >请选择</option>
                                 </select>
                             </div>
                         </div>
@@ -150,6 +150,7 @@
 
                             <div class="col-md-3">
                                 <select class="form-control" name="area_city" id="area_city" onchange="areas_list()">
+                                    <option value=0 >请选择</option>
                                 </select>
                             </div>
                         </div>
@@ -158,6 +159,7 @@
 
                             <div class="col-md-3">
                                 <select class="form-control" name="area" id="area_area">
+                                    <option value=0 >请选择</option>
                                 </select>
                             </div>
                         </div>
@@ -166,7 +168,7 @@
                             <label for="has_child" class="col-md-4 control-label">有没有小孩</label>
                             <div class="col-md-3">
                                 <select class="form-control" name="has_child" id="has_child">
-                                    <option value="1" @if ($has_child==0) selected @endif>保密</option>
+                                    <option value="0" @if ($has_child==0) selected @endif>保密</option>
                                     <option value="1" @if ($has_child==1) selected @endif>有且住在一起</option>
                                     <option value="2" @if ($has_child==2) selected @endif>有偶尔住在一起</option>
                                     <option value="3" @if ($has_child==3) selected @endif>有且不在身边</option>
@@ -237,7 +239,7 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    保存并继续
+                                    保存
                                 </button>
 
                             </div>
