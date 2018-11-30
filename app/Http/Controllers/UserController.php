@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 //每个控制器建立一个文件夹  每个方法根据需要加一个表单验证
 use App\Http\Requests\User\UserBaseRequest;
 use App\Extensions\CropAvatar;
+use Illuminate\Support\Facades\DB;
 
 /**
  * 用户个人信息业务处理模块
@@ -151,32 +152,37 @@ class UserController extends  Controller
     }
 
 
-
+    /**
+     * 上传头像照片
+     * @author liuchao 2018-11-29T22:04:26+0800
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
     public function headerImg(Request $request)
     {
-        $params = $request->all();
 
-        // $crop = new CropAvatar($_POST['avatar_src'], $_POST['avatar_data'], $_FILES['avatar_file']);
-        // $response = array(
-        //    'state'  => 200,
-        //    'message' => $crop -> getMsg(),
-        //    'result' => $crop -> getResult()
-        // );
-
-        // echo json_encode($response);
         $crop = new CropAvatar(
           isset($_POST['avatar_src']) ? $_POST['avatar_src'] : null,
           isset($_POST['avatar_data']) ? $_POST['avatar_data'] : null,
           isset($_FILES['avatar_file']) ? $_FILES['avatar_file'] : null
         );
 
-        $response = array(
-          'state'  => 200,
-          'message' => $crop -> getMsg(),
-          'result' => $crop -> getResult()
-        );
+        $message = $crop -> getMsg();
+        $result = $crop -> getResult();
 
-        echo json_encode($response);
+        if(is_null($message)){
+            $id = session('id');
+            DB::table('user') -> where('id',$id) -> update(['head_image'=>$result]);
+            session(['head_image' => $result]);
+        }
+        
+         $response = array(
+           'state'  => 200,
+           'message' => $crop -> getMsg(),
+           'result' => '/'.$crop -> getResult()
+         );
+
+         echo json_encode($response);
     }
 
 
