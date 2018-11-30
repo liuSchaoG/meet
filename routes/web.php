@@ -52,7 +52,7 @@ Route::group(['middleware'=>'web'],function (){
     Route::get('/user/album', 'AlbumController@index')->name('albumIndex');
     //相册照片
     Route::get('/user/picture', 'AlbumController@pictures')->name('pictureList');
-
+    
     //权限设置
     Route::get('/user/setRight', 'UserController@setRight')->name('SetRight');
     //密码设置
