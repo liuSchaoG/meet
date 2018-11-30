@@ -41,7 +41,7 @@
 
                             <div class="col-md-3">
                                 <select class="form-control" name="area_province" id="area_province" onchange="citys_list()">
-                                    {{$area_province}}
+                                    <option value=0 >请选择</option>
                                 </select>
                             </div>
                         </div>
@@ -50,6 +50,7 @@
 
                             <div class="col-md-3">
                                 <select class="form-control" name="area_city" id="area_city" onchange="areas_list()">
+                                    <option value=0 >请选择</option>
                                 </select>
                             </div>
                         </div>
@@ -58,6 +59,7 @@
 
                             <div class="col-md-3">
                                 <select class="form-control" name="area" id="area_area">
+                                    <option value=0 >请选择</option>
                                 </select>
                             </div>
                         </div>
@@ -155,7 +157,7 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    保存并继续
+                                    保存
                                 </button>
                             </div>
                         </div>
@@ -169,7 +171,7 @@
     $.post('/area/childsByPid',{'_token':'{{csrf_token()}}'},function(data){
         if(data.code==1){
             var len = data.data.length;
-            var html = '';
+            var html = "<option value=0 >请选择</option>";
             for (var i = len - 1; i >= 0; i--) {
                 if({{$area_province}} == data.data[i].id){
                     html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
@@ -197,7 +199,7 @@
         $.post('/area/childsByPid',{'_token':'{{csrf_token()}}','pid':pid},function(data){
             if(data.code==1){
                 var len = data.data.length;
-                var html = '';
+                var html = '<option value=0 >请选择</option>';
                 for (var i = len - 1; i >= 0; i--) {
                     if({{$area_city}} == data.data[i].id){
                         html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
@@ -220,7 +222,7 @@
         $.post('/area/childsByPid',{'_token':'{{csrf_token()}}','pid':pid},function(data){
             if(data.code==1){
                 var len = data.data.length;
-                var html = '';
+                var html = '<option value=0 >请选择</option>';
                 for (var i = len - 1; i >= 0; i--) {
                     if({{$area}} == data.data[i].id){
                         html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
