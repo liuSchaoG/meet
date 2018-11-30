@@ -61,6 +61,8 @@ class RunController extends Controller
         $insert['constellation']=rand(1,12);
         $insert['want_child']=rand(0,4);
         $insert['marry_time']=rand(0,5);
+        $insert['created_at']=date('Y-m-d H:i:s');
+        $insert['updated_at']=date('Y-m-d H:i:s');
         
         UserInfo::insert($insert);
     }
