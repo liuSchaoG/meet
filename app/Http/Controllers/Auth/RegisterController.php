@@ -64,17 +64,14 @@ class RegisterController extends Controller
         }
         $user = $this->save($request->all());
         if ($user->id) {
-            
-            dd($user);
-            // $user = User::findByPhone($this->username);
-            // session([
-            //     'id' => $user->id,
-            //     'username' => $user->username,
-            //     'phone' => $user->phone,
-            //     'sex' => $user->sex,
-            //     'head_image' => $user->head_image,
-            //     'status' => 1
-            // ]);
+            session([
+                'id' => $user->id,
+                'username' => $user->username,
+                'phone' => $user->phone,
+                'sex' => $user->sex,
+                'head_image' => $user->head_image,
+                'status' => 1
+            ]);
         }
         return redirect($this->redirectTo);
     }
@@ -134,6 +131,7 @@ class RegisterController extends Controller
         $user->password = md5(trim($data['password']));
         $user->phone = trim($data['phone']);
         $user->sex = trim($data['sex']);
+        $user->head_image = 'images/user/user_default.jpg';
         $user->save();
         return $user;
 
