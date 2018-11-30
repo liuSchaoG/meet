@@ -64,14 +64,17 @@ class RegisterController extends Controller
         }
         $user = $this->save($request->all());
         if ($user->id) {
-            session([
-                'id' => $user->id,
-                'username' => $user->username,
-                'phone' => $user->phone,
-                'sex' => $user->sex,
-                'head_image' => $user->head_image,
-                'status' => 1
-            ]);
+            
+            dd($user);
+            // $user = User::findByPhone($this->username);
+            // session([
+            //     'id' => $user->id,
+            //     'username' => $user->username,
+            //     'phone' => $user->phone,
+            //     'sex' => $user->sex,
+            //     'head_image' => $user->head_image,
+            //     'status' => 1
+            // ]);
         }
         return redirect($this->redirectTo);
     }
