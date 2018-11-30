@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
-<!-- <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+<script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 <link href="{{ asset('css/cropper.min.css') }}" rel="stylesheet">
 <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('css/sitelogo.css') }}" rel="stylesheet">
 <script src="{{ asset('js/cropper.min.js') }}"></script>
 <script src="{{ asset('js/sitelogo.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script> -->
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
 <div class="container">
     <div class="row">
