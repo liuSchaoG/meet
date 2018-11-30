@@ -52,7 +52,7 @@ Route::group(['middleware'=>'web'],function (){
     Route::get('/user/album', 'AlbumController@index')->name('albumIndex');
     //相册照片
     Route::get('/user/picture', 'AlbumController@pictures')->name('pictureList');
-    
+
     //权限设置
     Route::get('/user/setRight', 'UserController@setRight')->name('SetRight');
     //密码设置
@@ -70,16 +70,14 @@ Route::group(['middleware'=>'web'],function (){
     
     Route::post('/user/uploadHeader', 'UserController@headerImg')->name('uploadHeader');
 
-
 });
-
-
 
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//根据父id 获取子集id
+//根据父地区id 获取子集id
 Route::post('/area/childsByPid', 'ExtenController@getChilds');
+//根据父职位id 获取子集id
 Route::post('/position/childsByPid', 'ExtenController@positionChilds');
 
 
