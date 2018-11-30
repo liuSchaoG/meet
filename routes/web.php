@@ -65,7 +65,6 @@ Route::group(['middleware'=>'web'],function (){
 
     //用户保存信息
     Route::post('/user/baseInfoSave', 'UserController@baseInfoSave')->name('BaseInfoSave');
-
     Route::post('/user/preferenceSave', 'UserController@prefernceSave')->name('PreferenceSave');
     
     Route::post('/user/uploadHeader', 'UserController@headerImg')->name('uploadHeader');
@@ -74,7 +73,8 @@ Route::group(['middleware'=>'web'],function (){
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+//计算生成机器人
+Route::get('/createPerson', 'RunController@runUser');
 //根据父地区id 获取子集id
 Route::post('/area/childsByPid', 'ExtenController@getChilds');
 //根据父职位id 获取子集id
