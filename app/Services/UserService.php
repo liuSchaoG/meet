@@ -20,8 +20,9 @@ class UserService
     public function getUserBase()
     {
         $uid = session('id');
+        $sex = session('sex');
         $field = ['uid','user_name','phone','area_province','area_city','area','income','height','marry_status','education','college'];
-        $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid])->toArray();
+        $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid,'sex'=>$sex])->toArray();
         if(!isset($info['user_name'])){
             $info = UserInfo::where(['uid'=>$uid])->first()->toArray();
         }
