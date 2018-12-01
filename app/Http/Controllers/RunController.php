@@ -56,6 +56,7 @@ class RunController extends Controller
             $insert['education']=rand(4,6);
             $insert['weight']=rand(40,70);
         }
+
         $insert['inner_idea'] = $this->getInnerTalk($user->sex);
         $insert['birthday'] = $birth;
         $insert['constellation']=rand(1,12);
@@ -621,7 +622,7 @@ class RunController extends Controller
 
             '没有你的日子，生活是一种摆设，是街心没有生命的雕塑，是案头没有香味的花朵，是天空却没有小鸟！',
 
-            '健康身体是个“1',”，'家庭和爱情都是在“1”后面加“0”，“0”越多表明人生越辉煌，倘若没有了“1”就一切皆空。忙碌的你请保重身体！。',
+            '家庭和爱情都是在“1”后面加“0”，“0”越多表明人生越辉煌，倘若没有了“1”就一切皆空。忙碌的你请保重身体！。',
 
             '遥远的梦，总是伴着夜的孤独起舞；明亮的天，总是伴着昼的热烈飞翔；而当我想起你，你却伴着春即将消逝的哀鸣，在我看不到的地方，渐行渐远！',
 
