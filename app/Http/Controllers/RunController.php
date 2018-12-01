@@ -56,7 +56,7 @@ class RunController extends Controller
             $insert['education']=rand(4,6);
             $insert['weight']=rand(40,70);
         }
-
+        $insert['sex'] = $user->sex;
         $insert['inner_idea'] = $this->getInnerTalk($user->sex);
         $insert['birthday'] = $birth;
         $insert['constellation']=rand(1,12);
