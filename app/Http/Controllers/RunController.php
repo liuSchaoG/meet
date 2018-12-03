@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Models\UserInfo;
+use Illuminate\Support\Facades\Cache;
 
 class RunController extends Controller
 {
@@ -12,6 +13,11 @@ class RunController extends Controller
 
     public function runUser()
     {
+        $nan = Cache::get('nan',1);
+        Cache::increment('nan');
+        
+        dd($nan);
+        
         $user = new User();
         
         $user->sex = rand(1,2);
@@ -23,9 +29,13 @@ class RunController extends Controller
         list($user_name,$mobile) = $this ->getName($user->sex);
 
         $user->phone = $mobile;
-        
-        $user->head_image = 'images/user/user_default.jpg';
 
+        if($user->sex==1){
+            $user->head_image = 'images/user/201812253256325475@$&8/ABC500-ABC629.jpg';
+        }else{
+            $user->head_image = 'images/user/201812253256325475@$&6/3-131.jpg';
+        }
+        
         list($email,$birth,$year) = $this->getEmailsex($user->sex);
 
         $user->email = $email;
@@ -121,7 +131,7 @@ class RunController extends Controller
         $birth = $year.'-'.$mon.'-'.$day;
         $birthuse = $year.$mon.$day;
 
-        $wei = ["@sina.com","@163.com","@qq.com","@hotmail.com","@126.com","@163.com","@gmail.com","@yahoo.com"];
+        $wei = ["@sina.com","@163.com","@qq.com","@hotmail.com","@126.com",'@msn.com','@hotmail.com','@live.com','@qq.com','@163.net','@263.net','@yeah.net','@googlemail.com','@mail.com','@hotmail.com','@msn.com','@yahoo.com','@gmail.com','@aim.com','@aol.com','@walla.com','@inbox.com','@21cn.com','@sohu.com','@yahoo.com.cn','@qq.com','@chinaren.com','@sogou.com'];
 
         return array($name.$birthuse.'@'.$wei[array_rand($wei)],$birth,$year);
     }
@@ -150,11 +160,6 @@ class RunController extends Controller
 
     private function getInnerTalk($sex=1)
     {
-        $all = [
-            
-        ];
-
-
 
         $man = [
             '一年又一年，发现自己总是差了一个他。希望借此网站能找到我的那个他。他应有上进心，有爱心！成熟稳重，爱生活会照顾自己，同时也会照顾他人！有稳定的收入。真诚交友，希望能牵手一起走过快乐人生！'
