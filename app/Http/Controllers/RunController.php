@@ -13,10 +13,8 @@ class RunController extends Controller
 
     public function runUser()
     {
-        $nan = Cache::get('nan',1);
-
-        Cache::put('nan',$nan+1);
-        
+        Cache::put('nan', 6);
+        $nan = Cache::get('nan');
         dd($nan);
 
         $user = new User();
