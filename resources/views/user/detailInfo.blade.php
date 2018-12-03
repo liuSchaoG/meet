@@ -13,6 +13,7 @@
 
                             <div class="col-md-3">
                                 <select class="form-control" name="origin_province" id="origin_province" onchange="citys_list()">
+                                    <option value=0 >请选择</option>
                                 </select>
                                 @if ($errors->has('origin_province'))
                                     <span class="help-block">
@@ -27,6 +28,7 @@
 
                             <div class="col-md-3">
                                 <select class="form-control" name="origin_city" id="origin_city">
+                                    <option value=0 >请选择</option>
                                 </select>
                                 @if ($errors->has('origin_city'))
                                     <span class="help-block">
@@ -55,7 +57,7 @@
 
                             <div class="col-md-3">
                                 <select class="form-control" name="shape" id="shape">
-                                    <option value="1" @if ($shape==0) selected @endif>保密</option>
+                                    <option value="0" @if ($shape==0) selected @endif>保密</option>
                                     <option value="1" @if ($shape==1) selected @endif>一般</option>
                                     <option value="2" @if ($shape==2) selected @endif>瘦长</option>
                                     <option value="3" @if ($shape==3) selected @endif>运动员型</option>
@@ -75,7 +77,7 @@
                             <label for="constellation" class="col-md-4 control-label">星座</label>
                             <div class="col-md-3">
                                 <select class="form-control" name="constellation" id="constellation">
-                                    <option value="1" @if ($constellation==0) selected @endif>保密</option>
+                                    <option value="0" @if ($constellation==0) selected @endif>保密</option>
                                     <option value="1" @if ($constellation==1) selected @endif>牡羊座(03.21-04.20)</option>
                                     <option value="2" @if ($constellation==2) selected @endif>金牛座(04.21-05.20)</option>
                                     <option value="3" @if ($constellation==3) selected @endif>双子座(05.21-06.21)</option>
@@ -128,7 +130,7 @@
                             <label for="marry_time" class="col-md-4 control-label">结婚打算</label>
                             <div class="col-md-3">
                                 <select class="form-control" name="marry_time" id="marry_time">
-                                    <option value="1" @if ($marry_time==0) selected @endif>保密</option>
+                                    <option value="0" @if ($marry_time==0) selected @endif>保密</option>
                                     <option value="1" @if ($marry_time==1) selected @endif>认同闪婚</option>
                                     <option value="2" @if ($marry_time==2) selected @endif>一年内</option>
                                     <option value="3" @if ($marry_time==3) selected @endif>两年内</option>
@@ -147,7 +149,7 @@
                             <label for="has_child" class="col-md-4 control-label">有没有小孩</label>
                             <div class="col-md-3">
                                 <select class="form-control" name="has_child" id="has_child">
-                                    <option value="1" @if ($has_child==0) selected @endif>保密</option>
+                                    <option value="0" @if ($has_child==0) selected @endif>保密</option>
                                     <option value="1" @if ($has_child==1) selected @endif>有且住在一起</option>
                                     <option value="2" @if ($has_child==2) selected @endif>有偶尔住在一起</option>
                                     <option value="3" @if ($has_child==3) selected @endif>有且不在身边</option>
@@ -165,7 +167,7 @@
                             <label for="want_child" class="col-md-4 control-label">有没有小孩</label>
                             <div class="col-md-3">
                                 <select class="form-control" name="want_child" id="want_child">
-                                    <option value="1" @if ($want_child==0) selected @endif>保密</option>
+                                    <option value="0" @if ($want_child==0) selected @endif>保密</option>
                                     <option value="1" @if ($want_child==1) selected @endif>视情况</option>
                                     <option value="2" @if ($want_child==2) selected @endif>想要孩子</option>
                                     <option value="3" @if ($want_child==3) selected @endif>不要孩子</option>
@@ -182,7 +184,7 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    保存并继续
+                                    保存
                                 </button>
 
                             </div>
@@ -197,7 +199,7 @@
     $.post('/area/childsByPid',{'_token':'{{csrf_token()}}'},function(data){
         if(data.code==1){
             var len = data.data.length;
-            var html = '';
+            var html = '<option value=0 >请选择</option>';
             for (var i = len - 1; i >= 0; i--) {
                 if({{$origin_province}} == data.data[i].id){
                     html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
@@ -220,7 +222,7 @@
         $.post('/area/childsByPid',{'_token':'{{csrf_token()}}','pid':pid},function(data){
             if(data.code==1){
                 var len = data.data.length;
-                var html = '';
+                var html = '<option value=0 >请选择</option>';
                 for (var i = len - 1; i >= 0; i--) {
                     if({{$origin_city}} == data.data[i].id){
                         html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";

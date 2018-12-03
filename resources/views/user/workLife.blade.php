@@ -13,6 +13,7 @@
 
                             <div class="col-md-3">
                                 <select class="form-control" name="industry" id="industry" onchange="vacation_list()">
+                                    <option value=0 >请选择</option>
                                 </select>
                                 @if ($errors->has('industry'))
                                     <span class="help-block">
@@ -27,6 +28,7 @@
 
                             <div class="col-md-3">
                                 <select class="form-control" name="vacation" id="vacation" onchange="position_list()">
+                                    <option value=0 >请选择</option>
                                 </select>
                                 @if ($errors->has('vacation'))
                                     <span class="help-block">
@@ -40,6 +42,7 @@
                             <label for="job" class="col-md-4 control-label">工作</label>
                             <div class="col-md-3">
                                 <select class="form-control" name="job" id="job" onchange="">
+                                    <option value=0 >请选择</option>
                                 </select>
                                 @if ($errors->has('job'))
                                     <span class="help-block">
@@ -125,7 +128,7 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    保存并继续
+                                    保存
                                 </button>
                             </div>
                         </div>
@@ -139,7 +142,7 @@
     $.post('/position/childsByPid',{'_token':'{{csrf_token()}}'},function(data){
         if(data.code==1){
             var len = data.data.length;
-            var html = '';
+            var html = '<option value=0 >请选择</option>';
             for (var i = len - 1; i >= 0; i--) {
                 if({{$industry}} == data.data[i].id){
                     html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
@@ -159,7 +162,7 @@
         $.post('/position/childsByPid',{'_token':'{{csrf_token()}}','pid':pid},function(data){
             if(data.code==1){
                 var len = data.data.length;
-                var html = '';
+                var html = '<option value=0 >请选择</option>';
                 for (var i = len - 1; i >= 0; i--) {
                     if({{$vacation}} == data.data[i].id){
                         html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
@@ -179,7 +182,7 @@
         $.post('/position/childsByPid',{'_token':'{{csrf_token()}}','pid':pid},function(data){
             if(data.code==1){
                 var len = data.data.length;
-                var html = '';
+                var html = '<option value=0 >请选择</option>';
                 for (var i = len - 1; i >= 0; i--) {
                     if({{$job}} == data.data[i].id){
                         html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";

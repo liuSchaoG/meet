@@ -134,14 +134,12 @@
                             </div>
                         </div>
 
-                       
-
                         <div class="form-group{{ $errors->has('area_province') ? ' has-error' : '' }}">
                             <label for="area_province" class="col-md-4 control-label">工作所在省</label>
 
                             <div class="col-md-3">
                                 <select class="form-control" name="area_province" id="area_province" onchange="citys_list()">
-                                    {{$area_province}}
+                                    <option value=0 >请选择</option>
                                 </select>
                             </div>
                         </div>
@@ -150,6 +148,7 @@
 
                             <div class="col-md-3">
                                 <select class="form-control" name="area_city" id="area_city" onchange="areas_list()">
+                                    <option value=0 >请选择</option>
                                 </select>
                             </div>
                         </div>
@@ -158,6 +157,7 @@
 
                             <div class="col-md-3">
                                 <select class="form-control" name="area" id="area_area">
+                                    <option value=0 >请选择</option>
                                 </select>
                             </div>
                         </div>
@@ -166,7 +166,7 @@
                             <label for="has_child" class="col-md-4 control-label">有没有小孩</label>
                             <div class="col-md-3">
                                 <select class="form-control" name="has_child" id="has_child">
-                                    <option value="1" @if ($has_child==0) selected @endif>保密</option>
+                                    <option value="0" @if ($has_child==0) selected @endif>保密</option>
                                     <option value="1" @if ($has_child==1) selected @endif>有且住在一起</option>
                                     <option value="2" @if ($has_child==2) selected @endif>有偶尔住在一起</option>
                                     <option value="3" @if ($has_child==3) selected @endif>有且不在身边</option>
@@ -237,7 +237,7 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    保存并继续
+                                    保存
                                 </button>
 
                             </div>
@@ -252,7 +252,7 @@
     $.post('/area/childsByPid',{'_token':'{{csrf_token()}}'},function(data){
         if(data.code==1){
             var len = data.data.length;
-            var html = '';
+            var html = '<option value=0 >请选择</option>';
             for (var i = len - 1; i >= 0; i--) {
                 if({{$area_province}} == data.data[i].id){
                     html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
@@ -280,7 +280,7 @@
         $.post('/area/childsByPid',{'_token':'{{csrf_token()}}','pid':pid},function(data){
             if(data.code==1){
                 var len = data.data.length;
-                var html = '';
+                var html = '<option value=0 >请选择</option>';
                 for (var i = len - 1; i >= 0; i--) {
                     if({{$area_city}} == data.data[i].id){
                         html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";
@@ -303,7 +303,7 @@
         $.post('/area/childsByPid',{'_token':'{{csrf_token()}}','pid':pid},function(data){
             if(data.code==1){
                 var len = data.data.length;
-                var html = '';
+                var html = '<option value=0 >请选择</option>';
                 for (var i = len - 1; i >= 0; i--) {
                     if({{$area}} == data.data[i].id){
                         html += "<option value='"+data.data[i].id+"' selected>"+data.data[i].name+"</option>";

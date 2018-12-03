@@ -67,9 +67,9 @@ class RegisterController extends Controller
             session([
                 'id' => $user->id,
                 'username' => $user->username,
-                'phone' => $this->user->phone,
+                'phone' => $user->phone,
                 'sex' => $user->sex,
-                'head_image' => $this->user->head_image,
+                'head_image' => $user->head_image,
                 'status' => 1
             ]);
         }
@@ -131,6 +131,7 @@ class RegisterController extends Controller
         $user->password = md5(trim($data['password']));
         $user->phone = trim($data['phone']);
         $user->sex = trim($data['sex']);
+        $user->head_image = 'images/user/user_default.jpg';
         $user->save();
         Mongo::connectMongo('chatToken')->insert([
             'uid'=>$user->id,

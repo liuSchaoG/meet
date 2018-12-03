@@ -29,7 +29,7 @@ class LoginController extends Controller
      */
     protected   $redirectTo = '/';
 
-    public $user;
+    public      $user;
     private     $username = '';
     private     $password = '';
 
