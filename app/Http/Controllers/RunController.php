@@ -98,7 +98,7 @@ class RunController extends Controller
         $insert['smoke_status'] = 1;
         $insert['drink_status'] = 1;
         $insert['constellation']=rand(1,12);
-        $insert['want_child']=rand(0,4);
+        $insert['want_child']=rand(0,2);
         $insert['marry_time']=rand(0,5);
         $insert['created_at']=date('Y-m-d H:i:s');
         $insert['updated_at']=date('Y-m-d H:i:s');
