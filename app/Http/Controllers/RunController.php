@@ -13,9 +13,9 @@ class RunController extends Controller
 
     public function runUser()
     {
-        $nan = DB::table('count')->where('id=1')->value('nan');
-        // $nv = DB::table('count')->where('id=1')->value('nv');
-        DB::table('count')->where('id=1')->update(['nan'=>$nan+1]);
+        $nan = DB::table('count')->where(['id'=>1])->value('nan');
+        // $nv = DB::table('count')->where(['id'=>1])->value('nv');
+        DB::table('count')->where(['id'=>1])->update(['nan'=>$nan+1]);
         dd($nan);
 
         $user = new User();
