@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+use App\Mongo;
 use App\Extensions\Validate;
 
 
@@ -132,6 +132,10 @@ class RegisterController extends Controller
         $user->phone = trim($data['phone']);
         $user->sex = trim($data['sex']);
         $user->save();
+        Mongo::connectMongo('chatToken')->insert([
+            'uid'=>$user->id,
+            'token' =>md5($user->password.env('CHAT_KEY'))
+        ]);
         return $user;
 
     }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Mongo;
 
 class LoginController extends Controller
 {
@@ -59,6 +60,13 @@ class LoginController extends Controller
             return back()->withInput()->withErrors($validate);
         }
         if ($this->user) {
+            $checkToken = Mongo::connectMongo('chatToken')->where('uid',$this->user->id)->get()->toArray();
+            if(empty($checkToken)){
+                Mongo::connectMongo('chatToken')->insert([
+                    'uid'=>$this->user->id,
+                    'token' =>md5($this->user->password.env('CHAT_KEY'))
+                ]);
+            }
             session([
                 'id' => $this->user->id,
                 'username' => $this->user->username,

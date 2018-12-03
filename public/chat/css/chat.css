@@ -70,18 +70,56 @@ display: -webkit-box;
 .liLeft img{
 	margin: 10px;
 }
+
+.conLeft li .liRight{
+	width:30%;
+	height: 100%;
+}
 .liRight span{
 	display:block;
-	font-size: 16px;
+	font-size: 12px;
 	height: 31px;
 	line-height: 31px;
 }
 .liRight span:last-child{
-	font-size: 14px;
+	font-size: 12px;
 	color: #767676;
 	line-height:15px;
 	overflow: hidden;
 }
+.conLeft li .newLiRight{
+	width:30%;
+	height: 100%;
+}
+
+
+.newLiRight span{
+	display:block;
+	font-size: 12px;
+	height: 31px;
+	line-height: 31px;
+	text-align: right;
+}
+.newLiRight span:last-child{
+	font-size: 12px;
+	line-height:15px;
+	overflow: hidden;
+	text-align: right;
+}
+.newLiRight .notice-badge {
+	line-height: 17px;
+	display: inline-block;
+	min-width: 15px;
+	margin-left: 20px;
+	padding: 0 4px;
+	text-align: center;
+	white-space: nowrap;
+	color: #fff;
+	border-radius: 12px;
+	background-color: #fa6a43;
+	height: 15px;
+}
+
 .conRight{
 	height: 548px;
 	-webkit-box-flex: 1;

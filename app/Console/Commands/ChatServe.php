@@ -55,22 +55,40 @@ class ChatServe extends Command
 
     public function start()
     {
-        $ws = new \swoole_websocket_server("0.0.0.0", 9502);
-
+        $ws = new \swoole_websocket_server(env('WBSOCKET_HOST'), env('WBSOCKET_HOST_PORT'));
         //监听WebSocket连接打开事件
+        //安全验证
         $ws->on('open', function ($ws, $request) {
-            //var_dump($request);
+            if($request->header['origin'] != env('WBSOCKET_HOST_ORIGIN')){
+                $ws->close($request->fd);
+            }
             echo $request->fd.PHP_EOL;
             //$ws->push($request->fd,file_get_contents('http://imgsrc.baidu.com/imgad/pic/item/267f9e2f07082838b5168c32b299a9014c08f1f9.jpg'),WEBSOCKET_OPCODE_BINARY);
         });
         //监听WebSocket消息事件
         $ws->on('message', function ($ws, $frame) {
+            echo $frame->fd.PHP_EOL;
+            echo "Message: {$frame->data}\n";
             //var_dump($frame);
             $return_data=mb_convert_encoding($frame->data, "UTF-8","UTF-8");
             $receive = json_decode($return_data,1);//用户登录聊天界面会发送一个登录uid
             $type = isset($receive['type']) ? $receive['type'] : '';
             $status = isset($receive['status']) ? $receive['status'] : '';
-            var_dump($receive);
+            $token = isset($receive['access_token']) ? $receive['access_token'] : '';
+            //初始化uid
+            $uid = '';
+            if(isset($receive['uid']) && $type == 'init'){
+                $uid = $receive['uid'];
+            }
+            if (isset($receive['send_uid']) && ($type == 'msg' || $type = 'is_read')) {
+                $uid = $receive['send_uid'];
+            }
+            //安全验证
+            $checkToken = Mongo::connectMongo('chatToken')->select('token')->where('uid',$uid)->get()->toArray();
+            if(empty($token) || !isset($checkToken[0]) || $checkToken[0]['token'] != $token){
+                $ws->close($frame->fd);
+            }
+            //建立链接
             if(isset($receive['uid']) && $type == 'init'){
                 $fd = Mongo::connectMongo('wesocketConnect')->where('uid',$receive['uid'])->where('fd',$frame->fd)->get()->toArray();
                 if(empty($fd)){
@@ -87,12 +105,12 @@ class ChatServe extends Command
                 Mongo::connectMongo('chatFriendsList')->where('uid', $receive['receive_uid'])->where('receive_id', $receive['send_uid'])
                     ->update(['unread_num' => $num + 1]);
             }
+
             //已读
             if($type == 'is_read' && $status == 1){
                 Mongo::connectMongo('chatFriendsList')->where('uid', $receive['send_uid'])->where('receive_id', $receive['receive_uid'])
                     ->update(['unread_num' => 0]);
             }
-
             if(isset($receive['send_uid']) && $type == 'msg'){
                 //1.将消息存入消息表
                 Mongo::connectMongo('chat')->insert([
@@ -147,8 +165,6 @@ class ChatServe extends Command
                     }
                 }
             }
-            echo $frame->fd.PHP_EOL;
-            echo "Message: {$frame->data}\n";
             //var_dump($fds);echo $type.PHP_EOL;
             if (isset($fds) && !empty($fds) && $type == 'msg') {
                 $fds = array_unique($fds);

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<link href="{{ asset('chat/css/chat.css?v=26') }}" rel="stylesheet">
+<link href="{{ asset('chat/css/chat.css?v=33') }}" rel="stylesheet">
 <link href="{{ asset('/css/webuploader.css?v=3') }}" rel="stylesheet">
 @section('content')
     <div class="container">
@@ -14,8 +14,17 @@
                                     <div class="liLeft"><img src="{{$l['head_image']}}" id="head_{{$l['uid']}}" width="43"/></div>
                                     <div class="liRight">
                                         <span  class="intername">{{$l['username']}}</span>
-                                        <span class="infor" id="unreadMessage_{{$l['uid']}}">{{$l['unread_num']}}</span>
                                         <span class="uid" style="display: none;">{{$l['uid']}}</span>
+                                    </div>
+                                    <div class="newLiRight">
+                                        <span>
+                                            {{$l['updated_at']}}
+                                        </span>
+                                        <span>
+                                            <span class="notice-badge" id="unreadMessage_{{$l['uid']}}" style="display:{{$l['unread_num'] ? 'inline' : 'none'}};">
+                                                {{$l['unread_num'] ? $l['unread_num'] : ''}}
+                                            </span>
+                                        </span>
                                     </div>
                                 </li>
                             @endforeach
@@ -128,10 +137,10 @@
             });
 
             if(window.WebSocket) {
-                var webSocket = new WebSocket("ws://47.52.167.163:9502");
-                //var webSocket = new WebSocket("ws://127.0.0.1:9502");
+                //var webSocket = new WebSocket("ws://47.52.167.163:9502");
+                var webSocket = new WebSocket("ws://127.0.0.1:9502");
                 webSocket.onopen = function (event) {
-                    webSocket.send('{"uid":'+ user_uid +',"type":"init"}');
+                    webSocket.send('{"uid":'+ user_uid +',"type":"init","access_token":"{{$chatToken}}"}');
                 };
                 $('.conLeft li').on('click',function(){
                     $(this).addClass('bg').siblings().removeClass('bg');
@@ -141,8 +150,9 @@
                     $('.receive_uid').text(receive_id);
                     $('.newsList').html('');
                     $('#unreadMessage_'+receive_id).html('');
+                    $('#unreadMessage_'+receive_id).attr('style','display:none;');
                     getTalkList(user_uid,receive_id,1);
-                    var message =  '{"status":"'+ 1 +'","send_uid":'+ user_uid +',"receive_uid":'+ receive_id +',"type":"is_read"}';
+                    var message =  '{"status":"'+ 1 +'","send_uid":'+ user_uid +',"receive_uid":'+ receive_id +',"type":"is_read","access_token":"{{$chatToken}}"}';
                     console.log(message)
                     webSocket.send(message);
                 })
@@ -158,11 +168,11 @@
                     } else if(receive_uid == ''){
                         alert('请选择好友');
                     }else if(img){
-                        var message =  '{"message":"'+ img +'","send_uid":'+ user_uid +',"receive_uid":'+ receive_uid +',"type":"msg"}';
+                        var message =  '{"message":"'+ img +'","send_uid":'+ user_uid +',"receive_uid":'+ receive_uid +',"type":"msg","access_token":"{{$chatToken}}"}';
                         webSocket.send(message);
                     }else {
                         $('#dope').val('');
-                        var message =  '{"message":"'+ news +'","send_uid":'+ user_uid +',"receive_uid":'+ receive_uid +',"type":"msg"}';    //{'message': news, 'uid': user_uid};
+                        var message =  '{"message":"'+ news +'","send_uid":'+ user_uid +',"receive_uid":'+ receive_uid +',"type":"msg","access_token":"{{$chatToken}}"}';    //{'message': news, 'uid': user_uid};
                         //console.log(message);
                         webSocket.send(message);
                         //$('.newsList').append(message);
@@ -197,16 +207,17 @@
                     if((data.send_uid !=  user_uid || data.receive_uid != receive_uid) && (data.send_uid !=  receive_uid || data.receive_uid != user_uid)){
                         //添加消息未读
                         if(data.receive_uid ==  user_uid){
-                            var message =  '{"status":"'+ 0 +'","send_uid":'+ data.send_uid +',"receive_uid":'+ user_uid +',"type":"is_read"}';
+                            var message =  '{"status":"'+ 0 +'","send_uid":'+ data.send_uid +',"receive_uid":'+ user_uid +',"type":"is_read","access_token":"{{$chatToken}}"}';
                             webSocket.send(message);
                             var num = $('#unreadMessage_'+data.send_uid).html();
                             num = Number(num) + 1;
                             $('#unreadMessage_'+data.send_uid).html(num);
+                            $('#unreadMessage_'+data.send_uid).attr('style','display:inline;');
                         }
                         return '';
                     }
+                    var chat_message = ImgIputHandler.getEmjon(data.message);
                     if (data.send_uid == user_uid) {
-                        var chat_message = ImgIputHandler.getEmjon(data.message);
                         message += '<li>' +
                             '<div class="answerHead"><img src="{{session('head_image')}}"/></div>' +
                             '<div class="answers"><img class="jiao" src="chat/images/jiao.jpg">' + chat_message + '</div>' +
@@ -218,7 +229,7 @@
                         //console.log(data.send_uid);
                         message += '<li>' +
                             '<div class="nesHead"><img src="'+head_photo+'"/></div>' +
-                            '<div class="news"><img class="jiao" src="chat/images/20170926103645_03_02.jpg">' + data.message + '</div>' +
+                            '<div class="news"><img class="jiao" src="chat/images/20170926103645_03_02.jpg">' + chat_message + '</div>' +
                             '</li>';
                         $('.newsList').append(message);
                         // $('.conLeft').find('li.bg').children('.liRight').children('.infor').text(data.message);

@@ -44,12 +44,13 @@ class Chat extends Model
         $friends = [];
         if(!empty($list)){
             foreach ($list as $key=>$val){
+                $time = ($val['updated_at']-time())/(24*60*60) > 1 ? date('m月d日',$val['updated_at']) : date('H:i',$val['updated_at']);
                 $info = self::getInfo($val['receive_id']);
                 $friends[$key]['uid'] = $val['receive_id'];
                 $friends[$key]['unread_num'] = $val['unread_num'];
                 $friends[$key]['head_image'] = $info->head_image;//待优化
                 $friends[$key]['username'] = $info->username;//待优化
-                $friends[$key]['updated_at'] = $val['updated_at'];
+                $friends[$key]['updated_at'] = $time;
             }
         }
         return $friends;
@@ -67,9 +68,10 @@ class Chat extends Model
         $new = [];
         if($friend){
             $new[0]['uid'] = $newUid;
+            $new[0]['unread_num'] = 0;
             $new[0]['head_image'] = $friend->head_image;
             $new[0]['username'] = $friend->username;
-            $new[0]['updated_at'] = time();
+            $new[0]['updated_at'] = date('H:i');
         }
         if(!empty($new)){
             $friends = array_merge($new,$friends);

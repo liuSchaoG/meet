@@ -9,6 +9,7 @@ use App\Services\ChatService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Extensions\UploadModel;
+use App\Mongo;
 
 class ChatController extends Controller
 {
@@ -23,8 +24,10 @@ class ChatController extends Controller
         }else{
             $freinds = ChatService::getChatFriendList($uid);//获取好友列表
         }
+        $checkToken = Mongo::connectMongo('chatToken')->select('token')->where('uid',$uid)->get()->toArray();
         return view('chat/index',[
-            'freinds'=>$freinds['data']
+            'freinds'=>$freinds['data'],
+            'chatToken'=>isset($checkToken[0]['token']) ? $checkToken[0]['token'] : ''
         ]);
     }
 
