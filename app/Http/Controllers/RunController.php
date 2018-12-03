@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Models\UserInfo;
-use Illuminate\Support\Facades\Cache;
+
 
 class RunController extends Controller
 {
@@ -13,8 +13,9 @@ class RunController extends Controller
 
     public function runUser()
     {
-        Cache::store('array')->put('nan', 6);
-        $nan = Cache::store('array')->get('nan');
+        $nan = DB::table('count')->where('id=1')->value('nan');
+        // $nv = DB::table('count')->where('id=1')->value('nv');
+        DB::table('count')->where('id=1')->update(['nan'=>$nan+1]);
         dd($nan);
 
         $user = new User();
