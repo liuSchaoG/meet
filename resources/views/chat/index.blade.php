@@ -137,8 +137,8 @@
             });
 
             if(window.WebSocket) {
-                //var webSocket = new WebSocket("ws://47.52.167.163:9502");
-                var webSocket = new WebSocket("ws://127.0.0.1:9502");
+                var webSocket = new WebSocket("ws://47.52.167.163:9502");
+                //var webSocket = new WebSocket("ws://127.0.0.1:9502");
                 webSocket.onopen = function (event) {
                     webSocket.send('{"uid":'+ user_uid +',"type":"init","access_token":"{{$chatToken}}"}');
                 };
