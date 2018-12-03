@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Models\UserInfo;
+use App\Models\Area;
 
 
 class RunController extends Controller
@@ -13,11 +14,7 @@ class RunController extends Controller
 
     public function runUser()
     {
-        $nan = DB::table('count')->where(['id'=>1])->value('nan');
-        // $nv = DB::table('count')->where(['id'=>1])->value('nv');
-        DB::table('count')->where(['id'=>1])->update(['nan'=>$nan+1]);
-        dd($nan);
-
+        
         $user = new User();
         
         $user->sex = rand(1,2);
@@ -31,9 +28,14 @@ class RunController extends Controller
         $user->phone = $mobile;
 
         if($user->sex==1){
-            $user->head_image = 'images/user/201812253256325475@$&8/ABC500-ABC629.jpg';
+            $nan = DB::table('count')->where(['id'=>1])->value('nan');
+            $cnan = 500+$nan;
+            $user->head_image = 'images/user/201812253256325475@$&8/ABC'.$cnan.'.jpg';
+            DB::table('count')->where(['id'=>1])->update(['nan'=>$nan+1]);
         }else{
-            $user->head_image = 'images/user/201812253256325475@$&6/3-131.jpg';
+            $nv = DB::table('count')->where(['id'=>1])->value('nv');
+            $user->head_image = 'images/user/201812253256325475@$&6/'.$nv.'.jpg';
+            DB::table('count')->where(['id'=>1])->update(['nv'=>$nv+1]);
         }
         
         list($email,$birth,$year) = $this->getEmailsex($user->sex);
@@ -58,7 +60,6 @@ class RunController extends Controller
             $insert['shape']=rand(3,6);
             $insert['education']=rand(4,6);
             $insert['weight']=rand(50,100);
-
         }else{
             $insert['height']=rand(155,180);
             $insert['income']=rand(3,5);
@@ -66,9 +67,36 @@ class RunController extends Controller
             $insert['education']=rand(4,6);
             $insert['weight']=rand(40,70);
         }
+
+        $op = Area::where(['area_deep'=>1])->inRandomOrder()->limit(1)->value('area_id');
+
+        $insert['origin_province']=1;
+
+        $oc = Area::where(['area_parent_id'=>$op])->inRandomOrder()->limit(1)->value('area_id');
+
+        $insert['origin_city']=$oc;
+
+        $industry = DB::table('position')->where(['pid'=>0])->inRandomOrder()->limit(1)->value('id');
+
+        $insert['industry'] = $industry;
+
+        $vacation = DB::table('position')->where(['pid'=>$industry])->inRandomOrder()->limit(1)->value('id');
+
+        $insert['vacation'] = $vacation;
+
+        $job = DB::table('position')->where(['pid'=>$vacation])->inRandomOrder()->limit(1)->value('id');
+
+        $insert['job'] = $job;
+
+        $insert['area_province']=1;
+        $insert['area_city']=36;
+        $areas = [38,41,42,43,44,45,46,47,48,49,50,51,52,53,54,566];
+        $insert['area'] = $areas[array_rand($areas)];
         $insert['sex'] = $user->sex;
         $insert['inner_idea'] = $this->getInnerTalk($user->sex);
         $insert['birthday'] = $birth;
+        $insert['smoke_status'] = 1;
+        $insert['drink_status'] = 1;
         $insert['constellation']=rand(1,12);
         $insert['want_child']=rand(0,4);
         $insert['marry_time']=rand(0,5);
@@ -118,12 +146,12 @@ class RunController extends Controller
 
         if($sex==1){
             $name = $boy[array_rand($boy)];
-            $year = mt_rand(1980,2000);
+            $year = mt_rand(1994,2000);
             $mon = mt_rand(1,12);
             $day = mt_rand(1,28);
         }else{
             $name = $girl[array_rand($girl)];
-            $year = mt_rand(1984,1998);
+            $year = mt_rand(1990,1998);
             $mon = mt_rand(1,12);
             $day = mt_rand(1,28);
         }
