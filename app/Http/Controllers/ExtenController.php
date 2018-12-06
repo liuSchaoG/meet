@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\ExtenService;
 use Illuminate\Http\Request;
 use App\Extensions\ReturnModel;
+use App\Extensions\GlobalFunction;
 
 /**
  * 扩展处理模块
@@ -59,6 +60,12 @@ class ExtenController extends Controller
         return $returnModel->toArray();
     }
 
+
+
+
+
+ 
+    
 
 
 
