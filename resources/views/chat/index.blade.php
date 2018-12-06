@@ -36,11 +36,15 @@
                             <div class="headName"><?= isset($freinds[0]['username']) ?$freinds[0]['username']:'' ?></div>
                             <div class="receive_uid" style="display: none;"><?= isset($freinds[0]['uid']) ?$freinds[0]['uid']:'' ?></div>
                             <div class="headConfig">
-                                <ul>
-                                    <li><img src="chat/images/20170926103645_06.jpg"/></li>
+                                <ul style="font-size:12px;">
+                                    <!--<li><img src="chat/images/20170926103645_06.jpg"/></li>
                                     <li><img src="chat/images/20170926103645_08.jpg"/></li>
                                     <li><img src="chat/images/20170926103645_10.jpg"/></li>
-                                    <li><img src="chat/images/20170926103645_12.jpg"/></li>
+                                    <li><img src="chat/images/20170926103645_12.jpg"/></li>-->
+                                    <li>牵手</li>
+                                    <li>关注</li>
+                                    <li>拉黑</li>
+                                    <li>举报</li>
                                 </ul>
                             </div>
                         </div>
