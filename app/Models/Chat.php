@@ -11,15 +11,6 @@ class Chat extends Model
     //
     protected   $table = 'chat';
 
-    //获取聊天记录
-    /*public static function getChatList($uid, $receiveUid, $page = 1, $limit = 10)
-    {
-        $page = ($page - 1) * $limit;
-        return DB::select('select message,send_uid,receive_uid,create_time 
-              from mt_chat where (send_uid = ? and receive_uid =?) or (send_uid = ? and receive_uid =?)
-              ORDER BY create_time DESC limit ?,10
-              ', [$uid, $receiveUid, $receiveUid, $uid, $page]);
-    }*/
 
     //获取聊天记录
     public static function getChatList($uid, $receiveUid, $page = 1, $limit = 10)
@@ -40,7 +31,10 @@ class Chat extends Model
     {
         $connection = Mongo::connectMongo('chatFriendsList');
         $list = $connection->select('receive_id','updated_at','unread_num')
-            ->where('uid',(int)$uid)->get()->toArray();
+            ->where('uid',(int)$uid)
+            ->orderBy('is_fan', 'desc')
+            ->orderBy('updated_at', 'desc')
+            ->get()->toArray();
         $friends = [];
         if(!empty($list)){
             foreach ($list as $key=>$val){

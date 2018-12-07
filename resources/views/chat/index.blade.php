@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<link href="{{ asset('chat/css/chat.css?v=33') }}" rel="stylesheet">
+<link href="{{ asset('chat/css/chat.css?v=34') }}" rel="stylesheet">
 <link href="{{ asset('/css/webuploader.css?v=3') }}" rel="stylesheet">
 @section('content')
     <div class="container">
@@ -36,11 +36,15 @@
                             <div class="headName"><?= isset($freinds[0]['username']) ?$freinds[0]['username']:'' ?></div>
                             <div class="receive_uid" style="display: none;"><?= isset($freinds[0]['uid']) ?$freinds[0]['uid']:'' ?></div>
                             <div class="headConfig">
-                                <ul>
-                                    <li><img src="chat/images/20170926103645_06.jpg"/></li>
+                                <ul style="font-size:12px;">
+                                    <!--<li><img src="chat/images/20170926103645_06.jpg"/></li>
                                     <li><img src="chat/images/20170926103645_08.jpg"/></li>
                                     <li><img src="chat/images/20170926103645_10.jpg"/></li>
-                                    <li><img src="chat/images/20170926103645_12.jpg"/></li>
+                                    <li><img src="chat/images/20170926103645_12.jpg"/></li>-->
+                                    <li><span id="set_top" style="color: green;cursor:pointer;">置顶</span></li>
+                                    <li><span id="test" style="color: green;cursor:pointer;">牵手</span></li>
+                                    <li><span id="test" style="color: red;cursor:pointer;">拉黑</span></li>
+                                    <li><span id="test" style="color: red;cursor:pointer;">举报</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -78,22 +82,20 @@
             ImgIputHandler.Init();
         });
         window.onload = function (ev) {
+            //置顶功能
             var user_uid = '{{ session('id') }}';
             var default_receive_uid = $('.receive_uid').text();
+            //设为置顶
+            $('#set_top').click(function () {
+                var friend_uid = $(".receive_uid").text();
+                $('.conLeft ul').prepend($('.conLeft ul .bg'));
+                $.post("/chat/setTop", {'_token':'{{csrf_token()}}','uid':user_uid,'friend_uid':friend_uid},function () {
+
+                })
+            })
+
             //默认聊天记录10条
             getTalkList(user_uid,default_receive_uid,1);
-           //左侧结束
-            $('.emjon li').on('click',function(){
-                var imgSrc=$(this).children('img').attr('src');
-                var str="";
-                str+='<li>'+
-                    '<div class="nesHead"><img src="img/6.jpg"/></div>'+
-                    '<div class="news"><img class="jiao" src="img/20170926103645_03_02.jpg"><img class="Expr" src="'+imgSrc+'"></div>'+
-                    '</li>';
-                $('.newsList').append(str);
-                $('.emjon').hide();
-                $('.RightCont').scrollTop($('.RightCont')[0].scrollHeight );
-            });
             //图片上传
             var uploader = WebUploader.create({
                 //设置上传不压缩
@@ -125,9 +127,7 @@
             });
 
             uploader.on('uploadSuccess', function (file, response) {
-                //console.log(response);
                 if(response.code === 1 ){
-                    //layer.msg(response.msg);
                     var img = '<img width=\'300\' src=\''+ response.data +'\' />'
                     send(img);
                 }else{
@@ -153,7 +153,7 @@
                     $('#unreadMessage_'+receive_id).attr('style','display:none;');
                     getTalkList(user_uid,receive_id,1);
                     var message =  '{"status":"'+ 1 +'","send_uid":'+ user_uid +',"receive_uid":'+ receive_id +',"type":"is_read","access_token":"{{$chatToken}}"}';
-                    console.log(message)
+                    //console.log(message)
                     webSocket.send(message);
                 })
                 $('.sendBtn').on('click', function () {
@@ -173,12 +173,7 @@
                     }else {
                         $('#dope').val('');
                         var message =  '{"message":"'+ news +'","send_uid":'+ user_uid +',"receive_uid":'+ receive_uid +',"type":"msg","access_token":"{{$chatToken}}"}';    //{'message': news, 'uid': user_uid};
-                        //console.log(message);
                         webSocket.send(message);
-                        //$('.newsList').append(message);
-                        //setTimeout(answers,1000);
-                        //$('.conLeft').find('li.bg').children('.liRight').children('.infor').text(news);
-                        //$('.RightCont').scrollTop($('.RightCont')[0].scrollHeight );
                     }
                 }
 
@@ -195,15 +190,11 @@
 
                 webSocket.onmessage = function (event) {
                     var data = eval('(' + event.data + ')');
-                    console.log(data);
                     var message = '';
-                    //console.log(data.user_uid);
                     if(data.send_uid == undefined || data.receive_uid == undefined){
-                        //console.log(data.user_uid);
                         return '';
                     }
                     var receive_uid = $('.receive_uid').text();
-                    //console.log(receive_uid);console.log(user_uid);
                     if((data.send_uid !=  user_uid || data.receive_uid != receive_uid) && (data.send_uid !=  receive_uid || data.receive_uid != user_uid)){
                         //添加消息未读
                         if(data.receive_uid ==  user_uid){
@@ -226,13 +217,11 @@
                         $('.RightCont').scrollTop($('.RightCont')[0].scrollHeight);
                     } else {
                         var head_photo = $("#head_" + data.send_uid).attr('src');
-                        //console.log(data.send_uid);
                         message += '<li>' +
                             '<div class="nesHead"><img src="'+head_photo+'"/></div>' +
                             '<div class="news"><img class="jiao" src="chat/images/20170926103645_03_02.jpg">' + chat_message + '</div>' +
                             '</li>';
                         $('.newsList').append(message);
-                        // $('.conLeft').find('li.bg').children('.liRight').children('.infor').text(data.message);
                         $('.RightCont').scrollTop($('.RightCont')[0].scrollHeight);
                     }
 
@@ -271,11 +260,25 @@
                     }
                 });
         }
+
+
+        $('.emjon li').on('click',function(){
+            var imgSrc=$(this).children('img').attr('src');
+            var str="";
+            str+='<li>'+
+                '<div class="nesHead"><img src="img/6.jpg"/></div>'+
+                '<div class="news"><img class="jiao" src="img/20170926103645_03_02.jpg"><img class="Expr" src="'+imgSrc+'"></div>'+
+                '</li>';
+            $('.newsList').append(str);
+            $('.emjon').hide();
+            $('.RightCont').scrollTop($('.RightCont')[0].scrollHeight );
+        });
     </script>
 @endsection
 <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 <script src="{{ asset('chat/js/chat.js?v=30') }}"></script>
 <script src="{{ asset('js/webuploader.min.js') }}"></script>
+<script src="{{ asset('layer/layer.js') }}"></script>
 
 
 
