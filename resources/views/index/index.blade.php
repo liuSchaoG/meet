@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
-    <link href="{{ asset('css/index.css') }}?a=2" rel="stylesheet">
-    <div id="myCarousel" class="carousel slide">
+    <link href="{{ asset('css/index.css') }}?a=9" rel="stylesheet">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
         <!-- 轮播（Carousel）指标 -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -29,6 +29,17 @@
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
+    </div>
+    <div class="container margin-myCarousel">
+        <div class="row">
+            <div class="col-md-9 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="col-lg-4">
+                        <img src="/images/user/user_default.jpg" class="img-responsive" width="80">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 @endsection

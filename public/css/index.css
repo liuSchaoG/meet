@@ -1,3 +1,12 @@
 .navbar {
     margin-bottom: 0px;
 }
+.margin-myCarousel{
+    margin-top: 22px;
+}
+.panel-default {
+    border-top-color: #ff3300;
+    border-bottom-color: #d3e0e9;
+    border-left-color: #d3e0e9;
+    border-right-color: #d3e0e9;
+}
