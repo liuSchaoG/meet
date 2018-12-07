@@ -10,7 +10,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/layout.css') }}?a=2" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}?a=1" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -26,7 +27,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="nav-red" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -39,7 +40,6 @@
                         <li><a href="{{ route('register') }}">APP</a></li>
                         <li><a href="{{ route('register') }}">{{env('title3','咨询')}}</a></li>
                     </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->

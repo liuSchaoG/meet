@@ -69,4 +69,19 @@ class ChatController extends Controller
         }
         echo json_encode($return->toArray());
     }
+
+    //置顶
+    public function setTop(Request $request)
+    {
+        $return = new ReturnModel();
+        try{
+            $uid = $request->input('uid');
+            $friend_uid = $request->input('friend_uid');
+            $res = Mongo::connectMongo('chatFriendsList')->where('uid', (int)$uid)->where('receive_id', (int)$friend_uid)
+                ->update(['updated_at' => time(),'is_fan'=>1]);
+        }catch (\Exception $e){
+            $return->initFail($e->getMessage());
+        }
+        echo json_encode($return->toArray());
+    }
 }

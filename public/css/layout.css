@@ -1,0 +1,15 @@
+.nav-red{
+    float: left;
+    padding: 14px 15px;
+    font-size: 18px;
+    line-height: 22px;
+    height: 50px;
+    margin-left: -15px;
+    color: #ff3300;
+}
+
+.navbar-default .nav-red:hover{
+    color: #ff3300;
+    text-decoration:none;
+    background-color: transparent;
+}
