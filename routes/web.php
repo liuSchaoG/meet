@@ -70,6 +70,12 @@ Route::group(['middleware'=>'web'],function (){
     
     Route::post('/user/uploadHeader', 'UserController@headerImg')->name('uploadHeader');
 
+
+
+    /******筛选匹配列表相关*****/
+    Route::get('/index/list', 'MatchingController@index')->name('index_list');
+
+
 });
 
 

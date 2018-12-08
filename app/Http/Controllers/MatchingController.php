@@ -19,7 +19,6 @@ class MatchingController extends Controller
     public function __construct(MatchService $matchService)
     {
         $this->middleware('checkAuth');
-
         $this->matchService = $matchService;
     }
 
@@ -38,9 +37,10 @@ class MatchingController extends Controller
             $param['local_province'] = $locations['data']['region'];
             $param['local_city'] = $locations['data']['city'];
         }
-        $list = $this->matchService -> getDefaultList($param);
+
+        $list_p = $this->matchService -> getDefaultList($param);
         
-        return view('home');
+        return view('index.list',['list_p'=>$list_p]);
     }
 
 
