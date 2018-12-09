@@ -25,8 +25,12 @@ class MatchService
         $sex = session('sex');
         $uid = session('id');
         $field = ['uid','user_name','phone','area_province','area_city','area','income','height','marry_status','education','college'];
-        $where['sex'] = $sex;
-        $list_p = UserInfo::select($field) ->where($where) ->paginate(15);
+        $where['userinfo.sex'] = $sex;
+        $list_p = UserInfo::where($where) 
+        				 -> leftJoin('area', 'userinfo.area_city', '=', 'area.area_id')
+        				 -> select('userinfo.*', 'area.area_name')
+            			 -> paginate(15);
+        dd($list_p);
 
         return $list_p;//列表含分页
     }
