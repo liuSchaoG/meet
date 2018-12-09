@@ -17,14 +17,14 @@
                                               <span>{{$info->username}}</span>&nbsp;<span class="red">666</span>
                                           </a>
                                       </h3>
-                                      <p>{{$info->area_name}}<em class="vline"></em>{{$info->income}}<em class="vline"></em>{$info->education}}</p>
+                                      <p>{{$info->area_name}}<em class="vline"></em>{{$info->income}}<em class="vline"></em>{{$info->education}}</p>
                                   </div>
                                   <div class="info-company">
                                       <div class="company-text">{{$info->college}}</p>
                                       </div>
                                   </div>
                                   <div class="info-publis">
-                                      <h3 class="name"><img src="{{$info->head_image}}">{{$info->user_name}}<em class="vline"></em>{{$info->username}}</h3>
+                                      <h3 class="name"><img src="/{{$info->head_image}}">{{$info->user_name}}<em class="vline"></em>{{$info->username}}</h3>
                                       <p>创建于{{$info->created_at}}</p>
                                   </div>
                                   <a href="javascript:;" data-url="/chatRoom?uid={{$info->uid}}" target="_blank" class="btn btn-startchat">立刻开撩
