@@ -15,13 +15,13 @@
                                   <div class="info-primary">
                                       <h3 class="name">
                                           <a href="{{$info->uid}}" data-itemid="1" data-lid="1cuR2yKgA43.search" data-jobid="29925123" data-index="1" ka="search_list_1" target="_blank">
-                                              <span>{{$info->username}}</span>&nbsp;<em class="red">毕业于:</em>
+                                              <span>{{$info->username}}</span>&nbsp;<!-- <em class="red">毕业于:</em> -->
                                           </a>
                                       </h3>
                                       <p>{{$info->area_name or '暂时保密'}}<em class="vline"></em>月薪：{{$incomes[$info->income]}}<em class="vline"></em>{{$educations[$info->education]}}</p>
                                   </div>
                                   <div class="info-company">
-                                      <div class="company-text">{{$info->college or '暂时保密'}}</p>
+                                      <!-- <div class="company-text">{{$info->college or '暂时保密'}}</p> -->
                                       </div>
                                   </div>
                                   <div class="info-publis">
