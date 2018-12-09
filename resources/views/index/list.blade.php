@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <link href="{{ asset('css/list.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('css/list.css') }}" rel="stylesheet"> -->
     
      <!-- <div class="row clearfix">
         <div class="col-md-12 column">
