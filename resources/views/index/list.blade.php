@@ -29,7 +29,7 @@
                                       <h3 class="name"><img src="/{{$info->head_image}}">{{$info->user_name}}<em class="vline"></em>{{$info->username}}</h3>
                                       <p>创建于{{$info->created_at}}</p>
                                   </div>
-                                  <a href="/chatRoom?uid={{$info->uid}}" target="_blank" class="btn btn-startchat">立刻开撩
+                                  <a href="/chatRoom?id={{$info->uid}}" target="_blank" class="btn btn-startchat">立刻开撩
                                   </a>
                               </div>
                         </li>
