@@ -24,7 +24,7 @@ class MatchService
         //查询userinfo表 
         $sex = session('sex');
         $uid = session('id');
-        $field = ['user_info.uid','user_info.user_name','user_info.area_city','user_info.income','user_info.height','user_info.marry_status','user_info.education','user_info.college', 'area.area_name','user.username','user.head_image','user.created_at','user_info.job','position.name job_name'];
+        $field = ['user_info.uid','user_info.user_name','user_info.area_city','user_info.income','user_info.height','user_info.marry_status','user_info.education','user_info.college', 'area.area_name','user.username','user.head_image','user.created_at','user_info.job','position.name as job_name'];
         if($sex==1){
         	$where['user_info.sex'] = 2;
         }else{
