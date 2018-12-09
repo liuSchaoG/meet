@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<link href="{{ asset('chat/css/chat.css?v=34') }}" rel="stylesheet">
+<link href="{{ asset('chat/css/chat.css?v=35') }}" rel="stylesheet">
 <link href="{{ asset('/css/webuploader.css?v=3') }}" rel="stylesheet">
 @section('content')
     <div class="container">
@@ -15,6 +15,7 @@
                                     <div class="liRight">
                                         <span  class="intername">{{$l['username']}}</span>
                                         <span class="uid" style="display: none;">{{$l['uid']}}</span>
+                                        <span class="is_fan" style="display: none;">{{$l['is_fan']}}</span>
                                     </div>
                                     <div class="newLiRight">
                                         <span>
@@ -35,6 +36,7 @@
                         <div class="Righthead">
                             <div class="headName"><?= isset($freinds[0]['username']) ?$freinds[0]['username']:'' ?></div>
                             <div class="receive_uid" style="display: none;"><?= isset($freinds[0]['uid']) ?$freinds[0]['uid']:'' ?></div>
+                            <div class="is_fan" style="display: none;"><?= isset($freinds[0]['is_fan']) ?$freinds[0]['is_fan']:'' ?></div>
                             <div class="headConfig">
                                 <ul style="font-size:12px;">
                                     <!--<li><img src="chat/images/20170926103645_06.jpg"/></li>
@@ -85,15 +87,19 @@
             //置顶功能
             var user_uid = '{{ session('id') }}';
             var default_receive_uid = $('.receive_uid').text();
+            var is_top = $('.is_fan').text();
+            isTop(is_top);
             //设为置顶
             $('#set_top').click(function () {
                 var friend_uid = $(".receive_uid").text();
                 $('.conLeft ul').prepend($('.conLeft ul .bg'));
-                $.post("/chat/setTop", {'_token':'{{csrf_token()}}','uid':user_uid,'friend_uid':friend_uid},function () {
-
+                $.post("/chat/setTop", {'_token':'{{csrf_token()}}','uid':user_uid,'friend_uid':friend_uid},function (data) {
+                    var data = eval('(' + data + ')');
+                    if(data.code == 1){
+                        isTop(data.data);
+                    }
                 })
             })
-
             //默认聊天记录10条
             getTalkList(user_uid,default_receive_uid,1);
             //图片上传
@@ -146,8 +152,10 @@
                     $(this).addClass('bg').siblings().removeClass('bg');
                     var intername=$(this).children('.liRight').children('.intername').text();
                     var receive_id = $(this).children('.liRight').children('.uid').text();
+                    var is_fan = $(this).children('.liRight').children('.is_fan').text();
                     $('.headName').text(intername);
                     $('.receive_uid').text(receive_id);
+                    isTop(is_fan);
                     $('.newsList').html('');
                     $('#unreadMessage_'+receive_id).html('');
                     $('#unreadMessage_'+receive_id).attr('style','display:none;');
@@ -259,6 +267,14 @@
                         $('.newsList').append(message);
                     }
                 });
+        }
+        //
+        function isTop(a) {
+            if(a == 0){
+                $('#set_top').text('关注')
+            } else {
+                $('#set_top').text('取消关注');
+            }
         }
 
 

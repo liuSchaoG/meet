@@ -30,7 +30,7 @@ class Chat extends Model
     public static function getChatFriendsList($uid)
     {
         $connection = Mongo::connectMongo('chatFriendsList');
-        $list = $connection->select('receive_id','updated_at','unread_num')
+        $list = $connection->select('receive_id','updated_at','unread_num','is_fan')
             ->where('uid',(int)$uid)
             ->orderBy('is_fan', 'desc')
             ->orderBy('updated_at', 'desc')
@@ -42,6 +42,7 @@ class Chat extends Model
                 $info = self::getInfo($val['receive_id']);
                 $friends[$key]['uid'] = $val['receive_id'];
                 $friends[$key]['unread_num'] = $val['unread_num'];
+                $friends[$key]['is_fan'] = $val['is_fan'];
                 $friends[$key]['head_image'] = $info->head_image;//待优化
                 $friends[$key]['username'] = $info->username;//待优化
                 $friends[$key]['updated_at'] = $time;
@@ -63,6 +64,7 @@ class Chat extends Model
         if($friend){
             $new[0]['uid'] = $newUid;
             $new[0]['unread_num'] = 0;
+            $new[0]['is_fan'] = 0;
             $new[0]['head_image'] = $friend->head_image;
             $new[0]['username'] = $friend->username;
             $new[0]['updated_at'] = date('H:i');

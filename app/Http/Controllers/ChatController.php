@@ -77,8 +77,12 @@ class ChatController extends Controller
         try{
             $uid = $request->input('uid');
             $friend_uid = $request->input('friend_uid');
+            $isFan =Mongo::connectMongo('chatFriendsList')->select('is_fan')
+                ->where('uid', (int)$uid)->where('receive_id', (int)$friend_uid)->get()->toArray();
+            $fan = empty($isFan) || $isFan[0]['is_fan'] == 0 ? 1 : 0;
             $res = Mongo::connectMongo('chatFriendsList')->where('uid', (int)$uid)->where('receive_id', (int)$friend_uid)
-                ->update(['updated_at' => time(),'is_fan'=>1]);
+                ->update(['updated_at' => time(),'is_fan'=>$fan]);
+            $return->setData($fan);
         }catch (\Exception $e){
             $return->initFail($e->getMessage());
         }
