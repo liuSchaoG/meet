@@ -18,7 +18,7 @@
                                               <span>{{$info->username}}</span>&nbsp;<span class="red">毕业学校：</span>
                                           </a>
                                       </h3>
-                                      <p>{{$info->area_name}}<em class="vline"></em>{{$incomes[$info->income]}}<em class="vline"></em>{{$educations[$info->education]}}</p>
+                                      <p>{{$info->area_name}}<em class="vline"></em>月薪：{{$incomes[$info->income]}}<em class="vline"></em>{{$educations[$info->education]}}</p>
                                   </div>
                                   <div class="info-company">
                                       <div class="company-text">{{$info->college}}</p>
