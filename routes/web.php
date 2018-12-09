@@ -13,7 +13,7 @@
 
 //防止csrf攻击
 Route::group(['middleware'=>'web'],function (){
-    Route::get('/', 'IndexController@index');//首页
+    Route::get('/', 'IndexController@index')->name('index');;//首页
     //登录注册
     //Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginController@login')->name('login');//登录
