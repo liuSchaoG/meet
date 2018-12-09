@@ -24,11 +24,11 @@ class MatchService
         //查询userinfo表 
         $sex = session('sex');
         $uid = session('id');
-        $field = ['uid','user_name','phone','area_province','area_city','area','income','height','marry_status','education','college'];
+        $field = ['user_info.uid','user_info.user_name','user_info.area_city','user_info.income','user_info.height','user_info.marry_status','user_info.education','user_info.college', 'area.area_name'];
         $where['user_info.sex'] = $sex;
         $list_p = UserInfo::where($where) 
         				 -> leftJoin('area', 'user_info.area_city', '=', 'area.area_id')
-        				 -> select('user_info.*', 'area.area_name')
+        				 -> select($field)
             			 -> paginate(15);
         dd($list_p);
 
