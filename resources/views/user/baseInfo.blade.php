@@ -68,7 +68,7 @@
 
                             <div class="col-md-3">
                                 <select class="form-control" name="income" id="income">
-                                    <option value="1" @if ($income==0) selected @endif >未设定</option>
+                                    <option value="0" @if ($income==0) selected @endif >保密</option>
                                     <option value="1" @if ($income==1) selected @endif >3000元以下</option>
                                     <option value="2" @if ($income==2) selected @endif>3001~5000元</option>
                                     <option value="3" @if ($income==3) selected @endif>5001~8000元</option>
