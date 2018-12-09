@@ -54,13 +54,13 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="{{ route('BaseInfo',['uid'=>session('id')]) }}">个人中心</a>
+                                        <a href="{{ route('BaseInfo') }}">个人中心</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('BaseInfo') }}">诚信认证</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('BaseInfo') }}">个人相册</a>
+                                        <a href="{{ route('albumIndex') }}">个人相册</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('BaseInfo') }}">系统设置</a>
