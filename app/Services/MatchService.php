@@ -25,10 +25,10 @@ class MatchService
         $sex = session('sex');
         $uid = session('id');
         $field = ['uid','user_name','phone','area_province','area_city','area','income','height','marry_status','education','college'];
-        $where['userinfo.sex'] = $sex;
-        $list_p = UserInfo::where($where) 
-        				 -> leftJoin('area', 'userinfo.area_city', '=', 'area.area_id')
-        				 -> select('userinfo.*', 'area.area_name')
+        $where['user_info.sex'] = $sex;
+        $list_p = User_Info::where($where) 
+        				 -> leftJoin('area', 'user_info.area_city', '=', 'area.area_id')
+        				 -> select('user_info.*', 'area.area_name')
             			 -> paginate(15);
         dd($list_p);
 
