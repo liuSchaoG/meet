@@ -31,8 +31,8 @@ class MatchService
         				 -> leftJoin('user', 'user_info.uid', '=', 'user.id')
         				 -> select($field)
             			 -> paginate(15);
-        foreach ($list_p as $key => $value) {
-        	$list_p[$key]->jobs = 'test';
+        foreach ($list_p as $key => &$value) {
+        	$value->jobs = 'test';
         }
         dd($list_p);
         return $list_p;//列表含分页
