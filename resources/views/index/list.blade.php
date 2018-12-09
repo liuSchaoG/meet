@@ -15,7 +15,8 @@
                                   <div class="info-primary">
                                       <h3 class="name">
                                           <a href="{{$info->uid}}" data-itemid="1" data-lid="1cuR2yKgA43.search" data-jobid="29925123" data-index="1" ka="search_list_1" target="_blank">
-                                              <span>{{$info->username}}</span>&nbsp;<em class="red"></em> 所在行业：互联网  职业：工程师  工作：产品经理
+                                              <span>{{$info->username}}</span>&nbsp;<em class="red"></em> 
+                                              <span>所在行业：互联网  职业：工程师  工作：产品经理</span>
                                           </a>
                                       </h3>
                                       <p>{{$info->area_name or '暂时保密'}}<em class="vline"></em>月薪：{{$incomes[$info->income]}}<em class="vline"></em>{{$educations[$info->education]}}</p>
