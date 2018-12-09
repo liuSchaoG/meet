@@ -27,7 +27,7 @@
                                       <h3 class="name"><img src="https://img2.bosszhipin.com/boss/avatar/avatar_14.png?x-oss-process=image/resize,w_40,limit_0">{{$info->user_name}}<em class="vline"></em>求婚者</h3>
                                       <p>发布于11月19日</p>
                                   </div>
-                                  <a href="javascript:;" data-url="{{$info->uid}}" redirect-url="/geek/new/index/chat?id=6c0de8711ede6e851Hx82t29ElU~" target="_blank" class="btn btn-startchat">立即沟通
+                                  <a href="javascript:;" data-url="{{$info->uid}}" redirect-url="/geek/new/index/chat?id=6c0de8711ede6e851Hx82t29ElU~" target="_blank" class="btn btn-startchat">了解一下
                                   </a>
                               </div>
                         </li>
