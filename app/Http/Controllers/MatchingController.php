@@ -40,7 +40,7 @@ class MatchingController extends Controller
 
         $list_p = $this->matchService -> getDefaultList($param);
         
-        return view('index.list',['list_p'=>$list_p]);
+        return view('index.list',['list_p'=>$list_p,'local_city'=>$locations['data']['city']]);
     }
 
 
