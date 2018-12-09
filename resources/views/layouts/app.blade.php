@@ -36,7 +36,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li><a href="{{ route('login') }}">{{env('title1','首页')}}</a></li>
-                        <li><a href="{{ route('register') }}">{{env('title2','同城约')}}</a></li>
+                        <li><a href="{{ route('index_list') }}">{{env('title2','同城约')}}</a></li>
                         <li><a href="{{ route('register') }}">APP</a></li>
                         <li><a href="{{ route('register') }}">{{env('title3','咨询')}}</a></li>
                     </ul>
