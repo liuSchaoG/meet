@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <link href="{{ asset('css/list.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/list.js') }}"></script>
+    
      <!-- <div class="row clearfix">
         <div class="col-md-12 column">
             <table class="table">
@@ -91,4 +91,5 @@
      </div>
     </div>
     <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+    <script src="{{ asset('js/list.js') }}"></script>
 @endsection
