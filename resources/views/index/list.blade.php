@@ -5,7 +5,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    您的位置：{{$local_city}}&nbsp;定位不对？请选择城市：&nbsp; <em>北京</em><em>上海</em><em>深圳</em>
+                    您的位置：{{$local_city}}&nbsp;定位不对？请选择城市：&nbsp; <em class="red">北京</em>&nbsp;<em class="red">上海</em>&nbsp;<em class="red">深圳</em>
                 </div> 
                 <div class="job-list">
                     <ul>
