@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <link href="{{ asset('css/index.css') }}?a=115" rel="stylesheet">
+    <link href="{{ asset('css/index.css') }}?a=125" rel="stylesheet">
     <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
         <!-- 轮播（Carousel）指标 -->
         <ol class="carousel-indicators">
@@ -48,6 +48,10 @@
                             </p>
                             <p class="user-text">北京<span class="vline"></span>25岁<span class="vline"></span>本科<span class="vline"></span>160cm</p>
                             <p class="inner-talk">内心独白: 想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...</p>
+                            <p class="to-chat">
+                                <i class="bg"></i>
+                                <a href="" class="btn">立即沟通</a>
+                            </p>
                         </div>
                     </div>
                 </li>
@@ -63,6 +67,10 @@
                             </p>
                             <p class="user-text">北京<span class="vline"></span>25岁<span class="vline"></span>本科<span class="vline"></span>160cm</p>
                             <p class="inner-talk">内心独白: 想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...</p>
+                            <p class="to-chat">
+                                <i class="bg"></i>
+                                <a href="" class="btn">立即沟通</a>
+                            </p>
                         </div>
                     </div>
                 </li>
@@ -78,6 +86,10 @@
                             </p>
                             <p class="user-text">北京<span class="vline"></span>25岁<span class="vline"></span>本科<span class="vline"></span>160cm</p>
                             <p class="inner-talk">内心独白: 想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...</p>
+                            <p class="to-chat">
+                                <i class="bg"></i>
+                                <a href="" class="btn">立即沟通</a>
+                            </p>
                         </div>
                     </div>
                 </li>
@@ -93,6 +105,10 @@
                             </p>
                             <p class="user-text">北京<span class="vline"></span>25岁<span class="vline"></span>本科<span class="vline"></span>160cm</p>
                             <p class="inner-talk">内心独白: 想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...</p>
+                            <p class="to-chat">
+                                <i class="bg"></i>
+                                <a href="" class="btn">立即沟通</a>
+                            </p>
                         </div>
                     </div>
                 </li>
@@ -108,6 +124,10 @@
                             </p>
                             <p class="user-text">北京<span class="vline"></span>25岁<span class="vline"></span>本科<span class="vline"></span>160cm</p>
                             <p class="inner-talk">内心独白: 想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...</p>
+                            <p class="to-chat">
+                                <i class="bg"></i>
+                                <a href="" class="btn">立即沟通</a>
+                            </p>
                         </div>
                     </div>
                 </li>
@@ -123,6 +143,10 @@
                             </p>
                             <p class="user-text">北京<span class="vline"></span>25岁<span class="vline"></span>本科<span class="vline"></span>160cm</p>
                             <p class="inner-talk">内心独白: 想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...</p>
+                            <p class="to-chat">
+                                <i class="bg"></i>
+                                <a href="" class="btn">立即沟通</a>
+                            </p>
                         </div>
                     </div>
                 </li>
@@ -138,6 +162,10 @@
                             </p>
                             <p class="user-text">北京<span class="vline"></span>25岁<span class="vline"></span>本科<span class="vline"></span>160cm</p>
                             <p class="inner-talk">内心独白: 想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...</p>
+                            <p class="to-chat">
+                                <i class="bg"></i>
+                                <a href="" class="btn">立即沟通</a>
+                            </p>
                         </div>
                     </div>
                 </li>
@@ -153,6 +181,10 @@
                             </p>
                             <p class="user-text">北京<span class="vline"></span>25岁<span class="vline"></span>本科<span class="vline"></span>160cm</p>
                             <p class="inner-talk">内心独白: 想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...</p>
+                            <p class="to-chat">
+                                <i class="bg"></i>
+                                <a href="" class="btn">立即沟通</a>
+                            </p>
                         </div>
                     </div>
                 </li>
@@ -168,11 +200,25 @@
                             </p>
                             <p class="user-text">北京<span class="vline"></span>25岁<span class="vline"></span>本科<span class="vline"></span>160cm</p>
                             <p class="inner-talk">内心独白: 想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...</p>
+                            <p class="to-chat">
+                                <i class="bg"></i>
+                                <a href="" class="btn">立即沟通</a>
+                            </p>
                         </div>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
+    <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+    <script type="text/javascript">
+        window.onload = function (ev) {
+            $(".xy-box ul li").hover(function(){
+                $(this).find(".to-chat").animate({marginBottom:"55px"},300);
+            },function () {
+                $(this).find(".to-chat").animate({marginBottom:"-55px"},300);
+            });
+        }
+    </script>
 
 @endsection
