@@ -1,3 +1,10 @@
+.container {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+
+
 .nav-red{
     float: left;
     padding: 14px 15px;
