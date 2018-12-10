@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <link href="{{ asset('css/index.css') }}?a=30" rel="stylesheet">
+    <link href="{{ asset('css/index.css') }}?a=115" rel="stylesheet">
     <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
         <!-- 轮播（Carousel）指标 -->
         <ol class="carousel-indicators">
@@ -30,172 +30,148 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    <div class="container margin-myCarousel">
-        <div class="row">
-            <div class="col-md-9 col-md-offset-1">
-                <div class="panel panel-default">
-                    <div class="col-md-6 prmot-list">
-                        <div class="col-md-3 prmot-left">
+    <div class="container">
+        <div class="common-box xy-box">
+            <h3>
+                <span class="cur">每日情缘</span>
+            </h3>
+            <ul class="cur">
+                <li>
+                    <div class="sub-li">
+                        <div class="sub-li-left">
                             <img src="http://images1.jyimg.com/w4/global/cms/uploadfile/2010/1203/20101203102033242.jpg" width="100">
                         </div>
-                        <div class="col-md-9 prmot-rigth">
-                            <div class="name">
-                               王明月
-                            </div>
-                            <div class="info">
-                                <span>25岁</span><span>160cm</span><span>北京</span><span>6000-8000</span>
-                            </div>
-                            <div class="inner-talk">
-                                <span>内心独白:</span>
-                                想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...
-                            </div>
-                            <div>
-                                <a class="btn btn-danger" href="">立即沟通</a>
-                            </div>
+                        <div class="sub-li-right">
+                            <p>
+                                <a href="">王明月</a>
+                                <span class="salary">5000-8000</span>
+                            </p>
+                            <p class="user-text">北京<span class="vline"></span>25岁<span class="vline"></span>本科<span class="vline"></span>160cm</p>
+                            <p class="inner-talk">内心独白: 想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...</p>
                         </div>
                     </div>
-                    <div class="col-md-6 prmot-list">
-                        <div class="col-md-3 prmot-left">
-                            <img src="http://images1.jyimg.com/w4/global/cms/uploadfile/2010/1108/20101108112142435.jpg" width="100">
+                </li>
+                <li>
+                    <div class="sub-li">
+                        <div class="sub-li-left">
+                            <img src="http://images.jiayuan.com/w4/global/cms/uploadfile/2012/1226/20121226105826219.jpg" width="100">
                         </div>
-                        <div class="col-md-9 prmot-rigth">
-                            <div class="name">
-                                王明月
-                            </div>
-                            <div class="info">
-                                <span>25岁</span><span>160cm</span><span>北京</span><span>6000-8000</span>
-                            </div>
-                            <div class="inner-talk">
-                                <span>内心独白:</span>
-                                想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...
-                            </div>
-                            <div>
-                                <a class="btn btn-danger" href="">立即沟通</a>
-                            </div>
+                        <div class="sub-li-right">
+                            <p>
+                                <a href="">王明月</a>
+                                <span class="salary">5000-8000</span>
+                            </p>
+                            <p class="user-text">北京<span class="vline"></span>25岁<span class="vline"></span>本科<span class="vline"></span>160cm</p>
+                            <p class="inner-talk">内心独白: 想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...</p>
                         </div>
                     </div>
-                    <div class="col-md-6 prmot-list">
-                        <div class="col-md-3 prmot-left">
-                            <img src="http://images1.jyimg.com/w4/global/cms/uploadfile/2010/1203/20101203102033242.jpg" width="100">
+                </li>
+                <li>
+                    <div class="sub-li">
+                        <div class="sub-li-left">
+                            <img src="http://images.jiayuan.com/w4/global/cms/uploadfile/2012/0904/20120904041140469.jpg" width="100">
                         </div>
-                        <div class="col-md-9 prmot-rigth">
-                            <div class="name">
-                                王明月
-                            </div>
-                            <div class="info">
-                                <span>25岁</span><span>160cm</span><span>北京</span><span>6000-8000</span>
-                            </div>
-                            <div class="inner-talk">
-                                <span>内心独白:</span>
-                                想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...
-                            </div>
-                            <div>
-                                <a class="btn btn-danger" href="">立即沟通</a>
-                            </div>
+                        <div class="sub-li-right">
+                            <p>
+                                <a href="">王明月</a>
+                                <span class="salary">5000-8000</span>
+                            </p>
+                            <p class="user-text">北京<span class="vline"></span>25岁<span class="vline"></span>本科<span class="vline"></span>160cm</p>
+                            <p class="inner-talk">内心独白: 想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...</p>
                         </div>
                     </div>
-                    <div class="col-md-6 prmot-list">
-                        <div class="col-md-3 prmot-left">
-                            <img src="http://images1.jyimg.com/w4/global/cms/uploadfile/2010/1108/20101108112142435.jpg" width="100">
+                </li>
+                <li>
+                    <div class="sub-li">
+                        <div class="sub-li-left">
+                            <img src="http://images3.jyimg.com/w4/global/cms/uploadfile/2010/1215/20101215043620277.jpg" width="100">
                         </div>
-                        <div class="col-md-9 prmot-rigth">
-                            <div class="name">
-                                王明月
-                            </div>
-                            <div class="info">
-                                <span>25岁</span><span>160cm</span><span>北京</span><span>6000-8000</span>
-                            </div>
-                            <div class="inner-talk">
-                                <span>内心独白:</span>
-                                想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...
-                            </div>
-                            <div>
-                                <a class="btn btn-danger" href="">立即沟通</a>
-                            </div>
+                        <div class="sub-li-right">
+                            <p>
+                                <a href="">王明月</a>
+                                <span class="salary">5000-8000</span>
+                            </p>
+                            <p class="user-text">北京<span class="vline"></span>25岁<span class="vline"></span>本科<span class="vline"></span>160cm</p>
+                            <p class="inner-talk">内心独白: 想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...</p>
                         </div>
                     </div>
-                    <div class="col-md-6 prmot-list">
-                        <div class="col-md-3 prmot-left">
-                            <img src="http://images1.jyimg.com/w4/global/cms/uploadfile/2010/1203/20101203102033242.jpg" width="100">
+                </li>
+                <li>
+                    <div class="sub-li">
+                        <div class="sub-li-left">
+                            <img src="http://images.jiayuan.com/w4/global/cms/uploadfile/2012/0510/20120510093111797.jpg" width="100">
                         </div>
-                        <div class="col-md-9 prmot-rigth">
-                            <div class="name">
-                                王明月
-                            </div>
-                            <div class="info">
-                                <span>25岁</span><span>160cm</span><span>北京</span><span>6000-8000</span>
-                            </div>
-                            <div class="inner-talk">
-                                <span>内心独白:</span>
-                                想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...
-                            </div>
-                            <div>
-                                <a class="btn btn-danger" href="">立即沟通</a>
-                            </div>
+                        <div class="sub-li-right">
+                            <p>
+                                <a href="">王明月</a>
+                                <span class="salary">5000-8000</span>
+                            </p>
+                            <p class="user-text">北京<span class="vline"></span>25岁<span class="vline"></span>本科<span class="vline"></span>160cm</p>
+                            <p class="inner-talk">内心独白: 想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...</p>
                         </div>
                     </div>
-                    <div class="col-md-6 prmot-list">
-                        <div class="col-md-3 prmot-left">
-                            <img src="http://images1.jyimg.com/w4/global/cms/uploadfile/2010/1108/20101108112142435.jpg" width="100">
+                </li>
+                <li>
+                    <div class="sub-li">
+                        <div class="sub-li-left">
+                            <img src="http://images.jiayuan.com/w4/global/cms/uploadfile/2012/0801/20120801091935795.jpg" width="100">
                         </div>
-                        <div class="col-md-9 prmot-rigth">
-                            <div class="name">
-                                王明月
-                            </div>
-                            <div class="info">
-                                <span>25岁</span><span>160cm</span><span>北京</span><span>6000-8000</span>
-                            </div>
-                            <div class="inner-talk">
-                                <span>内心独白:</span>
-                                想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...
-                            </div>
-                            <div>
-                                <a class="btn btn-danger" href="">立即沟通</a>
-                            </div>
+                        <div class="sub-li-right">
+                            <p>
+                                <a href="">王明月</a>
+                                <span class="salary">5000-8000</span>
+                            </p>
+                            <p class="user-text">北京<span class="vline"></span>25岁<span class="vline"></span>本科<span class="vline"></span>160cm</p>
+                            <p class="inner-talk">内心独白: 想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...</p>
                         </div>
                     </div>
-                    <div class="col-md-6 prmot-list">
-                        <div class="col-md-3 prmot-left">
-                            <img src="http://images1.jyimg.com/w4/global/cms/uploadfile/2010/1203/20101203102033242.jpg" width="100">
+                </li>
+                <li>
+                    <div class="sub-li">
+                        <div class="sub-li-left">
+                            <img src="http://images.jiayuan.com/w4/global/cms/uploadfile/2012/1226/20121226013459587.jpg" width="100">
                         </div>
-                        <div class="col-md-9 prmot-rigth">
-                            <div class="name">
-                                王明月
-                            </div>
-                            <div class="info">
-                                <span>25岁</span><span>160cm</span><span>北京</span><span>6000-8000</span>
-                            </div>
-                            <div class="inner-talk">
-                                <span>内心独白:</span>
-                                想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...
-                            </div>
-                            <div>
-                                <a class="btn btn-danger" href="">立即沟通</a>
-                            </div>
+                        <div class="sub-li-right">
+                            <p>
+                                <a href="">王明月</a>
+                                <span class="salary">5000-8000</span>
+                            </p>
+                            <p class="user-text">北京<span class="vline"></span>25岁<span class="vline"></span>本科<span class="vline"></span>160cm</p>
+                            <p class="inner-talk">内心独白: 想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...</p>
                         </div>
                     </div>
-                    <div class="col-md-6 prmot-list">
-                        <div class="col-md-3 prmot-left">
-                            <img src="http://images1.jyimg.com/w4/global/cms/uploadfile/2010/1108/20101108112142435.jpg" width="100">
+                </li>
+                <li>
+                    <div class="sub-li">
+                        <div class="sub-li-left">
+                            <img src="http://images.jiayuan.com/w4/global/cms/uploadfile/2012/0510/20120510093725140.jpg" width="100">
                         </div>
-                        <div class="col-md-9 prmot-rigth">
-                            <div class="name">
-                                王明月
-                            </div>
-                            <div class="info">
-                                <span>25岁</span><span>160cm</span><span>北京</span><span>6000-8000</span>
-                            </div>
-                            <div class="inner-talk">
-                                <span>内心独白:</span>
-                                想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...
-                            </div>
-                            <div>
-                                <a class="btn btn-danger" href="">立即沟通</a>
-                            </div>
+                        <div class="sub-li-right">
+                            <p>
+                                <a href="">王明月</a>
+                                <span class="salary">5000-8000</span>
+                            </p>
+                            <p class="user-text">北京<span class="vline"></span>25岁<span class="vline"></span>本科<span class="vline"></span>160cm</p>
+                            <p class="inner-talk">内心独白: 想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...</p>
                         </div>
                     </div>
-                </div>
-            </div>
+                </li>
+                <li>
+                    <div class="sub-li">
+                        <div class="sub-li-left">
+                            <img src="http://images.jiayuan.com/w4/global/cms/uploadfile/2012/0625/20120625103354148.jpg" width="100">
+                        </div>
+                        <div class="sub-li-right">
+                            <p>
+                                <a href="">王明月</a>
+                                <span class="salary">5000-8000</span>
+                            </p>
+                            <p class="user-text">北京<span class="vline"></span>25岁<span class="vline"></span>本科<span class="vline"></span>160cm</p>
+                            <p class="inner-talk">内心独白: 想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 

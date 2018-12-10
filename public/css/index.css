@@ -1,67 +1,176 @@
 .navbar {
     margin-bottom: 0px;
 }
-.margin-myCarousel{
-    margin-top: 22px;
+li, ol, ul {
+    list-style: none;
 }
-.panel-default {
-    border-top-color: #ff3300;
-    border-bottom-color: #d3e0e9;
-    border-left-color: #d3e0e9;
-    border-right-color: #d3e0e9;
-}
-.prmot-list{
-    width: 410px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    height: 120px;
-    margin-left: 5px;
-    margin-top: 4px;
-}
-.prmot-left{
-    padding-top: 4px;
-    padding-left: 0px;
-}
-.prmot-right{
-    padding-top: 4px;
-    padding-left: 0px;
-}
-.name{
-    width: 100%;
+h3 {
     display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+a {
+    text-decoration: none;
+    color: #414a60;
+}
+a:hover {
+    text-decoration: none;
     color: #ff3300;
-    font-weight: bold;
 }
-.info{
-    width: 100%;
+p {
     display: block;
-    border-bottom:1px solid #ddd;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
 }
-.prmot-rigth .info span {
-    margin-right: 10px;
+img {
+    border: none;
 }
-.info{
-    width: 100%;
-    display: block;
-    border-bottom:1px solid #ddd;
-}
-.inner-talk{
-    width: 100%;
-    display: block;
-    border-bottom:1px solid #ddd;
-}
-.prmot-rigth .inner-talk span{
-    font-weight: bold;
+a, b, body, button, dd, div, dl, em, footer, form, h1, h2, h3, h4, h5, h6, i, input, label, li, nav, p, select, span, td, textarea, u, ul {
+    padding: 0;
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: none;
 }
 
-.btn-danger {
-    color: #fff;
-    background-color: #ff3300;
-    border-color: #ff3300;
-    height:20px;
-    line-height: 0.7;
+.common-box {
+    clear: both;
+    margin-top: 20px;
+    margin-bottom: 31px;
+}
+.common-box ul.cur {
+    font-weight: 400;
+    display: block;
+}
+
+.xy-box ul {
+    height: 393px;
+}
+.common-box ul {
+    width: 100%;
+    top: 47px;
+    left: 0;
+    background: #fff;
+    display: none;
+    border-top: solid 2px #ff3300;
+}
+
+.xy-box ul li {
+    height: 131px;
+    width: 33.33333333%;
+    float: left;
+}
+.xy-box li .sub-li {
+    display: block;
+    border-right: solid 2px #f6f6f8;
+    border-bottom: solid 2px #f6f6f8;
+    height: 100%;
+    margin-right: -2px;
+}
+
+.xy-box li .sub-li .sub-li-left{
+    padding-left: 4px;
+    padding-top: 4px;
+    width: 37%;
+    height: 100%;
+    float: left;
+}
+
+.xy-box li .sub-li .sub-li-right{
+    padding-left: 4px;
+    padding-top: 4px;
+    width: 60%;
+    height: 100%;
+    float: left;
+}
+
+.xy-box li p {
+    height: 35px;
+    line-height: 35px;
+    font-size: 15px;
+    color: #61687c;
+    padding-right: 70px;
+    margin: 0 auto 0 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    white-space: nowrap;
+}
+.xy-box li .sub-li .sub-li-right .salary {
+    color: #fc6c38;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-family: inherit;
+}
+
+.xy-box li .sub-li .sub-li-right p.user-text{
     font-size: 12px;
+    color: #61687c;
+    border-bottom: dashed 1px #e3e7ed;
+    width: 100%;
+    padding-right: 0;
+    line-height: 28px;
+}
+
+.xy-box li .sub-li .sub-li-right p.inner-talk {
+    width: 100%;
+    font-size: 12px;
+    color: #8d92a1;
+    line-height: 35px;
+    padding-right: 0px;
+    height: 49px;
+    margin-top: 5px;
+}
+
+.vline {
+    display: inline-block;
+    width: 1px;
+    height: 12px;
+    vertical-align: middle;
+    background: #e0e0e0;
+    margin: 0 10px;
+}
+
+
+
+
+
+
+
+
+
+.xy-box li a.job-info {
+    height: 71px;
+    padding-top: 10px;
+}
+.xy-box li a {
+    display: block;
+}
+
+
+.xy-box a.user-info {
+    padding: 7px 0 9px 0;
+}
+.xy-box .user-info p {
+    font-size: 14px;
+    width: 290px;
+    padding-right: 0;
+}
+.xy-box .user-info img {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.xy-box .user-info .user-text {
+    margin-left: 10px;
+    font-size: 12px;
+    color: #8d92a1;
 }

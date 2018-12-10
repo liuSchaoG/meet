@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}?a=1" rel="stylesheet">
-    <link href="{{ asset('css/layout.css') }}?a=6" rel="stylesheet">
+    <link href="{{ asset('css/layout.css') }}?a=7" rel="stylesheet">
 </head>
 <body>
     <div id="app">
