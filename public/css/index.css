@@ -38,11 +38,21 @@ a, b, body, button, dd, div, dl, em, footer, form, h1, h2, h3, h4, h5, h6, i, in
     -webkit-text-size-adjust: none;
 }
 
-.common-box {
+{
     clear: both;
     margin-top: 20px;
     margin-bottom: 31px;
 }
+.common-box h3 span {
+    display: inline-block;
+    margin-right: 40px;
+    line-height: 45px;
+    color: #8d92a1;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+}
+
 .common-box ul.cur {
     font-weight: 400;
     display: block;

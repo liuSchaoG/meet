@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <link href="{{ asset('css/index.css') }}?a=125" rel="stylesheet">
+    <link href="{{ asset('css/index.css') }}?a=126" rel="stylesheet">
     <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
         <!-- 轮播（Carousel）指标 -->
         <ol class="carousel-indicators">
