@@ -232,7 +232,7 @@
                             <img src="http://demo.cssmoban.com/cssthemes5/tope_9_ziggy/img/second-icon.png" alt="">
                         </div>
                         <h4>全民红娘|月老</h4>
-                        <p>我们提供月老红娘注册功能，全民参与，帮助身边的人找到，找到另一半，找到幸福。</p>
+                        <p>我们提供月老红娘注册功能，全民参与，帮助身边的人找到另一半，找到幸福。</p>
                     </div>
                 </li>
                 <li>
