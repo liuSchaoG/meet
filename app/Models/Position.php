@@ -15,6 +15,6 @@ class Position extends Model
     // 
    	public static function findNameById($id)
    	{
-   		return DB::table('postion')->where('id',$id)->value('name');
+   		return DB::table('position')->where('id',$id)->value('name');
    	}
 }
