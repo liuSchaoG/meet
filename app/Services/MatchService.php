@@ -5,6 +5,8 @@ namespace App\Services;
 use App\User;
 use App\Models\Preference;
 use App\Models\UserInfo;
+use App\Models\Position;
+use App\Models\Area;
 use Illuminate\Support\Facades\DB;
 /**
  * 匹配信息服务提供
@@ -33,10 +35,15 @@ class MatchService
         $list_p = UserInfo::where($where) -> select($field) -> paginate(15);
 
         foreach ($list_p as $key => $value) {
-        	$value['uborm'] = 1;
+        	$info = User::findByUid($value['uid']);
+        	$value['job_name'] = Position::findNameById($value['job']);
+        	$value['head_img'] = $info['head_img'];
+        	$value['created_at'] = $info['created_at'];
+        	$value['username'] = $info['username'];
+        	$value['area_name'] = Area::findNameById($value['area_city']);
         }
-        
-        dd($list_p);
+
+        // dd($list_p);
    		 // -> leftJoin('area', 'user_info.area_city', '=', 'area.area_id')
 		 // -> leftJoin('user', 'user_info.uid', '=', 'user.id')
 		 // -> leftJoin('position', 'user_info.job', '=', 'position.id')
