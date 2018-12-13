@@ -35,12 +35,12 @@ class MatchService
         $list_p = UserInfo::where($where) -> select($field) -> paginate(15);
 
         foreach ($list_p as $key => $value) {
-        	$info = User::findByUid($value['uid']);
-        	$value['job_name'] = Position::findNameById($value['job']);
-        	$value['head_image'] = $info->head_image;
-        	$value['created_at'] = $info->created_at;
-        	$value['username'] = $info->username;
-        	$value['area_name'] = Area::findNameById($value['area_city']);
+        	// $info = User::findByUid($value['uid']);
+        	$value['job_name'] = $value['job'];
+        	$value['head_image'] = '';
+        	$value['created_at'] = '2018-12-10';
+        	$value['username'] = '666666';
+        	$value['area_name'] = $value['area_city'];
         }
 
         return $list_p;//列表含分页
