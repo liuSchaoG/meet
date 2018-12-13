@@ -67,6 +67,19 @@ class LoginController extends Controller
                     'token' =>md5($this->user->password.env('CHAT_KEY'))
                 ]);
             }
+
+            //获取浏览器地理位置  
+            $locations = GlobalFunction::getCityByIp();
+            if($locations){
+                $country = $locations['data']['country'];
+                $province = $locations['data']['region'];
+                $city = $locations['data']['city'];
+            }else{
+                $country = '无法获取位置';
+                $province = '无法获取位置';
+                $city = '无法获取位置';
+            }
+
             session([
                 'id' => $this->user->id,
                 'username' => $this->user->username,
