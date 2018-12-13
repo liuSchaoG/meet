@@ -6,15 +6,15 @@ namespace App\Models;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
-class Area extends Model
+class Position extends Model
 {
-    protected   $table = 'area';
+    protected   $table = 'position';
     public      $timestamps = true;
     // protected   $fillable = ['uid','user_name','phone','area_province','area_city','area','income','height','marry_status','education','college','created_at','updated_at'];
     // protected   $hidden = [ 'password', 'remember_token'];
     // 
-    public function findNameById($id)
+   	public function findNameById($id)
    	{
-   		return DB::table('area')->where('area_id',$id)->value('area_name');
+   		return DB::table('postion')->where('id',$id)->value('name');
    	}
 }
