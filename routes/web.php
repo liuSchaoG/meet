@@ -13,7 +13,7 @@
 
 //防止csrf攻击
 Route::group(['middleware'=>'web'],function (){
-    Route::get('/', 'IndexController@index');//首页
+    Route::get('/', 'IndexController@index')->name('index');;//首页
     //登录注册
     //Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginController@login')->name('login');//登录
@@ -31,6 +31,7 @@ Route::group(['middleware'=>'web'],function (){
     Route::any('chatRoom', 'ChatController@index')->name('chatRoom');//聊天室
     Route::post('getChatList', 'ChatController@getChatList')->name('getChatList');//聊天室
     Route::post('chat/upload', 'ChatController@upload')->name('upload');//上传图片
+    Route::post('chat/setTop', 'ChatController@setTop')->name('chat/setTop');//置顶
 
 
     //个人心中路由定义  2018-11-17
@@ -68,6 +69,12 @@ Route::group(['middleware'=>'web'],function (){
     Route::post('/user/preferenceSave', 'UserController@prefernceSave')->name('PreferenceSave');
     
     Route::post('/user/uploadHeader', 'UserController@headerImg')->name('uploadHeader');
+
+
+
+    /******筛选匹配列表相关*****/
+    Route::get('/index/list', 'MatchingController@index')->name('index_list');
+
 
 });
 

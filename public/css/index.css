@@ -1,0 +1,311 @@
+.navbar {
+    margin-bottom: 0px;
+}
+li, ol, ul {
+    list-style: none;
+}
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+a {
+    text-decoration: none;
+    color: #414a60;
+}
+a:hover {
+    text-decoration: none;
+    color: #ff3300;
+}
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+img {
+    border: none;
+}
+a, b, body, button, dd, div, dl, em, footer, form, h1, h2, h3, h4, h5, h6, i, input, label, li, nav, p, select, span, td, textarea, u, ul {
+    padding: 0;
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: none;
+}
+
+.clear{
+    clear: both;
+    margin-top: 20px;
+    margin-bottom: 31px;
+}
+.common-box h3 span {
+    display: inline-block;
+    margin-right: 40px;
+    line-height: 45px;
+    color: #8d92a1;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.common-box ul.cur {
+    font-weight: 400;
+    display: block;
+}
+.common-box ul {
+    width: 100%;
+    top: 47px;
+    left: 0;
+    background: #fff;
+    display: none;
+}
+.xy-box ul {
+    border-top: solid 2px #ff3300;
+    height: 393px;
+}
+.xy-box ul li {
+    height: 131px;
+    width: 33.33333333%;
+    float: left;
+}
+.xy-box li .sub-li {
+    display: block;
+    border-right: solid 2px #f6f6f8;
+    border-bottom: solid 2px #f6f6f8;
+    height: 100%;
+    margin-right: -2px;
+}
+
+.xy-box li .sub-li .sub-li-left{
+    padding-left: 4px;
+    padding-top: 4px;
+    width: 37%;
+    height: 100%;
+    float: left;
+}
+
+.xy-box li .sub-li .sub-li-right{
+    position: relative;
+    padding-left: 4px;
+    padding-top: 4px;
+    width: 60%;
+    height: 100%;
+    float: left;
+    overflow: hidden;
+}
+
+.xy-box li p {
+    height: 35px;
+    line-height: 35px;
+    font-size: 15px;
+    color: #61687c;
+    padding-right: 70px;
+    margin: 0 auto 0 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    white-space: nowrap;
+}
+.xy-box li .sub-li .sub-li-right .salary {
+    color: #fc6c38;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-family: inherit;
+}
+
+.xy-box li .sub-li .sub-li-right p.user-text{
+    font-size: 12px;
+    color: #61687c;
+    border-bottom: dashed 1px #e3e7ed;
+    width: 100%;
+    padding-right: 0;
+    line-height: 28px;
+}
+
+.xy-box li .sub-li .sub-li-right p.inner-talk {
+    width: 100%;
+    font-size: 12px;
+    color: #8d92a1;
+    line-height: 35px;
+    padding-right: 0px;
+    height: 49px;
+    margin-top: 5px;
+}
+
+.xy-box li .sub-li .sub-li-right p.to-chat {
+    padding-left: 45px;
+    padding-top: 12px;
+    position: absolute;
+    width: 100%;
+    font-size: 12px;
+    color: #8d92a1;
+    line-height: 35px;
+    padding-right: 0px;
+    height: 55px;
+    bottom: -55px;
+    left: 0px;
+    z-index: 9;
+}
+.xy-box li .sub-li .sub-li-right p.to-chat .bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top:0px;
+    background: #000;
+    opacity:0.6;
+    z-index: 10;
+}
+
+.vline {
+    display: inline-block;
+    width: 1px;
+    height: 12px;
+    vertical-align: middle;
+    background: #e0e0e0;
+    margin: 0 10px;
+}
+.btn {
+    position: relative;
+    display: inline-block;
+    min-width: 40px;
+    box-sizing: content-box;
+    height: 16px;
+    line-height: 16px;
+    border: 1px #ff3300 solid;
+    background-color: #ff3300;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 1px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 11;
+}
+.btn:hover{
+    color: white;
+}
+.xy-box ul li:hover { transform:scale(1.02,1.02); }
+
+
+.xy-box-advantage ul {
+    height: 234px;
+}
+.xy-box-advantage ul li {
+    height: 100%;
+    width: 33.33333333%;
+    float: left;
+}
+.xy-box-advantage ul .sub-li {
+    text-align: center;
+}
+.xy-box-advantage ul .sub-li .icon{
+    margin-top: 5px;
+}
+.xy-box-advantage ul .sub-li h4{
+    font-size: 16px;
+    color: #fc6c38;
+    margin-top: 10px;
+}
+.xy-box-advantage ul .sub-li p{
+    padding: 5px;
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.xy-box-jiyu{
+    position: relative;
+}
+
+.xy-box-jiyu .title{
+    position: absolute;
+    top: 100px;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+}
+.xy-box-jiyu .text{
+    position: absolute;
+    top: 140px;
+    left: 100px;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    width: 70%;
+}
+
+
+.xy-box-success ul {
+    border-top: solid 2px #ff3300;
+    height: 343px;
+}
+.xy-box-success ul li {
+    height: 170px;
+    width: 16.6666%;
+    float: left;
+}
+.xy-box-success .sub-li {
+    position: relative;
+    padding-top: 3px;
+    padding-left: 1px;
+    display: block;
+    border-right: solid 2px #f6f6f8;
+    border-bottom: solid 2px #f6f6f8;
+    height: 100%;
+    margin-right: -2px;
+    overflow: hidden;
+}
+
+
+
+.xy-box-success li .sub-li .to-xiaoyuan {
+    position: absolute;
+    width: 100%;
+    font-size: 12px;
+    color: #8d92a1;
+    line-height: 35px;
+    padding-right: 0px;
+    height: 100%;
+    top: -170px;
+    left: 0px;
+    z-index: 9;
+}
+.xy-box-success li .sub-li .to-xiaoyuan .bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top:0px;
+    background: #000;
+    opacity:0.3;
+    z-index: 10;
+}
+.xy-box-success li .sub-li .to-xiaoyuan .text {
+    position: relative;
+    display: inline-block;
+    min-width: 40px;
+    box-sizing: content-box;
+    height: 16px;
+    line-height: 16px;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-align: center;
+    z-index: 11;
+}
+
+.xy-box-success li .sub-li .to-xiaoyuan .text p{
+    margin-top: 12px;
+}
+
+
+
+

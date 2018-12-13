@@ -7,6 +7,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Mongo;
+use App\Extensions\GlobalFunction;
+
 
 class LoginController extends Controller
 {
@@ -70,6 +72,7 @@ class LoginController extends Controller
 
             //获取浏览器地理位置  
             $locations = GlobalFunction::getCityByIp();
+            
             if($locations){
                 $country = $locations['data']['country'];
                 $province = $locations['data']['region'];
@@ -86,7 +89,10 @@ class LoginController extends Controller
                 'phone' => $this->user->phone,
                 'sex' => $this->user->sex,
                 'head_image' => $this->user->head_image,
-                'status' => 1
+                'status' => 1,
+                'country'=>$country,
+                'province'=>$province,
+                'city'=>$city
             ]);
         }
         return redirect($this->redirectTo);

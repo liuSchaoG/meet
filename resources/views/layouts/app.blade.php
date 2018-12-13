@@ -10,7 +10,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}?a=1" rel="stylesheet">
+    <link href="{{ asset('css/layout.css') }}?a=7" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -26,7 +27,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="nav-red" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -34,12 +35,11 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ route('login') }}">{{env('title1','首页')}}</a></li>
-                        <li><a href="{{ route('register') }}">{{env('title2','同城约')}}</a></li>
+                        <li><a href="{{ route('index') }}">{{env('title1','首页')}}</a></li>
+                        <li><a href="{{ route('index_list') }}">{{env('title2','同城约')}}</a></li>
                         <li><a href="{{ route('register') }}">APP</a></li>
                         <li><a href="{{ route('register') }}">{{env('title3','咨询')}}</a></li>
                     </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
@@ -54,13 +54,13 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="{{ route('BaseInfo',['uid'=>session('id')]) }}">个人中心</a>
+                                        <a href="{{ route('BaseInfo') }}">个人中心</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('BaseInfo') }}">诚信认证</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('BaseInfo') }}">个人相册</a>
+                                        <a href="{{ route('albumIndex') }}">个人相册</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('BaseInfo') }}">系统设置</a>
