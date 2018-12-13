@@ -13,7 +13,7 @@ class Area extends Model
     // protected   $fillable = ['uid','user_name','phone','area_province','area_city','area','income','height','marry_status','education','college','created_at','updated_at'];
     // protected   $hidden = [ 'password', 'remember_token'];
     // 
-    public function findNameById($id)
+    public static function findNameById($id)
    	{
    		return DB::table('area')->where('area_id',$id)->value('area_name');
    	}
