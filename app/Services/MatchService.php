@@ -37,7 +37,7 @@ class MatchService
         foreach ($list_p as $key => $value) {
         	$info = User::findByUid($value['uid']);
         	$value['job_name'] = Position::findNameById($value['job']);
-        	$value['head_img'] = $info['head_img'];
+        	$value['head_img'] = $info['head_image'];
         	$value['created_at'] = $info['created_at'];
         	$value['username'] = $info['username'];
         	$value['area_name'] = Area::findNameById($value['area_city']);
