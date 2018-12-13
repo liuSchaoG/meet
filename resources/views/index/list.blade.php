@@ -10,7 +10,7 @@
                         <div class="search-form-con">
                             <div class="city-sel">
                                 <i class="line"></i>
-                                <span class="label-text"><b>北京</b><i class="icon-arrow-down"></i></span>
+                                <span class="label-text"><b>{{session('city')}}</b><i class="icon-arrow-down"></i></span>
                             </div>
                             <div class="industry-sel" ka="search_bos_sel_industry">
                                 <i class="line"></i>
@@ -34,7 +34,7 @@
             <div class="condition-box">
                 <dl class="condition-city show-condition-district">
                     <dd class="city-wrapper">
-                        <a href="javascript:;" class="disabled">北京</a>
+                        <a href="javascript:;" class="disabled">{{session('city')}}</a>
 
                         <em class="icon-arrow-right"></em>
                         <a href="javascript:;" class="link-district selected">

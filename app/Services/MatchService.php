@@ -24,19 +24,22 @@ class MatchService
         //查询userinfo表 
         $sex = session('sex');
         $uid = session('id');
-        $field = ['user_info.uid','user_info.user_name','user_info.area_city','user_info.income','user_info.height','user_info.marry_status','user_info.education','user_info.college', 'area.area_name','user.username','user.head_image','user.created_at','user_info.job','position.name as job_name'];
+        $field = ['uid','user_name','area_city','income','height','marry_status','education','college','job'];
         if($sex==1){
-        	$where['user_info.sex'] = 2;
+        	$where['sex'] = 2;
         }else{
-        	$where['user_info.sex'] = 1;
+        	$where['sex'] = 1;
         }
-        $list_p = UserInfo::where($where) 
-        				 -> leftJoin('area', 'user_info.area_city', '=', 'area.area_id')
-        				 -> leftJoin('user', 'user_info.uid', '=', 'user.id')
-        				 -> leftJoin('position', 'user_info.job', '=', 'position.id')
-        				 -> select($field)
-            			 -> paginate(15);
+        $list_p = UserInfo::where($where) -> select($field) -> paginate(15);
+
+        foreach ($list_p as $key => $value) {
+        	$value['uborm'] = 1;
+        }
         
+        dd($list_p);
+   		 // -> leftJoin('area', 'user_info.area_city', '=', 'area.area_id')
+		 // -> leftJoin('user', 'user_info.uid', '=', 'user.id')
+		 // -> leftJoin('position', 'user_info.job', '=', 'position.id')
         return $list_p;//列表含分页
     }
 

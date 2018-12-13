@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\MatchService;
-use App\Extensions\GlobalFunction;
 /**
  * 列表用户控制器
  */
@@ -29,14 +28,8 @@ class MatchingController extends Controller
      */
     public function index(Request $request)
     {
+
         $param = $request->all();
-        //获取浏览器地理位置  
-        $locations = GlobalFunction::getCityByIp();
-        if($locations){
-            $param['local_country'] = $locations['data']['country'];
-            $param['local_province'] = $locations['data']['region'];
-            $param['local_city'] = $locations['data']['city'];
-        }
 
         $list_p = $this->matchService -> getDefaultList($param);
 
@@ -44,8 +37,8 @@ class MatchingController extends Controller
 
         $educations = [0=>'保密',1=>'小学',2=>'初中',3=>'高中（职高、中专）',4=>'大专（高职）',5=>'本科',6=>'研究生',7=>'博士以上'];
 
-        return view('index.list',['list_p'=>$list_p,'local_city'=>$locations['data']['city'],'incomes'=>$incomes,'educations'=>$educations]);
-        //return view('index.list');
+        return view('index.list',['list_p'=>$list_p,'incomes'=>$incomes,'educations'=>$educations]);
+
     }
 
 
