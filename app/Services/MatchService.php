@@ -34,13 +34,15 @@ class MatchService
         }
         $list_p = UserInfo::where($where) -> select($field) -> paginate(15);
 
+        $jobs = config('userdata.user_jobs');
+        $citys = config('userdata.user_citys');
+
         foreach ($list_p as $key => $value) {
-        	// $info = User::findByUid($value['uid']);
-        	$value['job_name'] = $value['job'];
+        	$value['job_name'] = '暂无';//$jobs[$value['job']];
         	$value['head_image'] = '';
         	$value['created_at'] = '2018-12-10';
         	$value['username'] = '666666';
-        	$value['area_name'] = $value['area_city'];
+        	$value['area_name'] = $citys[$value['area_city']];
         }
 
         return $list_p;//列表含分页
