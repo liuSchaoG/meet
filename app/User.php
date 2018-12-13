@@ -41,6 +41,6 @@ class User extends Authenticatable
 
     public static function findByUid($uid)
     {
-        return DB::table('user')->where('id', $uid)->select('username', 'head_img','created_at')->first();
+        return DB::table('user')->where('id', $uid)->select('username', 'head_image','created_at')->first();
     }
 }
