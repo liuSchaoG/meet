@@ -26,7 +26,7 @@ class MatchService
         //查询userinfo表 
         $sex = session('sex');
         $uid = session('id');
-        $field = ['uid','user_name','area_city','income','height','marry_status','education','college','job'];
+        $field = ['uid','user_name','nick_name as username','area_city','income','height','marry_status','education','college','job','head_image','created_at'];
         if($sex==1){
         	$where['sex'] = 2;
         }else{
@@ -38,10 +38,7 @@ class MatchService
         $citys = config('userdata.user_citys');
 
         foreach ($list_p as $key => $value) {
-        	$value['job_name'] = '暂无';//$jobs[$value['job']];
-        	$value['head_image'] = '';
-        	$value['created_at'] = '2018-12-10';
-        	$value['username'] = '666666';
+        	$value['job_name'] = $jobs[$value['job']];
         	$value['area_name'] = $citys[$value['area_city']];
         }
 
