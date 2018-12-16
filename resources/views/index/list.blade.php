@@ -278,8 +278,8 @@
                                     </div>
                                 </div>
                                 <div class="info-publis">
-                                    <h3 class="name"><img src="/{{$info->head_image}}">{{$info->user_name}}<em class="vline"></em>{{$info->nick_name}}</h3>
-                                    <p>创建于{{$info->created_at}}</p>
+                                    <h3 class="name"><img src="/{{$info->head_image}}">{{$info->user_name}}<em class="vline"></em></h3>
+                                    <p>于{{$info->created_at}}进入MEETXY.COM</p>
                                 </div>
                                 <a href="/chatRoom?id={{$info->uid}}" target="_blank" class="btn btn-startchat">立刻开撩</a>
                             </div>
