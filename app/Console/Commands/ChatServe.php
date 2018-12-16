@@ -130,7 +130,7 @@ class ChatServe extends Command
                 $talk = Mongo::connectMongo('chatFriendsList')->where('uid', $receive['send_uid'])->where('receive_id', $receive['receive_uid'])->get()->toArray();
                 if (empty($talk)) {
                     Mongo::connectMongo('chatFriendsList')->insert([
-                        ['uid' => $receive['send_uid'], 'receive_id' => $receive['receive_uid'],'unread_num'=>0,'updated_at' =>time()]
+                        ['uid' => $receive['send_uid'], 'receive_id' => $receive['receive_uid'],'unread_num'=>0,'is_fan'=>0,'is_del'=>0,'updated_at' =>time()]
                     ]);
                 } else {
                     Mongo::connectMongo('chatFriendsList')->where('uid',$receive['send_uid'])->where('receive_id',$receive['receive_uid'])
