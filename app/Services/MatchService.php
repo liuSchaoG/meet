@@ -32,7 +32,7 @@ class MatchService
         }else{
         	$where['sex'] = 1;
         }
-        $list_p = UserInfo::where($where) -> select($field) -> paginate(15);
+        $list_p = UserInfo::where($where) -> select($field) -> paginate(10);
 
         $jobs = config('userdata.user_jobs');
         $citys = config('userdata.user_citys');
