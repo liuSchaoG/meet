@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <link href="{{ asset('css/list.css?a=8')}}" rel="stylesheet">
+    <link href="{{ asset('css/list.css?a=13')}}" rel="stylesheet">
     <div id="filter-box" class="">
         <div class="inner home-inner">
             <!--搜索框-->
@@ -10,22 +10,49 @@
                         <div class="search-form-con">
                             <div class="city-sel">
                                 <i class="line"></i>
-                                <span class="label-text"><b>北京</b><i class="icon-arrow-down"></i></span>
+                                <span class="label-text"><b>北京</b>
+                                    <i class="glyphicon glyphicon-chevron-down"></i>
+                                </span>
                             </div>
                             <div class="industry-sel" ka="search_bos_sel_industry">
                                 <i class="line"></i>
-                                <span class="label-text"><b>公司行业</b><i class="icon-arrow-down"></i></span>
+                                <span class="label-text"><b>性别</b><i class="glyphicon glyphicon-chevron-down"></i></span>
                             </div>
-                            <div class="position-sel" ka="search_box_sel_jobtype">
-                                <i class="line"></i>
-                                <span class="label-text"><b>职位类型</b><i class="icon-arrow-down"></i></span>
-                            </div>
-                            <p class="ipt-wrap"><input type="text" name="query" ka="search-keyword" value="" autocomplete="off" class="ipt-search" maxlength="50" placeholder="搜索职位、公司"></p>
+                            <p class="ipt-wrap"><input type="text" name="query" ka="search-keyword" value="" autocomplete="off" class="ipt-search" maxlength="50" placeholder="搜索用户id"></p>
                         </div>
                         <input type="hidden" name="scity" class="city-code" value="101010100">
                         <input type="hidden" name="industry" class="industry-code" value="">
                         <input type="hidden" name="position" class="position-code" value="">
                         <button class="btn-search">搜索</button>
+                        <div class="city-box">
+                            <ul class="dorpdown-province">
+                                <li class="">热门</li>
+                                <li ka="sel-province-1" class="">北京</li>
+                                <li ka="sel-province-2" class="">上海</li>
+                                <li ka="sel-province-3" class="">天津</li>
+                                <li ka="sel-province-4" class="cur">重庆</li>
+                                <li ka="sel-province-5" class="">黑龙江</li>
+                                <li ka="sel-province-6" class="">吉林</li>
+                                <li ka="sel-province-7" class="">辽宁</li>
+                                <li ka="sel-province-8" class="">内蒙古</li>
+                                <li ka="sel-province-9" class="">河北</li>
+                                <li ka="sel-province-10" class="">山西</li>
+                                <li ka="sel-province-11" class="">陕西</li>
+                                <li ka="sel-province-12" class="">山东</li>
+                                <li ka="sel-province-13" class="">新疆</li>
+                                <li ka="sel-province-14" class="">青海</li>
+                                <li ka="sel-province-15" class="">甘肃</li>
+                                <li ka="sel-province-16" class="">宁夏</li>
+                                <li ka="sel-province-17" class="">河南</li>
+                                <li ka="sel-province-18" class="">江苏</li>
+                                <li ka="sel-province-19" class="">湖北</li>
+                                <li ka="sel-province-20" class="">浙江</li>
+                                <li ka="sel-province-21" class="">安徽</li>
+                            </ul>
+                        </div>
+                        <div class="dorpdown-city">
+                            <ul class="sel-province-1"><li ka="hot-city-100010000" data-val="100010000" class="cur">全国</li><li ka="hot-city-101010100" data-val="101010100" class="cur">北京</li><li ka="hot-city-101020100" data-val="101020100" class="cur">上海</li><li ka="hot-city-101280100" data-val="101280100" class="cur">广州</li><li ka="hot-city-101280600" data-val="101280600" class="cur">深圳</li><li ka="hot-city-101210100" data-val="101210100" class="cur">杭州</li><li ka="hot-city-101030100" data-val="101030100" class="cur">天津</li><li ka="hot-city-101110100" data-val="101110100" class="cur">西安</li><li ka="hot-city-101190400" data-val="101190400" class="cur">苏州</li><li ka="hot-city-101200100" data-val="101200100" class="cur">武汉</li><li ka="hot-city-101230200" data-val="101230200" class="cur">厦门</li><li ka="hot-city-101250100" data-val="101250100" class="cur">长沙</li><li ka="hot-city-101270100" data-val="101270100" class="cur">成都</li><li ka="hot-city-101180100" data-val="101180100" class="cur">郑州</li><li ka="hot-city-101040100" data-val="101040100" class="cur">重庆</li></ul>
+                        </div>
                     </form>
                 </div>
             </div>
