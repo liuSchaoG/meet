@@ -10,7 +10,7 @@
                         <div class="search-form-con">
                             <div class="city-sel">
                                 <i class="line"></i>
-                                <span class="label-text"><b>北京</b>
+                                <span class="label-text"><b>{{session('city')}}</b>
                                     <i class="glyphicon glyphicon-chevron-down"></i>
                                 </span>
                             </div>
@@ -61,7 +61,7 @@
             <div class="condition-box">
                 <dl class="condition-city show-condition-district">
                     <dd class="city-wrapper">
-                        <a href="javascript:;" class="disabled">北京</a>
+                        <a href="javascript:;" class="disabled">{{session('city')}}</a>
 
                         <em class="icon-arrow-right"></em>
                         <a href="javascript:;" class="link-district selected">
@@ -294,19 +294,19 @@
                                 <div class="info-primary">
                                     <h3 class="name">
                                         <a href="{{$info->uid}}" data-itemid="1" data-lid="1cuR2yKgA43.search" data-jobid="29925123" data-index="1" ka="search_list_1" target="_blank">
-                                            <span>{{$info->username}}</span>&nbsp;<em class="red"></em>
-                                            <span>工作：{{$info->job_name or '保密'}}</span>
+                                            <span>{{$info->nick_name}}</span>&nbsp;<em ></em>
+                                            <span class="red" >工作：{{$jobs[$info->job] or '保密'}}</span>
                                         </a>
                                     </h3>
-                                    <p>{{$info->area_name or '暂时保密'}}<em class="vline"></em>月薪：{{$incomes[$info->income]}}<em class="vline"></em>{{$educations[$info->education]}}</p>
+                                    <p>{{$citys[$info->area_city] or '暂时保密'}}<em class="vline"></em>月薪：{{$incomes[$info->income]}}<em class="vline"></em>{{$educations[$info->education]}}</p>
                                 </div>
                                 <div class="info-company">
                                     <div class="company-text"></p>
                                     </div>
                                 </div>
                                 <div class="info-publis">
-                                    <h3 class="name"><img src="/{{$info->head_image}}">{{$info->user_name}}<em class="vline"></em>{{$info->username}}</h3>
-                                    <p>创建于{{$info->created_at}}</p>
+                                    <h3 class="name"><img src="/{{$info->head_image}}">{{$info->user_name}}<em class="vline"></em>待定</h3>
+                                    <p>开始于{{$info->created_at}}</p>
                                 </div>
                                 <a href="/chatRoom?id={{$info->uid}}" target="_blank" class="btn btn-startchat">立刻开撩</a>
                             </div>

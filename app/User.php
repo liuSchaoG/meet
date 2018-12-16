@@ -38,4 +38,9 @@ class User extends Authenticatable
     {
         return DB::table('user')->where('phone', $phone)->first();
     }
+
+    public static function findByUid($uid)
+    {
+        return DB::table('user')->where('id', $uid)->select('username', 'head_image','created_at')->first();
+    }
 }

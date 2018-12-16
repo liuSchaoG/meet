@@ -173,14 +173,15 @@ class UserController extends  Controller
         if(is_null($message)){
             $id = session('id');
             DB::table('user') -> where('id',$id) -> update(['head_image'=>$result]);
+            DB::table('user_info') -> where('uid',$id) -> update(['head_image'=>$result]);
             session(['head_image' => $result]);
         }
         
-         $response = array(
+        $response = array(
            'state'  => 200,
            'message' => $crop -> getMsg(),
            'result' => '/'.$crop -> getResult()
-         );
+        );
 
          echo json_encode($response);
     }
