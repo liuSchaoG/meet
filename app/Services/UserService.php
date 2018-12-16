@@ -21,8 +21,9 @@ class UserService
     {
         $uid = session('id');
         $sex = session('sex');
+        $username = session('username');
         $field = ['uid','user_name','phone','area_province','area_city','area','income','height','marry_status','education','college'];
-        $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid,'sex'=>$sex])->toArray();
+        $info = UserInfo::select($field)->firstOrCreate(['uid'=>$uid,'sex'=>$sex,'nick_name'=>$username])->toArray();
         if(!isset($info['user_name'])){
             $info = UserInfo::where(['uid'=>$uid])->first()->toArray();
         }
