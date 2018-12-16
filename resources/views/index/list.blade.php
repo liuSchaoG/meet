@@ -268,10 +268,10 @@
                                     <h3 class="name">
                                         <a href="{{$info->uid}}" data-itemid="1" data-lid="1cuR2yKgA43.search" data-jobid="29925123" data-index="1" ka="search_list_1" target="_blank">
                                             <span>{{$info->nick_name}}</span>&nbsp;<em ></em>
-                                            <span class="red" >工作：{{$info->job_name or '保密'}}</span>
+                                            <span class="red" >工作：{{$jobs[$info->job] or '保密'}}</span>
                                         </a>
                                     </h3>
-                                    <p>{{$info->area_name or '暂时保密'}}<em class="vline"></em>月薪：{{$incomes[$info->income]}}<em class="vline"></em>{{$educations[$info->education]}}</p>
+                                    <p>{{$citys[$info->area_city] or '暂时保密'}}<em class="vline"></em>月薪：{{$incomes[$info->income]}}<em class="vline"></em>{{$educations[$info->education]}}</p>
                                 </div>
                                 <div class="info-company">
                                     <div class="company-text"></p>

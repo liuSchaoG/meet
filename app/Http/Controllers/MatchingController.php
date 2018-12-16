@@ -35,8 +35,10 @@ class MatchingController extends Controller
 
         $incomes    = config('userdata.user_incomes');
         $educations = config('userdata.user_educations');
-        
-        return view('index.list',['list_p'=>$list_p,'incomes'=>$incomes,'educations'=>$educations]);
+        $jobs       = config('userdata.user_jobs');
+        $citys      = config('userdata.user_citys');
+
+        return view('index.list',['list_p'=>$list_p,'incomes'=>$incomes,'educations'=>$educations,'jobs'=>$jobs,'citys'=>$citys]);
 
     }
 
