@@ -128,7 +128,7 @@ a, b, body, button, dd, div, dl, em, footer, form, h1, h2, h3, h4, h5, h6, i, in
 }
 
 .city-box {
-   /* display: none;*/
+    display: none;
     position: absolute;
     width: 150px;
     background: #fff;
@@ -170,6 +170,7 @@ a, b, body, button, dd, div, dl, em, footer, form, h1, h2, h3, h4, h5, h6, i, in
     background: #f1f3f6;
 }
 .dorpdown-city {
+    display: none;
     margin-left: 150px;
     background: #f8f9fa;
     height: 302px;
@@ -203,7 +204,9 @@ a, b, body, button, dd, div, dl, em, footer, form, h1, h2, h3, h4, h5, h6, i, in
     line-height: 50px;
     cursor: pointer;
 }
-
+.dorpdown-city ul{
+    display: none;
+}
 .filter-select-box .icon-select-arrow, .search-box .icon-arrow-down {
     background-position: 0 -2044px;
 }

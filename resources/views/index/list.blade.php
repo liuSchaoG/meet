@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <link href="{{ asset('css/list.css?a=13')}}" rel="stylesheet">
+    <link href="{{ asset('css/list.css?a=15')}}" rel="stylesheet">
     <div id="filter-box" class="">
         <div class="inner home-inner">
             <!--搜索框-->
@@ -11,7 +11,7 @@
                             <div class="city-sel">
                                 <i class="line"></i>
                                 <span class="label-text"><b>北京</b>
-                                    <i class="glyphicon glyphicon-chevron-down"></i>
+                                    <i class="glyphicon glyphicon-chevron-down" id="city-icon"></i>
                                 </span>
                             </div>
                             <div class="industry-sel" ka="search_bos_sel_industry">
@@ -26,11 +26,11 @@
                         <button class="btn-search">搜索</button>
                         <div class="city-box">
                             <ul class="dorpdown-province">
-                                <li class="">热门</li>
+                                <li ka="sel-province-0" class="cur">热门</li>
                                 <li ka="sel-province-1" class="">北京</li>
                                 <li ka="sel-province-2" class="">上海</li>
                                 <li ka="sel-province-3" class="">天津</li>
-                                <li ka="sel-province-4" class="cur">重庆</li>
+                                <li ka="sel-province-4" class="">重庆</li>
                                 <li ka="sel-province-5" class="">黑龙江</li>
                                 <li ka="sel-province-6" class="">吉林</li>
                                 <li ka="sel-province-7" class="">辽宁</li>
@@ -51,7 +51,8 @@
                             </ul>
                         </div>
                         <div class="dorpdown-city">
-                            <ul class="sel-province-1"><li ka="hot-city-100010000" data-val="100010000" class="cur">全国</li><li ka="hot-city-101010100" data-val="101010100" class="cur">北京</li><li ka="hot-city-101020100" data-val="101020100" class="cur">上海</li><li ka="hot-city-101280100" data-val="101280100" class="cur">广州</li><li ka="hot-city-101280600" data-val="101280600" class="cur">深圳</li><li ka="hot-city-101210100" data-val="101210100" class="cur">杭州</li><li ka="hot-city-101030100" data-val="101030100" class="cur">天津</li><li ka="hot-city-101110100" data-val="101110100" class="cur">西安</li><li ka="hot-city-101190400" data-val="101190400" class="cur">苏州</li><li ka="hot-city-101200100" data-val="101200100" class="cur">武汉</li><li ka="hot-city-101230200" data-val="101230200" class="cur">厦门</li><li ka="hot-city-101250100" data-val="101250100" class="cur">长沙</li><li ka="hot-city-101270100" data-val="101270100" class="cur">成都</li><li ka="hot-city-101180100" data-val="101180100" class="cur">郑州</li><li ka="hot-city-101040100" data-val="101040100" class="cur">重庆</li></ul>
+                            <ul class="sel-province-0 show"><li ka="hot-city-100010000" data-val="100010000" class="cur">全国</li><li ka="hot-city-101010100" data-val="101010100" class="cur">北京</li><li ka="hot-city-101020100" data-val="101020100" class="cur">上海</li><li ka="hot-city-101280100" data-val="101280100" class="cur">广州</li><li ka="hot-city-101280600" data-val="101280600" class="cur">深圳</li><li ka="hot-city-101210100" data-val="101210100" class="cur">杭州</li><li ka="hot-city-101030100" data-val="101030100" class="cur">天津</li><li ka="hot-city-101110100" data-val="101110100" class="cur">西安</li><li ka="hot-city-101190400" data-val="101190400" class="cur">苏州</li><li ka="hot-city-101200100" data-val="101200100" class="cur">武汉</li><li ka="hot-city-101230200" data-val="101230200" class="cur">厦门</li><li ka="hot-city-101250100" data-val="101250100" class="cur">长沙</li><li ka="hot-city-101270100" data-val="101270100" class="cur">成都</li><li ka="hot-city-101180100" data-val="101180100" class="cur">郑州</li><li ka="hot-city-101040100" data-val="101040100" class="cur">重庆</li></ul>
+                            <ul class="sel-province-1"><li ka="hot-city-101010100" data-val="101010100" class="cur">北京</li></ul>
                         </div>
                     </form>
                 </div>
@@ -386,6 +387,18 @@
             },function () {
                 $(this).find('.btn-startchat').attr('style','display:none;')
             })
+            $('.dorpdown-province').find('li').hover(function () {
+                $('.dorpdown-province li').removeClass('cur');
+                $(this).addClass('cur');
+                var cl = $(this).attr('ka');
+                $('.dorpdown-city ul').removeClass('show')
+                $('.' +cl).addClass('show');
+            })
+            $('.dorpdown-city ul').find('li').hover(function () {
+                $('.dorpdown-city ul li').removeClass('cur');
+                $(this).addClass('cur');
+            });
+            $('#city-icon').onclick()
         }
     </script>
 @endsection
