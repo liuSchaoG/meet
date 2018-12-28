@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <link href="{{ asset('css/list.css?a=15')}}" rel="stylesheet">
+    <link href="{{ asset('css/list.css?a=17')}}" rel="stylesheet">
     <div id="filter-box" class="">
         <div class="inner home-inner">
             <!--搜索框-->
@@ -10,13 +10,13 @@
                         <div class="search-form-con">
                             <div class="city-sel">
                                 <i class="line"></i>
-                                <span class="label-text"><b>北京</b>
+                                <span class="label-text" id ='city-label'><b>北京</b>
                                     <i class="glyphicon glyphicon-chevron-down" id="city-icon"></i>
                                 </span>
                             </div>
                             <div class="industry-sel" ka="search_bos_sel_industry">
                                 <i class="line"></i>
-                                <span class="label-text"><b>性别</b><i class="glyphicon glyphicon-chevron-down"></i></span>
+                                <span class="label-text" id="sex-label"><b>性别</b><i class="glyphicon glyphicon-chevron-down" id="sex-icon"></i></span>
                             </div>
                             <p class="ipt-wrap"><input type="text" name="query" ka="search-keyword" value="" autocomplete="off" class="ipt-search" maxlength="50" placeholder="搜索用户id"></p>
                         </div>
@@ -53,6 +53,13 @@
                         <div class="dorpdown-city">
                             <ul class="sel-province-0 show"><li ka="hot-city-100010000" data-val="100010000" class="cur">全国</li><li ka="hot-city-101010100" data-val="101010100" class="cur">北京</li><li ka="hot-city-101020100" data-val="101020100" class="cur">上海</li><li ka="hot-city-101280100" data-val="101280100" class="cur">广州</li><li ka="hot-city-101280600" data-val="101280600" class="cur">深圳</li><li ka="hot-city-101210100" data-val="101210100" class="cur">杭州</li><li ka="hot-city-101030100" data-val="101030100" class="cur">天津</li><li ka="hot-city-101110100" data-val="101110100" class="cur">西安</li><li ka="hot-city-101190400" data-val="101190400" class="cur">苏州</li><li ka="hot-city-101200100" data-val="101200100" class="cur">武汉</li><li ka="hot-city-101230200" data-val="101230200" class="cur">厦门</li><li ka="hot-city-101250100" data-val="101250100" class="cur">长沙</li><li ka="hot-city-101270100" data-val="101270100" class="cur">成都</li><li ka="hot-city-101180100" data-val="101180100" class="cur">郑州</li><li ka="hot-city-101040100" data-val="101040100" class="cur">重庆</li></ul>
                             <ul class="sel-province-1"><li ka="hot-city-101010100" data-val="101010100" class="cur">北京</li></ul>
+                        </div>
+                        <div class="position-box">
+                            <ul class="dorpdown-sex">
+                                <li data-val="" class="cur"><a href="javascript:;">不限</a></li>
+                                <li data-val="100001" ka="sel-industry-1">男</li>
+                                <li data-val="100001" ka="sel-industry-1">女</li>
+                            </ul>
                         </div>
                     </form>
                 </div>
@@ -398,7 +405,36 @@
                 $('.dorpdown-city ul li').removeClass('cur');
                 $(this).addClass('cur');
             });
-            $('#city-icon').onclick()
+            $('.dorpdown-sex').find('li').hover(function () {
+                $('.dorpdown-sex li').removeClass('cur');
+                $(this).addClass('cur');
+            });
+
+            $('#city-label').click(function () {
+                if($('.city-box').css("display") == 'none'){
+                    $('#city-icon').removeClass('glyphicon-chevron-down');
+                    $('#city-icon').addClass('glyphicon-chevron-up');
+                    $('.city-box').show();
+                    $('.dorpdown-city').show();
+                }else{
+                    $('#city-icon').removeClass('glyphicon-chevron-up');
+                    $('#city-icon').addClass('glyphicon-chevron-down');
+                    $('.city-box').hide();
+                    $('.dorpdown-city').hide();
+                }
+            })
+
+            $('#sex-label').click(function () {
+                if($('.position-box').css("display") == 'none'){
+                    $('#sex-icon').removeClass('glyphicon-chevron-down');
+                    $('#sex-icon').addClass('glyphicon-chevron-up');
+                    $('.position-box').show();
+                }else{
+                    $('#sex-icon').removeClass('glyphicon-chevron-up');
+                    $('#sex-icon').addClass('glyphicon-chevron-down');
+                    $('.position-box').hide();
+                }
+            })
         }
     </script>
 @endsection
