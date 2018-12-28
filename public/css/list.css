@@ -128,7 +128,7 @@ a, b, body, button, dd, div, dl, em, footer, form, h1, h2, h3, h4, h5, h6, i, in
 }
 
 .city-box {
-   /* display: none;*/
+    display: none;
     position: absolute;
     width: 150px;
     background: #fff;
@@ -138,6 +138,31 @@ a, b, body, button, dd, div, dl, em, footer, form, h1, h2, h3, h4, h5, h6, i, in
     color: #9fa3b0;
     box-shadow: 0 2px 8px rgba(0,0,0,.1);
 }
+.position-box {
+    position: absolute;
+    top: 45px;
+    left: 547px;
+    display: none;
+    z-index: 1;
+    color: #9fa3b0;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+}
+.dorpdown-sex {
+    float: left;
+    width: 150px;
+    height: 150px;
+    overflow: auto;
+}
+.dorpdown-city li, .dorpdown-province li,.dorpdown-sex li  {
+    padding-left: 28px;
+    line-height: 50px;
+    cursor: pointer;
+}
+.dorpdown-sex li.cur {
+    background: #f1f3f6;
+}
+
 .dorpdown-province {
     float: left;
     width: 150px;
@@ -161,7 +186,7 @@ a, b, body, button, dd, div, dl, em, footer, form, h1, h2, h3, h4, h5, h6, i, in
     border-radius: 0;
     background: rgba(0, 0, 0, 0.1);
 }
-.dorpdown-city li, .dorpdown-province li {
+.dorpdown-city li, .dorpdown-province li,.dorpdown-sex li {
     padding-left: 28px;
     line-height: 50px;
     cursor: pointer;
@@ -170,6 +195,7 @@ a, b, body, button, dd, div, dl, em, footer, form, h1, h2, h3, h4, h5, h6, i, in
     background: #f1f3f6;
 }
 .dorpdown-city {
+    display: none;
     margin-left: 150px;
     background: #f8f9fa;
     height: 302px;
@@ -194,16 +220,13 @@ a, b, body, button, dd, div, dl, em, footer, form, h1, h2, h3, h4, h5, h6, i, in
     border-radius: 0;
     background: rgba(0, 0, 0, 0.1);
 }
-.dorpdown-city li.cur {
+.dorpdown-city li.cur,.dorpdown-sex li.cur {
     background: #f1f3f6;
 }
 
-.dorpdown-city li, .dorpdown-province li {
-    padding-left: 28px;
-    line-height: 50px;
-    cursor: pointer;
+.dorpdown-city ul{
+    display: none;
 }
-
 .filter-select-box .icon-select-arrow, .search-box .icon-arrow-down {
     background-position: 0 -2044px;
 }
