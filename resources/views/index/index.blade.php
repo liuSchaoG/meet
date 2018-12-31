@@ -36,18 +36,19 @@
                 <span class="cur">每日情缘</span>
             </h3>
             <ul class="cur">
+                @foreach ($every_list as $info)
                 <li>
                     <div class="sub-li">
                         <div class="sub-li-left">
-                            <img src="http://images1.jyimg.com/w4/global/cms/uploadfile/2010/1203/20101203102033242.jpg" width="100">
+                            <img src="/{{$info->head_image}}" width="100">
                         </div>
                         <div class="sub-li-right">
                             <p>
-                                <a href="">王明月</a>
-                                <span class="salary">5000-8000</span>
+                                <a href="">{{$info->user_name}}</a>
+                                <span class="salary">{{$incomes[$info->income]}}</span>
                             </p>
-                            <p class="user-text">北京<span class="vline"></span>25岁<span class="vline"></span>本科<span class="vline"></span>160cm</p>
-                            <p class="inner-talk">内心独白: 想找北京本地人，乐观阳光，本人单身多年认识的人少也不想将就，...</p>
+                            <p class="user-text">{{$citys[$info->area_city] or '暂时保密'}}<span class="vline"></span>{{$info->age}}岁<span class="vline"></span>{{$educations[$info->education]}}<span class="vline"></span>{{$info->height}}cm</p>
+                            <p class="inner-talk">内心独白:{{$info->inner_idea}}</p>
                             <p class="to-chat">
                                 <i class="bg"></i>
                                 <a href="" class="btn">立即沟通</a>
@@ -55,7 +56,8 @@
                         </div>
                     </div>
                 </li>
-                <li>
+                @endforeach
+                <!-- <li>
                     <div class="sub-li">
                         <div class="sub-li-left">
                             <img src="http://images.jiayuan.com/w4/global/cms/uploadfile/2012/1226/20121226105826219.jpg" width="100">
@@ -206,7 +208,7 @@
                             </p>
                         </div>
                     </div>
-                </li>
+                </li> -->
             </ul>
         </div>
 
