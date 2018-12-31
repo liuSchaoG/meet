@@ -316,7 +316,7 @@
                                     <h3 class="name"><img src="/{{$info->head_image}}">{{$info->user_name}}<em class="vline"></em>待定</h3>
                                     <p>开始于{{$info->created_at}}</p>
                                 </div>
-                                <a href="/chatRoom?id={{$info->uid}}" target="_blank" class="btn btn-startchat">立刻开撩</a>
+                                <a href="/chatRoom?id={{$info['uid']}}" target="_blank" class="btn btn-startchat">立刻开撩</a>
                             </div>
                         </li>
                     @endforeach
