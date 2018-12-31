@@ -40,15 +40,15 @@
                 <li>
                     <div class="sub-li">
                         <div class="sub-li-left">
-                            <img src="/{{$info->head_image}}" width="100">
+                            <img src="/{{$info['head_image']}}" width="100">
                         </div>
                         <div class="sub-li-right">
                             <p>
-                                <a href="">{{$info->user_name}}</a>
-                                <span class="salary">{{$incomes[$info->income]}}</span>
+                                <a href="">{{$info['user_name']}}</a>
+                                <span class="salary">{{$incomes[$info['income']]}}</span>
                             </p>
-                            <p class="user-text">{{$citys[$info->area_city] or '暂时保密'}}<span class="vline"></span>{{$info->age}}岁<span class="vline"></span>{{$educations[$info->education]}}<span class="vline"></span>{{$info->height}}cm</p>
-                            <p class="inner-talk">内心独白:{{$info->inner_idea}}</p>
+                            <p class="user-text">{{$citys[$info['area_city']] or '暂时保密'}}<span class="vline"></span>{{$info['age']}}岁<span class="vline"></span>{{$educations[$info['education']]}}<span class="vline"></span>{{$info['height']}}cm</p>
+                            <p class="inner-talk">内心独白:{{$info['inner_idea']}}</p>
                             <p class="to-chat">
                                 <i class="bg"></i>
                                 <a href="" class="btn">立即沟通</a>
