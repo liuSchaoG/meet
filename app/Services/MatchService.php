@@ -50,11 +50,11 @@ class MatchService
                                         -> limit(9)
                                         -> get()
                                         -> toArray();
-        dd($list);
+        
         foreach ($list as $key => $value) {
             $list[$key]['age'] = GlobalFunction::getAge(strtotime($value['birthday'])); 
         }
-
+        dd($list);
         return $list;//列表含分页
     }
     
