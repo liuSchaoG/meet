@@ -110,16 +110,16 @@ class GlobalFunction
      */
     public static function getAge($birthday){
         $byear=date('Y',$birthday);
-        $bmonth=date('m',$birthday);
-        $bday=date('d',$birthday);
-        $tyear=date('Y');
-        $tmonth=date('m');
-        $tday=date('d');
-        $age=$tyear-$byear;
-        if($bmonth>$tmonth || $bmonth==$tmonth && $bday>$tday){
-            $age--;
-        }
-        return $age;
+        $bmonth=date('m',$birthday);
+        $bday=date('d',$birthday);
+        $tyear=date('Y');
+        $tmonth=date('m');
+        $tday=date('d');
+        $age=$tyear-$byear;
+        if($bmonth>$tmonth || $bmonth==$tmonth && $bday>$tday){
+            $age--;
+        }
+        return $age;
     }
 
 
