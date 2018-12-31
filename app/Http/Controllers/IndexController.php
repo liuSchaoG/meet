@@ -44,7 +44,7 @@ class IndexController extends Controller
         $jobs       = config('userdata.user_jobs');
         $citys      = config('userdata.user_citys');
 
-        dd($every);
+        
         return view('index.index',['every_list'=>$every,'incomes'=>$incomes,'educations'=>$educations,'jobs'=>$jobs,'citys'=>$citys]);
 
     }
