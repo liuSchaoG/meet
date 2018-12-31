@@ -117,7 +117,7 @@ class GlobalFunction
         $tday=date('d');
         $age=$tyear-$byear;
         if($bmonth>$tmonth || $bmonth==$tmonth && $bday>$tday){
-            $age--;
+            $age--;
         }
         return $age;
     }
