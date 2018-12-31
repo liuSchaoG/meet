@@ -45,13 +45,12 @@ class MatchService
         //根据个人选择偏好 生成筛选条件
         $field = ['uid','user_name','nick_name','head_image','area_city','income','height','marry_status','education','birthday','college','job','created_at'];
         
-        $list = UserInfo::whereNotIn('inner_idea',[null,'']) 
-                                        -> select($field) 
+        $list = UserInfo::select($field) 
                                         -> inRandomOrder()
                                         -> limit(9)
                                         -> get()
                                         -> toArray();
-
+        dd($list);
         foreach ($list as $key => $value) {
             $list[$key]['age'] = GlobalFunction::getAge(strtotime($value['birthday'])); 
         }
