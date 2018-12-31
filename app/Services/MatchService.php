@@ -8,6 +8,7 @@ use App\Models\UserInfo;
 use App\Models\Position;
 use App\Models\Area;
 use Illuminate\Support\Facades\DB;
+use App\Extensions\GlobalFunction;
 /**
  * 匹配信息服务提供
  */
@@ -27,17 +28,35 @@ class MatchService
         $sex = session('sex');
         $uid = session('id');
         $field = ['uid','user_name','nick_name','head_image','area_city','income','height','marry_status','education','college','job','created_at'];
-        if($sex==1){
-        	$where['sex'] = 2;
-        }else{
-        	$where['sex'] = 1;
-        }
-        $list_p = UserInfo::where($where) -> select($field) -> paginate(10);
+        
+        $list_p = UserInfo::where($where) ->where('sex','<>',$sex) -> select($field) -> paginate(10);
 
         return $list_p;//列表含分页
     }
 
+    /**
+     * 获取每日推荐
+     * @author liuchao 2018-12-31T10:35:22+0800
+     * @param  [type] $param [description]
+     * @return [type]        [description]
+     */
+    public function getEveryList()
+    {
+        //根据个人选择偏好 生成筛选条件
+        $field = ['uid','user_name','nick_name','head_image','area_city','income','height','marry_status','education','birthday','college','job','created_at'];
+        
+        $list = UserInfo::where($where) -> select($field) 
+                                        -> inRandomOrder()
+                                        -> limit(9)
+                                        -> get()
+                                        -> toArray();
 
+        foreach ($list as $key => $value) {
+            $list[$key]['age'] = GlobalFunction::getAge(strtotime($value['birthday'])); 
+        }
+
+        return $list;//列表含分页
+    }
     
 
 }

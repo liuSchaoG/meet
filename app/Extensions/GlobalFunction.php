@@ -102,6 +102,31 @@ class GlobalFunction
         return $ip[$type];
     }
 
+    /**
+     * 根据年龄生成日期
+     * @author liuchao 2018-12-31T10:43:15+0800
+     * @param  [type] $birthday [description]
+     * @return [type]           [description]
+     */
+    public static function getAge($birthday){
+        //格式化出生时间年月日
+        $byear=date('Y',$birthday);
+        $bmonth=date('m',$birthday);
+        $bday=date('d',$birthday);
+
+        //格式化当前时间年月日
+        $tyear=date('Y');
+        $tmonth=date('m');
+        $tday=date('d');
+
+        //开始计算年龄
+        $age=$tyear-$byear;
+        if($bmonth>$tmonth || $bmonth==$tmonth && $bday>$tday){
+            $age--;
+        }
+        return $age;
+    }
+
 
 
 
