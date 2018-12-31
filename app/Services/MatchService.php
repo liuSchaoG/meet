@@ -43,7 +43,7 @@ class MatchService
     public function getEveryList()
     {
         //根据个人选择偏好 生成筛选条件
-        $field = ['uid','user_name','nick_name','head_image','area_city','income','height','marry_status','education','birthday','college','job','created_at'];
+        $field = ['uid','user_name','nick_name','sex','head_image','area_city','income','height','marry_status','education','birthday','college','job','created_at'];
         
         $list = UserInfo::select($field) 
                                         -> inRandomOrder()
@@ -54,7 +54,7 @@ class MatchService
         foreach ($list as $key => $value) {
             $list[$key]['age'] = GlobalFunction::getAge(strtotime($value['birthday'])); 
         }
-        dd($list);
+
         return $list;//列表含分页
     }
     
