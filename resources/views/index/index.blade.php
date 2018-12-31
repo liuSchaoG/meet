@@ -51,7 +51,7 @@
                             <p class="inner-talk">内心独白:{{$info['inner_idea']}}</p>
                             <p class="to-chat">
                                 <i class="bg"></i>
-                                <a href="" class="btn">立即沟通</a>
+                                <a href="/chatRoom?id={{$info->uid}}" target="_blank" class="btn">立即沟通</a>
                             </p>
                         </div>
                     </div>
