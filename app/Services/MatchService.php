@@ -29,7 +29,7 @@ class MatchService
         $uid = session('id');
         $field = ['uid','user_name','nick_name','head_image','area_city','income','height','marry_status','education','college','job','created_at'];
         
-        $list_p = UserInfo::where($where) ->where('sex','<>',$sex) -> select($field) -> paginate(10);
+        $list_p = UserInfo::where('sex','<>',$sex) -> select($field) -> paginate(10);
 
         return $list_p;//列表含分页
     }
@@ -45,7 +45,8 @@ class MatchService
         //根据个人选择偏好 生成筛选条件
         $field = ['uid','user_name','nick_name','head_image','area_city','income','height','marry_status','education','birthday','college','job','created_at'];
         
-        $list = UserInfo::where($where) -> select($field) 
+        $list = UserInfo::whereNotIn('inner_idea',[null,'']) 
+                                        -> select($field) 
                                         -> inRandomOrder()
                                         -> limit(9)
                                         -> get()
