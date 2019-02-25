@@ -6,10 +6,20 @@ namespace App\Http\Controllers;
 use App\Mongo;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Session\Store;
+use Illuminate\Http\Request;
+use App\Services\MatchService;
 
 class IndexController extends Controller
 {
-
+    private $matchService;
+    /**
+     * Create a new controller instance.
+     * @return void
+     */
+    public function __construct(MatchService $matchService)
+    {
+        $this->matchService = $matchService;
+    }
 
     //首页
     public function index()
@@ -27,8 +37,16 @@ class IndexController extends Controller
         //var_dump($res);exit;
         //$a= Mongo::connectMongo('chatFriendsList')->select('unread_num')->where('uid',3)->where('receive_id',1)->get()->toArray();
         //var_dump($a);
+        
+        $list_p = $this->matchService -> getEveryList();
 
-        return view('index/index');
+        $incomes    = config('userdata.user_incomes');
+        $educations = config('userdata.user_educations');
+        $jobs       = config('userdata.user_jobs');
+        $citys      = config('userdata.user_citys');
+
+        return view('index.index',['list_p'=>$list_p,'incomes'=>$incomes,'educations'=>$educations,'jobs'=>$jobs,'citys'=>$citys]);
+        
     }
 
     //朋友推荐页
