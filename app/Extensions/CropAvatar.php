@@ -46,14 +46,11 @@ class CropAvatar {
         $extension = image_type_to_extension($type);
         $src = 'images/user/' . date('YmdHis') .rand(1000,9999). '.original' . $extension;
 
-        if ($type == IMAGETYPE_GIF || $type == IMAGETYPE_JPEG || $type == IMAGETYPE_PNG) {
-
+        if ($type == IMAGETYPE_GIF || $type == IMAGETYPE_JPEG || $type == IMAGETYPE_PNG){
           if (file_exists($src)) {
             unlink($src);
           }
-
           $result = move_uploaded_file($file['tmp_name'], $src);
-
           if ($result) {
             $this -> src = $src;
             $this -> type = $type;

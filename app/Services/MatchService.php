@@ -28,35 +28,35 @@ class MatchService
         $sex = session('sex');
         $uid = session('id');
         $field = ['uid','user_name','nick_name','head_image','area_city','income','height','marry_status','education','college','job','created_at'];
-        if($sex==1){
-        	$where['sex'] = 2;
-        }else{
-        	$where['sex'] = 1;
-        }
-        $list_p = UserInfo::where($where) -> select($field) -> paginate(10);
+        
+        $list_p = UserInfo::where('sex','<>',$sex) -> select($field) -> paginate(10);
 
         return $list_p;//列表含分页
     }
 
-
     /**
-     * 获取每日情缘列表
-     * @author liuchao 2018-12-05T22:30:56+0800
-     * @param  [type] $pid [description]
-     * @return [type]      [description]
+     * 获取每日推荐
+     * @author liuchao 2018-12-31T10:35:22+0800
+     * @param  [type] $param [description]
+     * @return [type]        [description]
      */
     public function getEveryList()
     {
-        $field = ['uid','user_name','nick_name','head_image','area_city','birthday','income','height','inner_idea','marry_status','education','college','job','created_at'];
-        $where['marry_status'] = 1;//未婚未育
-        $list = UserInfo::where($where) -> whereNotIn( 'inner_idea', ['',null])-> select($field) ->inRandomOrder() -> limit(9) -> get()->toArray();
+        //根据个人选择偏好 生成筛选条件
+        $field = ['uid','user_name','nick_name','sex','head_image','area_city','income','height','marry_status','education','birthday','college','job','created_at','inner_idea'];
+        
+        $list = UserInfo::select($field) 
+                                        -> inRandomOrder()
+                                        -> limit(9)
+                                        -> get()
+                                        -> toArray();
+        
         foreach ($list as $key => $value) {
-            $list[$key]['age'] = GlobalFunction::getAge(strtotime($value['birthday']));//根据时间戳 转换年龄
+            $list[$key]['age'] = GlobalFunction::getAge(strtotime($value['birthday'])); 
         }
+
         return $list;//列表含分页
     }
-
-
     
 
 }

@@ -36,6 +36,7 @@
                 <span class="cur">每日情缘</span>
             </h3>
             <ul class="cur">
+<<<<<<< HEAD
                 @foreach ($list_p as $info)
                 <li>
                     <div class="sub-li">
@@ -49,9 +50,24 @@
                             </p>
                             <p class="user-text">{{$citys[$info->area_city] or '暂时保密'}}<span class="vline"></span>25岁<span class="vline"></span>本科<span class="vline"></span>160cm</p>
                             <p class="inner-talk">{{$info->inner_idea}}</p>
+=======
+                @foreach ($every_list as $info)
+                <li>
+                    <div class="sub-li">
+                        <div class="sub-li-left">
+                            <img src="/{{$info['head_image']}}" width="100">
+                        </div>
+                        <div class="sub-li-right">
+                            <p>
+                                <a href="">{{$info['user_name']}}</a>
+                                <span class="salary">{{$incomes[$info['income']]}}</span>
+                            </p>
+                            <p class="user-text">{{$citys[$info['area_city']] or '暂时保密'}}<span class="vline"></span>{{$info['age']}}岁<span class="vline"></span>{{$educations[$info['education']]}}<span class="vline"></span>{{$info['height']}}cm</p>
+                            <p class="inner-talk">内心独白:{{$info['inner_idea']}}</p>
+>>>>>>> 30ba9abea33a90cb3edab51f2c43ee62257935e9
                             <p class="to-chat">
                                 <i class="bg"></i>
-                                <a href="" class="btn">立即沟通</a>
+                                <a href="/chatRoom?id={{$info['uid']}}" target="_blank" class="btn">立即沟通</a>
                             </p>
                         </div>
                     </div>
